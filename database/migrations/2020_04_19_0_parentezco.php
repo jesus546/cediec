@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Usuario extends Migration
+class Parentezco extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class Usuario extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
-            $table->id();
+        Schema::create('parentezco', function (Blueprint $table) {
+            $table->id('paren_id');
+            $table->string('parentezco');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class Usuario extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('parentezco');
     }
 }
