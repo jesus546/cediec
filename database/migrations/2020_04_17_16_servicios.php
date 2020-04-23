@@ -14,7 +14,10 @@ class Servicios extends Migration
     public function up()
     {
         Schema::create('servicios', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_servicios');
+            $table->string('servicio', 60);
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
             $table->timestamps();
         });
     }

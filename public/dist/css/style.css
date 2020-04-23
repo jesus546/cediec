@@ -1,0 +1,161 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 1.1rem;
+    line-height: 1.3em;
+    padding-bottom: auto;
+}
+/* menu  importante*/
+
+.nav-link,
+.dropdown-menu{
+    font-family: 'Bree Serif', serif;    
+}
+
+
+
+.logo{
+    width: 150px;
+    height: 50px;
+    float: left;
+    margin-left: 4em;
+    margin-right: 20em;
+}
+
+
+/*---pie de pagina */
+#footer{
+    background: rgb(39, 37, 37);
+    color: white;
+    width: 100%;
+    font-size: 1em;
+    font-family: 'Bree Serif', serif;
+    padding-top: .3em;
+
+}
+.information{
+    display: flex;
+    flex-wrap: wrap;
+}
+/*--direccion*/
+.address{
+    margin: 2em;
+    margin-left: 5em;
+}
+.h1{
+    font-size: 1em;
+    color: rgb(0, 173, 253, 0.911);
+}
+.h2{
+    font-size: 1em;
+    color: rgb(0, 173, 253, 0.911);
+}
+/*examenes m*/
+
+.exams{
+    margin: 2em;
+    margin-left: 8em;
+    color: rgb(0, 173, 253, 0.911);
+}
+.exams-link{
+    text-decoration: none;
+    color: white;
+}
+.exams-link:hover{
+    color: yellow;
+}
+/*--especialidades-*/
+
+.espec{
+    color: rgb(0, 173, 253, 0.911);
+    margin: 2em;
+    margin-left: 8em;
+}
+.espec-link{
+    text-decoration: none;
+    color: white;
+}
+.espec-link:hover{
+    color: yellow;
+}
+
+/*--autores*/
+
+.autor{
+    background: rgb(25, 25, 25);
+    width: 100%;
+    display: flex;
+    flex-wrap:wrap;  
+}
+.autor-d{
+    font-size: .9em;
+    margin: 1em;
+    margin-left: 9em;
+    margin-right: 38em;
+}
+
+
+.facebook{
+    width: 40px;
+    height: 40px;
+    margin: .3em;
+}
+.facebook:hover{
+    background:  rgb(0, 173, 253, 0.911) ;
+    border-radius: 50%;
+}
+.gmail{
+    width: 40px;
+    height: 40px;
+    margin: .3em;
+}
+.gmail:hover{
+    background:  rgb(0, 173, 253, 0.911) ;
+    border-radius: 50%;
+}
+/*responsive*/
+@media only screen and (max-width: 1000px){
+    .logo{
+        margin: 0em;
+    }
+    .logo-menu{
+        display: block;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        width: 40px;
+        height: 40px;
+        float: right;
+    }
+    
+    
+    /*footer responsive*/
+    #footer{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+    }
+    .information{
+        display: block;
+    }
+    .address{
+      margin-left: 5em ;
+    }
+    .exams{
+        margin-left: 5em ;
+    }
+    .espec{
+        margin-left: 5em ;
+    }
+    .autor{
+       flex-direction: column-reverse;
+       text-align: center;
+    }
+    .autor-d{
+        margin: .5em;
+    }
+}
+   

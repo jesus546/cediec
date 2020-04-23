@@ -31,7 +31,7 @@ class Paciente extends Migration
             $table->unsignedBigInteger('fk_parentezco');
             $table->foreign('fk_parentezco')->references('paren_id')->on('parentezco');
             $table->date('fechaDeNacimiento');
-            $table->string('password', 10)->unique();
+            $table->string('password', 10);
             $table->unsignedBigInteger('fk_estadoCivil');
             $table->foreign('fk_estadoCivil')->references('est_id')->on('estadoCivil');
             $table->unsignedBigInteger('fk_rH');
