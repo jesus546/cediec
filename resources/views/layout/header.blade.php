@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white " id="header" >
-    <a class="navbar-brand" href="#"><img src="{{asset("img/logo2.png")}}" class="logo" alt="logo de CEDIECIPS"></a>
+    <a class="navbar-brand" href="{{route('inicio')}}""}" ><img src="{{asset("img/logo2.png")}}"  class="logo" alt="logo de CEDIECIPS"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse " id="navbarNavDropdown">
       <ul class="navbar-nav  ">
         <li class="nav-item ">
-          <a class="nav-link " href="#">Inicio </a>
+          <a class="nav-link " href="{{route('inicio')}}">Inicio </a>
         </li>
         <li class="nav-item">
           <a class="nav-link " href="#">Quiénes Somos</a>
@@ -41,7 +41,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " href="#">Ingresar</a>
+            <a class="nav-link " href="{{route('ingresar')}}">Ingresar</a>
           </li
       </ul>
     </div>
