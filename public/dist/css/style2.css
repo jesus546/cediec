@@ -2,169 +2,111 @@
 *{
    margin: 0px;
    padding: 0px;
+   box-sizing: border-box;
 }
 body{
    font-family: 'Bree Serif', serif;
    color: black;
-   font-size: 1.1rem;
+   background: grey;
+   font-size: 16px;
    line-height: 1.3em;
-   padding-bottom: auto;
-}
-/* menu  importante*/
-
-.nav-link,
-.dropdown-menu{
-   font-family: 'Bree Serif', serif;
-     
+   padding-top: 60px;
 }
 
-.logo{
-   width: 150px;
+header{
+   background: white;
+   position: fixed;
+   width: 100%;
+   top: 0;
+}
+
+.menu{
+   width: 100%;
+   max-width: 1000px;
+   margin: auto;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: right;
+}
+
+.menu .logo{
+   display: inline-block;
+   margin-right: 1em;
+}
+
+.menu .logo .log2{
+   vertical-align: top;
+   width: 140px;
    height: 50px;
-   float: left;
-   margin-left: 4em;
-   
 }
 
+.menu .btn-menu{
+   display: none;
+}
 
-
-.login-group{
-   background-color:grey;
-   width: 300px ;
-   height: 350px;
-   margin-left: auto;
-   margin-right: auto;
-   border-radius: 1em;
+.menu .enlaces{
+   display: inline-block;
+   text-align: right;
+}
+.menu .enlaces a{
+   color: rgba(0, 173, 253, 0.911);
+   text-decoration: none;
+   display: inline-block;
    padding: 1em;
-   
-}
-
-.fbt{
-   float:none;
-	text-align:center;
-}
-
-
-
-
-/*---pie de pagina */
-#footer{
-   background: rgb(39, 37, 37);
-   color: white;
-   width: 100%;
+   text-align: center;
    font-size: 1em;
-   font-family: 'Bree Serif', serif;
-   padding-top: .3em;
-
-}
-.information{
-   display: flex;
-   flex-wrap: wrap;
-}
-/*--direccion*/
-.address{
-   margin: 2em;
-   margin-left: 5em;
-}
-.h1{
-   font-size: 1em;
-   color: rgb(0, 173, 253, 0.911);
-}
-.h2{
-   font-size: 1em;
-   color: rgb(0, 173, 253, 0.911);
-}
-/*examenes m*/
-
-.exams{
-   margin: 2em;
-   margin-left: 8em;
-   color: rgb(0, 173, 253, 0.911);
-}
-.exams-link{
-   text-decoration: none;
-   color: white;
-}
-.exams-link:hover{
-   color: yellow;
-}
-/*--especialidades-*/
-
-.espec{
-   color: rgb(0, 173, 253, 0.911);
-   margin: 2em;
-   margin-left: 8em;
-}
-.espec-link{
-   text-decoration: none;
-   color: white;
-}
-.espec-link:hover{
-   color: yellow;
 }
 
-/*--autores*/
-
-.autor{
-   background: rgb(25, 25, 25);
-   width: 100%;
-   display: flex;
-   flex-wrap:wrap;  
-}
-.autor-d{
-   font-size: .9em;
-   margin: 1em;
-   margin-left: 9em;
-   margin-right: 38em;
+.menu .enlaces a:hover{
+   color: rgb(2, 25, 105);
 }
 
+.headroom {
+   transition: transform .25s ease-in-out;
+    will-change: transform;
+}
+.headroom--pinned {
+   transform: translateY(0%);
+}
+.headroom--unpinned {
+   transform: translateY(-100%);
+}
 
-.facebook{
-   width: 40px;
-   height: 40px;
-   margin: .3em;
-}
-.facebook:hover{
-   background:  rgb(0, 173, 253, 0.911) ;
-   border-radius: 50%;
-}
-.gmail{
-   width: 40px;
-   height: 40px;
-   margin: .3em;
-}
-.gmail:hover{
-   background:  rgb(0, 173, 253, 0.911) ;
-   border-radius: 50%;
-}
-/*responsive*/
-@media only screen and (max-width: 1000px){
+@media screen and (max-width: 750px){
    
    
-   /*footer responsive*/
-   #footer{
-       display: flex;
+   
+    header .menu{
        flex-direction: column;
-       width: auto;
+       
+    }
+   
+
+    header .menu .logo{
+       display: flex;
+       flex-direction: row;
+       justify-content: space-between;
+       width: 100%;
+       padding: 1em;
+    }
+
+    header .menu .logo .btn-menu{
+       display: inline-block; 
+
+    }
+    
+   header .menu .logo .btn-menu .icono{
+      width: 40px;
+      width: 40px;
+      
    }
-   .information{
-       display: block;
-   }
-   .address{
-     margin-left: 5em ;
-   }
-   .exams{
-       margin-left: 5em ;
-   }
-   .espec{
-       margin-left: 5em ;
-   }
-   .autor{
-      flex-direction: column-reverse;
-      text-align: center;
-   }
-   .autor-d{
-       margin: .5em;
-   }
+    
+    
+    header .menu .enlaces{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
 }
-  

@@ -26,8 +26,8 @@
         </div>
         
         <div class="fbt">
-            <button class="btn btn-primary " type="submit">registar</button>
-            <button class="btn btn-primary" type="submit">iniciar</button>
+            <button class="btn btn-primary " type="submit">Registrar</button>
+            <button class="btn btn-primary" type="submit">Iniciar</button>
         
         </div>
          

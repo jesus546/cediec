@@ -1,48 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white " id="header" >
-    <a class="navbar-brand" href="{{route('inicio')}}""}" ><img src="{{asset("img/logo2.png")}}"  class="logo" alt="logo de CEDIECIPS"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse " id="navbarNavDropdown">
-      <ul class="navbar-nav  ">
-        <li class="nav-item ">
-          <a class="nav-link " href="{{route('inicio')}}">Inicio </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="#">Quiénes Somos</a>
-        </li>
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Servicios
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Programas
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-
-        </li>
-
-          <li class="nav-item ">
-            <a class="nav-link " href="#">Contáctenos</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link " href="{{route('ingresar')}}">Ingresar</a>
-          </li
-      </ul>
-    </div>
+<header id="header">
+  <nav class="menu">
+  <div class="logo">
+  <a href="{{route('inicio')}}"><img class="log2" src="{{asset("img/logo2.png")}}"  alt=""></a>
+  <span class="btn-menu" id="btn-menu"><img class="icono fa-bars" src="{{asset("img/menu.svg")}}"></span>
+  
+     </div>
+  
+       <div class="enlaces" id="enlaces">
+            <a href="{{route('inicio')}}">Inicio</a>
+            <a href="">Quienes Somos</a>
+            <a href="">Programas</a>
+            <a href="">Servicios</a>
+            <a href="">Contacto</a>
+            <a href="{{route('ingresar')}}">Ingresar</a>
+       </div>
   </nav>
+</header>
+
