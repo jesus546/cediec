@@ -13,18 +13,18 @@
     
 </head>
 <body>
-    <!- header->
+    <!-- header-->
     <div class="text-primary">
         @include('layout/header')
     </div>
     
      
-    <!-main ->
+    <!--main -->
     <div class="content">
         @yield('cont')
     </div>
 
-    <!- footer->
+    <!-- footer-->
     <div>
         @include('layout/footer')
     </div>

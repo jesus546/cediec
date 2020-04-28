@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/inicio', 'inicioController@index')->name('inicio');
 Route::get('/ingresar', 'ingresarController@index')->name('ingresar');
+Route::get('/perfil', 'perfilController@index')->name('perfil');
