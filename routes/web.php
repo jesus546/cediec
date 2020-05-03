@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/inicio', 'inicioController@index')->name('inicio');
-Route::get('/ingresar', 'ingresarController@index')->name('ingresar');
+Route::get('/', 'inicioController@index')->name('inicio');
 Route::get('/perfil', 'perfilController@index')->name('perfil');
+Route::get('/registrarUsuario', 'registrarUsuarioController@index')->name('registrarU');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

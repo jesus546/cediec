@@ -36,6 +36,7 @@ class Empleados extends Migration
             $table->unsignedBigInteger('fk_mensaje');
             $table->foreign('fk_mensaje')->references('men_id')->on('mensaje');
             $table->timestamps();
+            $table->rememberToken();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
         });

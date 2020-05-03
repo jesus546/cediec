@@ -6,33 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CEDIEC | IPS SALUD</title>
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">  
-    <link rel="stylesheet" href="{{asset("dist/css/style2.css")}}">
-   
+    <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/style2.css')}}">
     
     @yield('style')
     
 </head>
-<body>
+<body >
     <!-- header-->
-    <div class="text-primary">
+    <div >
         @include('layout/header')
     </div>
     
      
     <!--main -->
-    <div class="content">
+    <div  >
         @yield('cont')
     </div>
 
     <!-- footer-->
-    <div>
-        @include('layout/footer')
-    </div>
+   
+    @include('layout/footer')
+    
 
     @yield('script')
 
-<script src="{{asset("dist/js/headroom.min.js")}}"></script>
-<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-<script src="{{asset("dist/js/scripts2.js")}}"></script>
+<script src="{{asset("jquery/jquery.min.js")}}"></script>
+<script src="{{asset("js/bootstrap.bundle.min.js")}}"></script>
 </body>
 </html>

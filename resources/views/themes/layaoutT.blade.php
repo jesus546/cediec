@@ -14,7 +14,7 @@
     
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
+  
         <!-- header-->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         @include('themes/headerT')
@@ -26,13 +26,15 @@
     <!--main-->
     <div class="content-wrapper">
         @yield('cont')
+       
+      
     </div>
-
-    <!-- footer-->
-    <footer class="main-footer">
+     <!-- footer-->
+  
         @include('themes/footerT')
-    </footer>
-    </div>
+     
+    
+
     
 
     @yield('script')
@@ -44,7 +46,10 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <script src="{{asset("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}"></script>
-<!-- AdminLTE App -->
 <script src="{{asset("dist/js/adminlte.js")}}"></script>
+<script src="{{asset("plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+
+
+<script src="{{asset("dist/js/demo.js")}}"></script>
 </body>
 </html>

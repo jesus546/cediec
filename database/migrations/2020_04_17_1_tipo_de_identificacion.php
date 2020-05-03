@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatTablaReligion extends Migration
+class tipoDeIdentificacion extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreatTablaReligion extends Migration
      */
     public function up()
     {
-        Schema::create('religion', function (Blueprint $table) {
-            $table->bigIncrements('re_id');
-            $table->string('religion');
+        Schema::create('tipoDeIdentificacion', function (Blueprint $table) {
+            $table->bigIncrements('tipoDeIden_ID');
+            $table->string('tipo');
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
@@ -29,6 +29,6 @@ class CreatTablaReligion extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('religion');
+        Schema::dropIfExists('tipoDeIdentificacion');
     }
 }

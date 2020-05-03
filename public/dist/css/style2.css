@@ -2,20 +2,19 @@
 *{
    margin: 0px;
    padding: 0px;
-   box-sizing: border-box;
+   
 }
 body{
    font-family: 'Bree Serif', serif;
    color: black;
-   background: grey;
    font-size: 16px;
-   line-height: 1.3em;
-   padding-top: 60px;
+   background: white;
 }
-
+/*
 header{
    background: white;
    position: fixed;
+   font-family: 'Bree Serif', serif;
    width: 100%;
    top: 0;
 }
@@ -110,3 +109,4 @@ header{
       justify-content: space-around;
     }
 }
+*/

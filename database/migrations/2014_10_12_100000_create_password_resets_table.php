@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaEstadoCivil extends Migration
+class CreatePasswordResetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CrearTablaEstadoCivil extends Migration
      */
     public function up()
     {
-        Schema::create('estadoCivil', function (Blueprint $table) {
-            $table->bigIncrements('est_id');
-            $table->string('estado');
-            $table->timestamps();
-            $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_spanish_ci';
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -29,6 +27,6 @@ class CrearTablaEstadoCivil extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estadoCivil');
+        Schema::dropIfExists('password_resets');
     }
 }
