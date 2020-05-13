@@ -14,8 +14,9 @@ class Departamento extends Migration
     public function up()
     {
         Schema::create('departamento', function (Blueprint $table) {
-            $table->id('depa_id');
-            $table->string('depa');
+            $table->id('id');
+            $table->string('nombre');
+            $table->integer('codigo');
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

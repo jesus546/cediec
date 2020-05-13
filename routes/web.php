@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +20,4 @@ Route::get('/perfil', 'perfilController@index')->name('perfil');
 Route::get('/registrarUsuario', 'registrarUsuarioController@index')->name('registrarU');
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');

@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
+
 class RegisterController extends Controller
 {
     /*
@@ -50,9 +52,19 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'fk_tipoDeidentificacion' => ['required' ],
+            'fk_genero' => ['required'],
+            'id' => ['required', 'string', 'max:10'],
             'nombres' => ['required', 'string', 'max:255'],
+            'apellidos' => ['required', 'string', 'max:255'],
+            'direccion' => ['required', 'string', 'max:20'],
+            'celular' => ['required', 'string', 'max:10'],
+            'fk_departamento' => ['required'],
+            'fk_municipio' => ['required'],
+            'fechaDeNacimiento' => ['required', 'date'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'fk_zona' =>['required'],
         ]);
     }
 
@@ -64,10 +76,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+    
         return User::create([
+            'fk_tipoDeidentificacion' => $data ['fk_tipoDeidentificacion'],
+            'fk_genero' => $data ['fk_genero'],
+            'id' => $data['id'],
             'nombres' => $data['nombres'],
+            'apellidos' => $data['apellidos'],
             'email' => $data['email'],
+            'fk_municipio' => $data ['fk_municipio'],
+            'fk_departamento' => $data['fk_departamento'],
+            'direccion' => $data['direccion'],
+            'celular' => $data['celular'],
+            'fk_zona' => $data['fk_zona'],
+            'fechaDeNacimiento' => $data['fechaDeNacimiento'],
             'password' => Hash::make($data['password']),
         ]);
+     
     }
 }

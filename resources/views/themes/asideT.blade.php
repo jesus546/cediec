@@ -1,7 +1,7 @@
     <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
-        <img src="#" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <img src="{{asset('img/logo3.png')}}" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">CEDIEC</span>
       </a>
   
       <!-- Sidebar -->
@@ -9,10 +9,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="#" class="img-circle elevation-2" alt="">
+            <img src="{{asset('img/user.png')}}" class="img-circle elevation-2" alt="">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="#" class="d-block">{{ Auth::user()->nombres}}</a>
           </div>
         </div>
   
@@ -29,7 +29,25 @@
                     </p>
                   </a>
                 </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
           </ul>
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+                 <li class="nav-item">
+                  <a class="nav-link" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">
+                   <i class="nav-icon fas fa-power-off"></i>
+                   <p>
+                     Salir
+                   </p>
+                  </a>
+                </li>
+          </ul>
+          
         </nav>
         <!-- /.sidebar-menu -->
       </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-auto-hidden os-scrollbar-unusable"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="height: 46.3434%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>

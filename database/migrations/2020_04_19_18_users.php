@@ -14,13 +14,13 @@ class users extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('fk_tipoDeidentificacion')->nullable();
             $table->foreign('fk_tipoDeidentificacion')->references('tipoDeIden_ID')->on('tipoDeIdentificacion');
+            $table->string('id')->unique()->primary();
             $table->string('nombres', 60);
-            $table->string('apellidos', 60)->nullable();
+            $table->string('apellidos', 60);
             $table->integer('telefono')->nullable();
-            $table->integer('celular')->nullable();
+            $table->string('celular', 10);
             $table->string('email', 60)->unique();
             $table->string('ocupacion', 60)->nullable();
             $table->string('direccion', 30)->nullable();
@@ -31,7 +31,7 @@ class users extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->unsignedBigInteger('fk_parentezco')->nullable();
             $table->foreign('fk_parentezco')->references('paren_id')->on('parentezco');
-            $table->date('fechaDeNacimiento')->nullable();
+            $table->date('fechaDeNacimiento');
             $table->string('password');
             $table->unsignedBigInteger('fk_estadoCivil')->nullable();
             $table->foreign('fk_estadoCivil')->references('est_id')->on('estadoCivil');
@@ -48,9 +48,9 @@ class users extends Migration
             $table->unsignedBigInteger('fk_grupoEtnico')->nullable();
             $table->foreign('fk_grupoEtnico')->references('grupo_id')->on('grupoEtnico');
             $table->unsignedBigInteger('fk_departamento')->nullable();
-            $table->foreign('fk_departamento')->references('depa_id')->on('departamento');
+            $table->foreign('fk_departamento')->references('id')->on('departamento');
             $table->unsignedBigInteger('fk_municipio')->nullable();
-            $table->foreign('fk_municipio')->references('muni_id')->on('municipio');
+            $table->foreign('fk_municipio')->references('id')->on('municipio');
             $table->unsignedBigInteger('fk_tipoAseguradora')->nullable();
             $table->foreign('fk_tipoAseguradora')->references('tip_id')->on('tipoDeAseguradora');
             $table->unsignedBigInteger('fk_aseguradora')->nullable();
