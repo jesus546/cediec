@@ -22,6 +22,5 @@ class genero extends Seeder
                  'gen' => $value
              ]);
          }
-     }
+    }
 }
-

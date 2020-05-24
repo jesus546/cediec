@@ -2,12 +2,15 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable
 {
+    use HasRoles;
     use Notifiable;
 
     /**
@@ -17,7 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'fk_tipoDeidentificacion',
-        'id',
+        'identificacion',
         'nombres',
         'apellidos' , 
         'email',
@@ -49,6 +52,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function setPasswordAttribute($value){
+        if (!empty($value)) {
+            $this->attributes['password'] = bcrypt($value);
+        }
+    }
+
     public function tipoIdentificacion()
     {
         return $this->hasOne('App\tipoIdentificacion');
@@ -69,5 +78,7 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\municipio');
     }
+   
 
+   
 }

@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,32 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'inicioController@index')->name('inicio');
-Route::get('/perfil', 'perfilController@index')->name('perfil');
-Route::get('/registrarUsuario', 'registrarUsuarioController@index')->name('registrarU');
+
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/usuarios', 'usersController@index')->name('usuarios.index')
+           ->middleware('permission:usuario index');
+
+    Route::post('/usuarios', 'usersController@store')->name('usuarios.store')
+           ->middleware('permission:registrar usuario');
+
+    Route::get('/usuarios/create', 'usersController@create')->name('usuarios.create')
+           ->middleware('permission:registrar usuario');
+
+    Route::put('/usuarios/{usuario}', 'usersController@update')->name('usuarios.update')
+           ->middleware('permission:editar usuario');
+
+    Route::delete('/usuarios/{usuario}', 'usersController@destroy')->name('usuarios.destroy')
+           ->middleware('permission:eliminar usuario');
+
+    Route::get('/usuarios/{usuario}/edit', 'usersController@edit')->name('usuarios.edit')
+           ->middleware('permission:editar usuario');
+
+    
+});
+
+
+

@@ -23,9 +23,9 @@
                             </select>
                         </div>
                         <div class="form-group col-md-2">
-                            <label for="id" >{{ __('Identificación:') }}</label>
+                            <label for="identificacion" >{{ __('Identificación:') }}</label>
 
-                                <input id="id" type="text" maxlength="10"  class="form-control @error('identificacion') is-invalid @enderror" name="id" value="{{ old('id') }}" required autocomplete="identificacion" autofocus>
+                                <input id="identificacion" type="text" maxlength="10"  class="form-control @error('identificacion') is-invalid @enderror" name="identificacion" value="{{ old('identificacion') }}" required autocomplete="identificacion" autofocus>
 
                                 @error('identificacion')
                                     <span class="invalid-feedback" role="alert">

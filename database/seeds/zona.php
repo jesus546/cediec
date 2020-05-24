@@ -22,5 +22,6 @@ class zona extends Seeder
                  'zona' => $value
              ]);
          }
+
     }
 }

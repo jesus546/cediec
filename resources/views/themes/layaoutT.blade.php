@@ -13,8 +13,8 @@
     @yield('style')
     
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-  
+<body class="hold-transition sidebar-mini ">
+  <div class="wrapper">
         <!-- header-->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         @include('themes/headerT')
@@ -25,17 +25,26 @@
         </aside>
     <!--main-->
     <div class="content-wrapper">
-        @yield('cont')
+        <section class="content-header">
+            <div class="container-fluid">
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                @yield('cont')
+            </div>
+           
+        </section>
+        
        
-      
     </div>
      <!-- footer-->
-  
+     <footer class="main-footer">
         @include('themes/footerT')
-     
+     </footer>
     
 
-    
+    </div>
 
     @yield('script')
   
