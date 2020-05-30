@@ -1,7 +1,6 @@
 <?php
 
-
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,29 +16,36 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'inicioController@index')->name('inicio');
-
-
-Auth::routes();
+Route::get('/perfil', 'HomeController@profile')->name('perfil');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/schedule', 'pacientController@schedule')->name('schedule');
+Route::get('/appointments', 'pacientController@appointments')->name('appointments');
+Auth::routes(['verify'=> true]);
+
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/usuarios', 'usersController@index')->name('usuarios.index')
-           ->middleware('permission:usuario index');
 
-    Route::post('/usuarios', 'usersController@store')->name('usuarios.store')
-           ->middleware('permission:registrar usuario');
+    Route::resource('roles', 'RoleController');
 
-    Route::get('/usuarios/create', 'usersController@create')->name('usuarios.create')
-           ->middleware('permission:registrar usuario');
+    Route::resource('permissions', 'permissionController');
 
-    Route::put('/usuarios/{usuario}', 'usersController@update')->name('usuarios.update')
-           ->middleware('permission:editar usuario');
+    Route::get('/usuarios', 'usersController@index')->name('usuarios.index');
+         
 
-    Route::delete('/usuarios/{usuario}', 'usersController@destroy')->name('usuarios.destroy')
-           ->middleware('permission:eliminar usuario');
+    Route::post('/usuarios', 'usersController@store')->name('usuarios.store');
+           
 
-    Route::get('/usuarios/{usuario}/edit', 'usersController@edit')->name('usuarios.edit')
-           ->middleware('permission:editar usuario');
+    Route::get('/usuarios/create', 'usersController@create')->name('usuarios.create');
+         
+
+    Route::put('/usuarios/{usuario}', 'usersController@update')->name('usuarios.update');
+           
+
+    Route::delete('/usuarios/{usuario}', 'usersController@destroy')->name('usuarios.destroy');
+      
+
+    Route::get('/usuarios/{usuario}/edit', 'usersController@edit')->name('usuarios.edit');
+          
 
     
 });

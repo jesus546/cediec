@@ -34,24 +34,34 @@ class User extends Authenticatable
         'fechaDeNacimiento',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+  
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
+    
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = ['fechaDeNacimiento'];
+
+    public function age()
+    {
+        if (!is_null($this->fechaDeNacimiento)){
+            $age = $this->fechaDeNacimiento->age;
+            $years = ($age == 1) ?  'año' : 'años';
+            $msj = $age . ' ' . $years;
+        }else{
+            $msj = 'indefinido';
+        }
+        return $msj;
+
+    }
+    
+
+    
+   
     public function setPasswordAttribute($value){
         if (!empty($value)) {
             $this->attributes['password'] = bcrypt($value);
@@ -62,23 +72,27 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\tipoIdentificacion');
     }
+
     public function genero()
     {
         return $this->hasOne('App\genero');
     }
+
     public function zona()
     {
         return $this->hasOne('App\zona');
     }
+
     public function departamento()
     {
         return $this->hasOne('App\departamento');
     }
+
     public function municipio()
     {
         return $this->hasOne('App\municipio');
     }
+    
    
-
    
 }

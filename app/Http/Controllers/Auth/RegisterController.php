@@ -54,7 +54,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'fk_tipoDeidentificacion' => ['required' ],
             'fk_genero' => ['required'],
-            'identificacion' => ['required', 'string', 'max:10'],
+            'identificacion' => ['required', 'string', 'max:10', 'unique:users'],
             'nombres' => ['required', 'string', 'max:255'],
             'apellidos' => ['required', 'string', 'max:255'],
             'direccion' => ['required', 'string', 'max:20'],

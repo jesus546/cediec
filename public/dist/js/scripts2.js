@@ -1,9 +1,4 @@
 $(function (){
-    $('#fk_departamento').on('change', onSelectDepartamentochange);
+    $('.timepicker').pickatime();
 });
 
-function onSelectDepartamentochange() {
-    var dep_id = $(this).val();
-  
-    
-}

@@ -30,11 +30,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             zona::class
         ]);
-        
+      
         $this->call([
-            rolesAndPermissions::class
+             rolesAndPermissions::class
         ]);
-
         $this->call([
             tablaUser::class
         ]);

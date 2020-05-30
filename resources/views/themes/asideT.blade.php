@@ -13,19 +13,45 @@
             <img src="{{asset('img/user.png')}}" class="img-circle elevation-2" alt="">
           </div>
           <div class="info">
-            <a href="#" class="d-block">{{ Auth::user()->nombres}}</a>
+          <a href="{{url('perfil')}}" class="d-block">{{ Auth::user()->nombres }}</a>
           </div>
         </div>
   
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-         
-          @can('listar usuario')
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          
+          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
                  <li class="nav-item">
-                  <a href="{{url('usuarios')}}" class="nav-link">
+                  <a href="{{url('schedule')}}" class="nav-link ">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                      Agendar Cita
+                    </p>
+                  </a>
+                </li>
+                
+          </ul>
+
+          <ul class="nav nav-pills nav-sidebar flex-column  " data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+                 <li class="nav-item">
+                 <a href="{{route('appointments')}}" class="nav-link ">
+                    <i class="nav-icon fas fa-calendar"></i>
+                    <p>
+                      Mis Citas
+                    </p>
+                  </a>
+                </li>
+                
+          </ul>
+          
+    
+          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
+                 <li class="nav-item">
+                  <a href="{{url('usuarios')}}" class="nav-link ">
                     <i class="nav-icon fas fa-users"></i>
                     <p>
                       Usuarios
@@ -34,12 +60,33 @@
                 </li>
                 
           </ul>
-         
-          @endcan
+          
+          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+             <a href="{{route('roles.index')}}" class="nav-link ">
+              <i class="nav-icon fas fa-user-tie"></i>
+              
+               <p>
+                 Roles
+               </p>
+             </a>
+           </li>
+           
+          </ul>
+          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+             <a href="{{route('permissions.index')}}" class="nav-link ">
+              <i class="nav-icon fas fa-scroll"></i>
+               <p>
+                 Permisos
+               </p>
+             </a>
+           </li>
+           
+          </ul>
     
-         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+    
+         <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
                <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -54,13 +101,7 @@
                 @csrf
             </form>
         </ul>
-   
-          
-             
-      
 
         </nav>
-        <!-- /.sidebar-menu -->
+
       </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-auto-hidden os-scrollbar-unusable"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="height: 46.3434%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>
-      <!-- /.sidebar -->
-    

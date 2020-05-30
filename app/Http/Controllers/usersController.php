@@ -26,7 +26,7 @@ class usersController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = User::role('User')->get();
         return view('usuarios.index', ['users' => $users]);
     }
 
@@ -49,9 +49,12 @@ class usersController extends Controller
     public function store(Request $request)
     {
         $usuarios = new User();
+        $usuarios->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
         $usuarios->identificacion = $request->identificacion;
         $usuarios->nombres = $request->nombres;
         $usuarios->email = $request->email;
+        $usuarios->celular = $request->celular;
+        $usuarios->fechaDeNacimiento = $request->fechaDeNacimiento;
         $usuarios->password = bcrypt($request->password);
         
         if ($usuarios->save()) {
@@ -84,6 +87,7 @@ class usersController extends Controller
     public function update(Request $request, $id)
     {
         $usuario = User::findOrFail($id);
+        $usuario->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
         $usuario->identificacion = $request->identificacion;
         $usuario->nombres = $request->nombres;
         $usuario->email = $request->email;
@@ -93,7 +97,6 @@ class usersController extends Controller
         
       
          if ($usuario->save()) {
-            $usuario->syncRoles('User');
    
             return redirect('/usuarios');
            }
@@ -103,7 +106,6 @@ class usersController extends Controller
     public function destroy($id)
     {
         $usuario = User::findOrFail($id);
-        $usuario->removeRole('User');
         
         if ($usuario->delete()) {
             return redirect('/usuarios');

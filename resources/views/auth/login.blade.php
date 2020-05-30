@@ -58,7 +58,7 @@
                          </button>
                          
                       </div>
-                      <div>
+                    </div>
                     </form>
                     <p class="mb-1">
                         @if (Route::has('password.request'))

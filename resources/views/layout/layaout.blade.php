@@ -16,24 +16,24 @@
 </head>
 <body  class="body">
     <!-- header-->
-    <div >
+    <nav class="navbar fixed-top navbar-expand-lg bg-white  border border-light fixed-top text-blue">
         @include('layout/header')
-    </div>
+    </nav>
     
      
     <!--main -->
-    <div  >
+    <main class="content"> 
         @yield('cont')
-    </div>
+    <main>
 
     <!-- footer-->
-   
+   <footer class="py-5 bg-dark sticky-footer">
     @include('layout/footer')
+   </footer>
     
-
     @yield('script')
 
-<script src="{{asset("jquery/jquery.min.js")}}"></script>
+<script src="{{asset("plugins/jquery/jquery.min.js")}}"></script>
 <script src="{{asset("js/bootstrap.bundle.min.js")}}"></script>
 
 <!-- footer-->

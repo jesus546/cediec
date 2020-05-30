@@ -4,7 +4,7 @@
 @endsection
 
 @section('cont')
-<div class="register-page">
+<div class="register-page ">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card ">
@@ -123,7 +123,7 @@
                         </div>
 
                         <div class="form-group col-md-2">
-                            <label for="password">{{ __('Password:') }}</label>
+                            <label for="password">{{ __('Contraseña:') }}</label>
                                 <input id="password" maxlength="8" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')

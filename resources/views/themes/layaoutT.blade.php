@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CEDIEC | IPS SALUD</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('img/favicon.ico')}}">
     <link rel="stylesheet" href="{{asset("plugins/fontawesome-free/css/all.min.css")}}">
     <link rel="stylesheet" href="{{asset("dist/css/adminlte.min.css")}}">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -20,14 +21,13 @@
         @include('themes/headerT')
         </nav>
         <!--aside-->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" >
         @include('themes/asideT')
         </aside>
     <!--main-->
     <div class="content-wrapper">
         <section class="content-header">
-            <div class="container-fluid">
-            </div>
+            
         </section>
         <section class="content">
             <div class="container-fluid">
@@ -46,19 +46,16 @@
 
     </div>
 
+   
     @yield('script')
-  
 <script src="{{asset("plugins/jquery/jquery.min.js")}}"></script>
 <script src="{{asset("plugins/jquery-ui/jquery-ui.min.js")}}"></script>
-
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
 <script src="{{asset("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}"></script>
 <script src="{{asset("dist/js/adminlte.js")}}"></script>
 <script src="{{asset("plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+<script src="{{asset("plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+<script src="{{asset("js/sweetalert.min.js")}}"></script>
 
-
-<script src="{{asset("dist/js/demo.js")}}"></script>
+@include('sweetalert::alert')
 </body>
 </html>
