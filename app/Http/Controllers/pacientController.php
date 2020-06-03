@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+
 
 class pacientController extends Controller
 {
@@ -25,7 +27,17 @@ class pacientController extends Controller
     {
         return view('paciente.appointments');
     }
-
+    
+    public function back_schedule($id)
+    {
+        $usuario = User::findOrFail($id);
+        return view('usuarios.pacient.schedule', compact('usuario'));
+    }
+    public function back_appointments($id)
+    {
+        $usuario = User::findOrFail($id);
+        return view('usuarios.pacient.appointments', compact('usuario'));
+    }
     /**
      * Store a newly created resource in storage.
      *

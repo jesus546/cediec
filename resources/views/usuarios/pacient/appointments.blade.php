@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-header bg-blue">
          
-          <h3 class="card-title">Citas</h3>
+          <h3 class="card-title">Citas de {{$usuario->nombres}}</h3>
    
         </div>
      
@@ -20,6 +20,8 @@
                 <th>Fecha</th>
                 <th>Hora</th>
                 <th>Estado</th>
+                <th><a class="btn btn-success btn-sm float-right" href="{{url('/pacient/' . $usuario->id . '/schedule/')}}" >Asignar cita </a></th>
+
                 
               </tr>
             </thead>

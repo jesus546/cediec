@@ -47,43 +47,20 @@
                 </li>
                 
           </ul>
-          
+          @can('listar usuario')
+           <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+             <a href="{{url('usuarios')}}" class="nav-link ">
+               <i class="nav-icon fas fa-users"></i>
+               <p>
+                 Usuarios
+               </p>
+             </a>
+           </li>
+           
+            </ul>
+          @endcan
     
-          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
-                 <li class="nav-item">
-                  <a href="{{url('usuarios')}}" class="nav-link ">
-                    <i class="nav-icon fas fa-users"></i>
-                    <p>
-                      Usuarios
-                    </p>
-                  </a>
-                </li>
-                
-          </ul>
-          
-          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item">
-             <a href="{{route('roles.index')}}" class="nav-link ">
-              <i class="nav-icon fas fa-user-tie"></i>
-              
-               <p>
-                 Roles
-               </p>
-             </a>
-           </li>
-           
-          </ul>
-          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item">
-             <a href="{{route('permissions.index')}}" class="nav-link ">
-              <i class="nav-icon fas fa-scroll"></i>
-               <p>
-                 Permisos
-               </p>
-             </a>
-           </li>
-           
-          </ul>
     
     
          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">

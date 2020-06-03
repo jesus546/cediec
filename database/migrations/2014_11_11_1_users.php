@@ -17,7 +17,7 @@ class users extends Migration
             $table->id();
             $table->unsignedBigInteger('fk_tipoDeidentificacion')->nullable();
             $table->foreign('fk_tipoDeidentificacion')->references('tipoDeIden_ID')->on('tipoDeIdentificacion');
-            $table->integer('identificacion')->unique();
+            $table->string('identificacion')->unique();
             $table->string('nombres', 60)->nullable();
             $table->string('apellidos', 60)->nullable();
             $table->integer('telefono')->nullable();

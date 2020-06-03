@@ -10,14 +10,15 @@
 <div class="col-md-9" style="margin: auto">
     <div class="card card-info " >
         <div class="card-header">
-          <h3 class="card-title">Agendar Cita</h3>
+          <h3 class="card-title">Asignar Cita A {{$usuario->nombres}}</h3>
+
         </div>
         
         <div class="card-body">
             <form action="" method="post">
               @csrf
               <div class="form-group">
-                <label>Selecciona la especialidad</label>
+                <label>Selecciona la especialidad:</label>
              <select class="form-control">
                <option>odontologo</option>
                <option>cirugano</option>
@@ -62,8 +63,8 @@
                  
       </div>
       <div class="card-footer">
-        <button type="submit" class="btn btn-info">Agendar</button>
-        <button type="submit" class="btn btn-default float-right">Cancel</button>
+        <button type="submit" class="btn btn-info">Asignar</button>
+        <button type="reset" class="btn btn-default float-right">Cancel</button>
       </div>
       </form>
     </div>

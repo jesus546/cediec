@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Cita extends Migration
+class appointments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class Cita extends Migration
      */
     public function up()
     {
-        Schema::create('cita', function (Blueprint $table) {
-            $table->id('cita_id');
-            $table->unsignedBigInteger('fk_servicios');
-            $table->foreign('fk_servicios')->references('id_servicios')->on('servicios');
-            $table->date('dia');
-            $table->time('hora');
+        Schema::create('appointments', function (Blueprint $table) {
+            $table->id();
+            $table->timestamp('dates');
+            $table->unsignedBigInteger('doctor_id');
+            $table->enum('status', ['pendiente', 'aprobada', 'cancelada'])->default('pendiente');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

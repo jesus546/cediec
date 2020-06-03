@@ -28,8 +28,10 @@
                 <th>Edad</th>
                 <th>Email</th>
                 <th>
-              
+                @can('registrar usuario')
                 <a href="{{url('usuarios/create')}}" class="btn btn-success btn-sm float-right">Agregar Usuarios</a>
+                
+                @endcan
                 
                 </th>
                 
@@ -45,18 +47,19 @@
                 <td>
                   
                   <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i></a>
-               
+                  <a class="btn btn-info btn-sm" href="{{url('/pacient/' . $usuario->id . '/appointments/')}}"   ><i class="fas fa-book" ></i> </a>
+                  @can('editar usuario')
                   <a class="btn btn-info btn-sm" href="{{url('/usuarios/' . $usuario->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a>
-                  
-                  
+                  @endcan
         
+                  
+                  @can('eliminar usuario')
                   <form action="{{route('usuarios.destroy', $usuario->id)}}" method="POST" style="display:inline-block;">
                     @method('DELETE')
                     @csrf
                     <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i></button>
                     </form>
-               
-                 
+                  @endcan
                              
                 </td>
               </tr>

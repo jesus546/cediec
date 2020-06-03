@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,34 +19,38 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'inicioController@index')->name('inicio');
 Route::get('/perfil', 'HomeController@profile')->name('perfil');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/schedule', 'pacientController@schedule')->name('schedule');
-Route::get('/appointments', 'pacientController@appointments')->name('appointments');
+
 Auth::routes(['verify'=> true]);
 
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::resource('roles', 'RoleController');
+    Route::get('pacient/{usuario}/schedule', 'pacientController@back_schedule')->name('pacient.schedule');
+    Route::get('pacient/{usuario}/appointments', 'pacientController@back_appointments')->name('pacient.appointments'); 
 
-    Route::resource('permissions', 'permissionController');
+    Route::get('/schedule', 'pacientController@schedule')->name('schedule');
+            
+    Route::get('/appointments', 'pacientController@appointments')->name('appointments');
+    
 
-    Route::get('/usuarios', 'usersController@index')->name('usuarios.index');
-         
+    Route::get('/usuarios', 'usersController@index')->name('usuarios.index')
+                 ->middleware('permission:usuario index');
 
-    Route::post('/usuarios', 'usersController@store')->name('usuarios.store');
+    Route::post('/usuarios', 'usersController@store')->name('usuarios.store')
+              ->middleware('permission:registrar usuario');
            
+    Route::get('/usuarios/create', 'usersController@create')->name('usuarios.create')
+                ->middleware('permission:registrar usuario');
 
-    Route::get('/usuarios/create', 'usersController@create')->name('usuarios.create');
-         
+    Route::put('/usuarios/{usuario}', 'usersController@update')->name('usuarios.update')
+                  ->middleware('permission:editar usuario');
 
-    Route::put('/usuarios/{usuario}', 'usersController@update')->name('usuarios.update');
-           
-
-    Route::delete('/usuarios/{usuario}', 'usersController@destroy')->name('usuarios.destroy');
+    Route::delete('/usuarios/{usuario}', 'usersController@destroy')->name('usuarios.destroy')
+               ->middleware('permission:eliminar usuario');
       
 
-    Route::get('/usuarios/{usuario}/edit', 'usersController@edit')->name('usuarios.edit');
-          
+    Route::get('/usuarios/{usuario}/edit', 'usersController@edit')->name('usuarios.edit')
+               ->middleware('permission:editar usuario');
 
     
 });

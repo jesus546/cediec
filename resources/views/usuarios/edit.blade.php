@@ -9,7 +9,7 @@
 <div class="col-md-9" style="margin:auto" >
   <div class="card card-primary " >
     <div class="card-header">
-      <h3 class="card-title">Registrar</h3>
+    <h3 class="card-title">Editar Usuario {{$usuario->nombres}}</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
@@ -17,11 +17,12 @@
     @method('PUT')
     @csrf
       <div class="card-body">
+        <div class="form">
         <div class="row">
           <div class="col-sm-3">
             <div class="form-group">
               <label for="fk_tipoDeidentificacion">{{ __('Tipo De Identificación:')}}</label>
-                            <select class="form-control" id="fk_tipoDeidentificacion" name="fk_tipoDeidentificacion" value="" required autocomplete="fk_tipoDeidentificacion" autofocus>
+                            <select class="form-control form-control-sm" id="fk_tipoDeidentificacion" name="fk_tipoDeidentificacion" value="" required autocomplete="fk_tipoDeidentificacion" autofocus>
                             @foreach ($tipoIdentificacion as $tipoidenti)
                             <option value="{{$tipoidenti['tipoDeIden_ID']}}">{{$tipoidenti['tipo']}}</option>
                             @endforeach
@@ -32,25 +33,25 @@
             <!-- text input -->
             <div class="form-group">
               <label for="identificacion" >Identificacion:</label>
-              <input id="identificacion" type="text" maxlength="10"  class="form-control" name="identificacion" value="{{ $usuario->identificacion }}" >
+              <input id="identificacion" type="text" maxlength="10"  class="form-control form-control-sm" name="identificacion" value="{{ $usuario->identificacion }}" >
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-group">
               <label for="nombres" >Nombres:</label>
-              <input id="nombres" type="text" class="form-control" name="nombres" value="{{ $usuario->nombres }}"  >
+              <input id="nombres" type="text" class="form-control form-control-sm" name="nombres" value="{{ $usuario->nombres }}"  >
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-group">
               <label>Apellidos:</label>
-              <input type="text" class="form-control" placeholder="Enter ..." >
+              <input type="text" class="form-control form-control-sm" placeholder="Enter ..." >
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-group">
               <label>RH:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm ">
                 <option>A+</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -63,7 +64,7 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label>Genero:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -76,7 +77,7 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label>Estado Civil:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -88,26 +89,28 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label>Fecha:</label>
-              <input type="text" class="form-control" placeholder="Enter ..." >
+              <input type="text" class="form-control form-control-sm" placeholder="Enter ..." >
             </div>
           </div>
+        
+        
           <div class="col-sm-2">
             <div class="form-group">
               <label>Telefono:</label>
-              <input type="text" class="form-control" placeholder="Enter ..." >
+              <input type="text" class="form-control form-control-sm" placeholder="Enter ..." >
             </div>
           </div>
 
           <div class="col-sm-2">
             <div class="form-group">
               <label>Celular:</label>
-              <input type="text" class="form-control" placeholder="Enter ..." >
+              <input type="text" class="form-control form-control-sm" placeholder="Enter ..." >
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-group">
               <label  for="email">Email:</label>
-              <input id="email" type="email" placeholder="Ej: name@hotmail.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $usuario->email }}"  >
+              <input id="email" type="email" placeholder="Ej: name@hotmail.com" class="form-control form-control-sm @error('email') is-invalid @enderror" name="email" value="{{ $usuario->email }}"  >
               @error('email')
                     <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -118,26 +121,26 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label for="password">Contraseña:</label>
-              <input input id="password" maxlength="8" type="password" class="form-control" name="password"  >
+              <input input id="password" maxlength="8" type="password" class="form-control form-control-sm" name="password"  >
             </div>
           </div>
         
           <div class="col-sm-2">
             <div class="form-group">
               <label>Ocupacion:</label>
-              <input type="text" class="form-control" placeholder="Enter ..." >
+              <input type="text" class="form-control form-control-sm" placeholder="Enter ..." >
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-group">
               <label>Direccion:</label>
-              <input type="text" class="form-control" placeholder="Enter ..." >
+              <input type="text" class="form-control form-control-sm" placeholder="Enter ..." >
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-group">
               <label>Zona:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -149,7 +152,7 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label>Departamento:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm ">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -161,7 +164,7 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label>Municipio:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm ">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -173,19 +176,19 @@
           <div class="col-sm-3">
             <div class="form-group">
               <label>Nombre Responsable:</label>
-              <input type="text" class="form-control" placeholder="Enter ..." >
+              <input type="text" class="form-control form-control-sm" placeholder="Enter ..." >
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-group">
               <label>Telefono:</label>
-              <input type="text" class="form-control" placeholder="Enter ..." >
+              <input type="text" class="form-control form-control-sm" placeholder="Enter ..." >
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-group">
               <label>Parentezco:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm ">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -198,7 +201,7 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label>Religion:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm ">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -210,7 +213,7 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label>Discapacidad:</label>
-              <select class="form-control ">
+              <select class="form-control  form-control-sm">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -222,7 +225,7 @@
           <div class="col-sm-3">
             <div class="form-group">
               <label>Nivel Educativo:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -234,7 +237,7 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label>Parentezco:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -246,7 +249,7 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label>Grupo etnico:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm ">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -258,7 +261,7 @@
           <div class="col-sm-3">
             <div class="form-group">
               <label>Poblacion Riesgo:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm ">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -270,7 +273,7 @@
           <div class="col-sm-3">
             <div class="form-group">
               <label>Tipo de aseguradora:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -280,7 +283,7 @@
             </div>
           </div>
           <div class="col-sm-2">
-            <div class="form-group">
+            <div class="form-group form-control-sm">
               <label>Aseguradora:</label>
               <select class="form-control ">
                 <option>option 1</option>
@@ -292,6 +295,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
       <!-- /.card-body -->
      

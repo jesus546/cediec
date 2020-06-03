@@ -11,7 +11,7 @@ use App\tipoIdentificacion;
 use App\zona;
 
 use App\User;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class usersController extends Controller
 {
@@ -59,6 +59,7 @@ class usersController extends Controller
         
         if ($usuarios->save()) {
          $usuarios->assignRole('User');
+         Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
 
          return redirect('/usuarios');
         }
@@ -97,7 +98,8 @@ class usersController extends Controller
         
       
          if ($usuario->save()) {
-   
+            $usuario->syncRoles('User');
+            Alert::success('EXITO', 'Se ha actualizado el usuario')->showConfirmButton('OK', '#3085d6');
             return redirect('/usuarios');
            }
     }
@@ -108,11 +110,10 @@ class usersController extends Controller
         $usuario = User::findOrFail($id);
         
         if ($usuario->delete()) {
+            $usuario->removeRole('User');
             return redirect('/usuarios');
         } else {
-            return response()->json([
-                'mensaje' => 'error al eliminar usuario'
-            ]);
+            alert()->error('Oops...', 'No se pudo eliminar el usuario');
         }
         
 
