@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('pacient/{usuario}/schedule', 'pacientController@back_schedule')->name('pacient.schedule');
     Route::get('pacient/{usuario}/appointments', 'pacientController@back_appointments')->name('pacient.appointments'); 
-
+    Route::resource('specialities', 'SpecialitiesController');
     Route::get('/schedule', 'pacientController@schedule')->name('schedule');
             
     Route::get('/appointments', 'pacientController@appointments')->name('appointments');

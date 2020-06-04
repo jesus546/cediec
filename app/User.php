@@ -92,7 +92,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\municipio');
     }
-    
+    public function specialities()
+    {
+        return $this->belongsToMany('App\specialities')->withTimestamps();
+    }
    
    
 }
