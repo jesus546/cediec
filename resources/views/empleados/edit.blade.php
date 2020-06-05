@@ -13,7 +13,7 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-  <form role="form" action="{{route('usuarios.update', $usuario->id)}}" method="POST">
+  <form role="form" action="{{route('empleados.update', $empleado->id)}}" method="POST">
     @method('PUT')
     @csrf
       <div class="card-body">
@@ -22,6 +22,7 @@
             <div class="form-group">
               <label for="fk_tipoDeidentificacion">{{ __('Tipo De Identificación:')}}</label>
                             <select class="form-control" id="fk_tipoDeidentificacion" name="fk_tipoDeidentificacion" value="" required autocomplete="fk_tipoDeidentificacion" autofocus>
+                              
                             @foreach ($tipoIdentificacion as $tipoidenti)
                             <option value="{{$tipoidenti['tipoDeIden_ID']}}">{{$tipoidenti['tipo']}}</option>
                             @endforeach
@@ -32,13 +33,13 @@
             <!-- text input -->
             <div class="form-group">
               <label for="identificacion" >Identificacion:</label>
-              <input id="identificacion" type="text" maxlength="10"  class="form-control" name="identificacion" value="{{ $usuario->identificacion }}" >
+              <input id="identificacion" type="text" maxlength="10"  class="form-control" name="identificacion" value="{{ $empleado->identificacion }}" >
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-group">
               <label for="nombres" >Nombres:</label>
-              <input id="nombres" type="text" class="form-control" name="nombres" value="{{ $usuario->nombres }}"  >
+              <input id="nombres" type="text" class="form-control" name="nombres" value="{{ $empleado->nombres }}"  >
             </div>
           </div>
           <div class="col-sm-2">
@@ -107,7 +108,7 @@
           <div class="col-sm-2">
             <div class="form-group">
               <label  for="email">Email:</label>
-              <input id="email" type="email" placeholder="Ej: name@hotmail.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $usuario->email }}"  >
+              <input id="email" type="email" placeholder="Ej: name@hotmail.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $empleado->email }}"  >
               @error('email')
                     <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>

@@ -27,7 +27,7 @@
             <tr>
                 <td scope="row">{{$specialities->name}}</td>
                   <td>0</td>
-                  <td>ada</td>
+                  <td><a class="btn btn-info btn-sm" href="{{url('/specialities/' . $specialities->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a></td>
     
                 </tr>  
             @endforeach

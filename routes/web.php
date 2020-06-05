@@ -26,10 +26,21 @@ Auth::routes(['verify'=> true]);
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('pacient/{usuario}/schedule', 'pacientController@back_schedule')->name('pacient.schedule');
+    
     Route::get('pacient/{usuario}/appointments', 'pacientController@back_appointments')->name('pacient.appointments'); 
+
     Route::resource('specialities', 'SpecialitiesController');
+
     Route::get('/schedule', 'pacientController@schedule')->name('schedule');
-            
+
+    Route::resource('empleados', 'empleadosController');
+
+    Route::get('empleados/{empleado}/asignar_speciality', 'empleadosController@asignar_speciality')
+             ->name('empleados.asignar_speciality');
+
+    Route::post('empleados/{empleado}', 'empleadosController@speciality_assignment')
+            ->name('empleados.speciality_assignment');
+
     Route::get('/appointments', 'pacientController@appointments')->name('appointments');
     
 

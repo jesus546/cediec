@@ -21,5 +21,23 @@ class tablaUser extends Seeder
         ]);
 
         $admins->assignRole('super-admin');
+
+        $admisiosi = User::create([
+            'identificacion' => '4578523',
+            'nombres' => 'admisionista',
+            'email' => 'admisionista@admin.co',
+            'password' => 'admin123'
+        ]);
+
+        $admisiosi->assignRole('admisionista');
+
+        $doctor = User::create([
+            'identificacion' => '4578525',
+            'nombres' => 'doctor',
+            'email' => 'doctor@admin.co',
+            'password' => 'admin123'
+        ]);
+
+        $doctor->assignRole('doctor');
     }
 }

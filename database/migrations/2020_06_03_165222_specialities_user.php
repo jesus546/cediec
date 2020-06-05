@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class SpecialitieUser extends Migration
+class SpecialitiesUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class SpecialitieUser extends Migration
      */
     public function up()
     {
-        Schema::create('specialitie_user', function (Blueprint $table) {
+        Schema::create('specialities_user', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('specialitie_id');
-            $table->foreign('specialitie_id')->references('id')->on('specialities')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('specialities_id');
+            $table->foreign('specialities_id')->references('id')->on('specialities')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class SpecialitieUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('specialitie_user');
+        Schema::dropIfExists('specialities_user');
     }
 }

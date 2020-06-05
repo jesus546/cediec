@@ -14,7 +14,7 @@
       </div>
       <!-- /.card-header -->
       <!-- form start -->
-    <form role="form" action="{{url('/usuarios')}}" method="POST">
+    <form role="form" action="{{route('empleados.store')}}" method="POST">
       @csrf
         <div class="card-body">
           <div class="row">

@@ -14,4 +14,9 @@ class specialities extends Model
     {
         return $this->belongsToMany('App\User')->withTimestamps();
     }
+
+    public function store($request)
+    {
+        return self::create($request->all());
+    }
 }

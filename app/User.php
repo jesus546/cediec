@@ -68,6 +68,14 @@ class User extends Authenticatable
         }
     }
 
+    public function has_especiality($id)
+    {
+       foreach ($this->specialities as $speciality) {
+           if ($speciality->id == $id ) return true;
+       }
+       return false;
+    }
+
     public function tipoIdentificacion()
     {
         return $this->hasOne('App\tipoIdentificacion');
