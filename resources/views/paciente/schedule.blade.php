@@ -14,27 +14,23 @@
         </div>
         
         <div class="card-body">
-            <form action="" method="post">
+        <form action="{{route('store_schedule')}}" method="post">
               @csrf
               <div class="form-group">
-                <label>Selecciona la especialidad</label>
-             <select class="form-control">
-               <option>odontologo</option>
-               <option>cirugano</option>
-               <option>medicina interna</option>
-               <option>ginecologo</option>
-               <option>citologia</option>
-             </select>
-           </div>
-              <div class="form-group">
-                   <label>Doctor</label>
-                <select class="form-control">
-                  <option>raul</option>
-                  <option>ramon</option>
-                  <option>maria</option>
-                  <option>dector</option>
-                  <option>sebastian</option>
-                </select>
+                <label for="speciality">Selecciona la especialidad</label>
+                <select class="form-control dynamic" id="speciality" name="speciality" >
+                  <option disabled selected> selecciona una especialidad</option>
+              @foreach ($specialities as $speciality)
+                <option value="{{$speciality->id}}">{{$speciality->name}}</option>
+              @endforeach
+            </select>
+              </div>
+             <div class="form-group">
+                  <label for="doctor">Doctor</label>
+               <select class="form-control" id="doctor" name="doctor">
+                 <option disabled selected>primero selecciona una especialidad</option>
+                 
+               </select>
               </div>
                   <div class="row " >
                     <div class="col-sm-6">
@@ -49,7 +45,7 @@
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
-                         <label for="timepciker">Hora</label>
+                         <label for="timepicker">Hora</label>
                          <div class="input-group-prepend">
                           <span class="input-group-text"><i class="far fa-clock"></i> </span>
                           <input type="text" name="time" class="form-control timepicker " placeholder="seleccione una hora">
@@ -80,19 +76,49 @@
 <script  type="text/javascript"  src="{{asset('plugins/pickadate/picker.date.js')}}"></script>
 <script type="text/javascript" src="{{asset('plugins/pickadate/picker.time.js')}}"></script>
 <script type="text/javascript" src="{{asset('plugins/pickadate/legacy.js')}}"></script>
-<script>
+
+<script type="text/javascript">
+   ////////
     var input_date = $('.datepicker').pickadate({
-          min: true
+          min: true,
+          formatSubmit: 'yyyy/mm/dd',
     });
-    var date_picker = input_date.pickadate('picker')
+    var date_picker = input_date.pickadate('picker');
 
    
     var input_time = $('.timepicker').pickatime({
-       min: 2
+       min: [7,30],
+       max:  [18,0],
+       formatSubmit: 'H:i',
     });
 
-    var time_picker = input_time.pickatime('picker')
+    var time_picker = input_time.pickatime('picker');
 
-  
+    ////////////
+    var speciality = $('#speciality');
+
+       $('#speciality').change(function () {
+        
+        $.ajax({
+            url: "{{route('ajax.user_speciality')}}",
+            method: "GET",
+            data: {
+                speciality:speciality.val(),
+            },
+            success: function(data){
+              $('#doctor').empty();
+              $('#doctor').append('<option disabled selected>selecciona un doctor</option>');
+              $.each(data, function(index, element){
+                $('#doctor').append('<option value"'+element.id+'">'+element.nombres+'</option>');
+              });
+            }
+        });
+       });
+       ////////
+     
+
+
+ 
+   
 </script>
 @endsection

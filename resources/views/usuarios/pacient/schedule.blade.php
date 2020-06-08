@@ -19,22 +19,19 @@
               @csrf
               <div class="form-group">
                 <label>Selecciona la especialidad:</label>
-             <select class="form-control">
-               <option>odontologo</option>
-               <option>cirugano</option>
-               <option>medicina interna</option>
-               <option>ginecologo</option>
-               <option>citologia</option>
+                
+             <select class="form-control" id="speciality" name="speciality">
+                   <option disabled selected> selecciona una especialidad</option>
+               @foreach ($specialities as $speciality)
+                 <option value="{{$speciality->id}}">{{$speciality->name}}</option>
+               @endforeach
              </select>
            </div>
               <div class="form-group">
                    <label>Doctor</label>
-                <select class="form-control">
-                  <option>raul</option>
-                  <option>ramon</option>
-                  <option>maria</option>
-                  <option>dector</option>
-                  <option>sebastian</option>
+                <select class="form-control" id="doctor" name="doctor">
+                  <option disabled selected>primero selecciona una especialidad</option>
+                  
                 </select>
               </div>
                   <div class="row " >
@@ -89,11 +86,33 @@
 
    
     var input_time = $('.timepicker').pickatime({
-       min: 2
+         min: 2
     });
 
     var time_picker = input_time.pickatime('picker')
 
+    $(document).ready(function () {
+       var speciality = $('#speciality');
+
+       $('#speciality').change(function () {
+        
+        $.ajax({
+            url: "{{route('ajax.user_speciality')}}",
+            method: "GET",
+            data: {
+                speciality:speciality.val(),
+            },
+            success: function(data){
+              $('#doctor').empty();
+              $('#doctor').append('<option disabled selected>selecciona un doctor</option>');
+              $.each(data, function(index, element){
+                $('#doctor').append('<option value"'+element.id+'">'+element.nombres+'</option>');
+              });
+            }
+        });
+    });
+
+  });
   
 </script>
 @endsection

@@ -17,13 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'inicioController@index')->name('inicio');
-Route::get('/perfil', 'HomeController@profile')->name('perfil');
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 Auth::routes(['verify'=> true]);
 
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/perfil', 'HomeController@profile')->name('perfil');
+
+    Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('pacient/{usuario}/schedule', 'pacientController@back_schedule')->name('pacient.schedule');
     
@@ -32,6 +35,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('specialities', 'SpecialitiesController');
 
     Route::get('/schedule', 'pacientController@schedule')->name('schedule');
+    Route::post('/store_schedule', 'pacientController@store_schedule')->name('store_schedule');
+
 
     Route::resource('empleados', 'empleadosController');
 
@@ -66,5 +71,7 @@ Route::group(['middleware' => ['auth']], function () {
     
 });
 
-
+Route::group(['middleware' => ['auth'], 'as' => 'ajax.'],  function () {
+        Route::get('user_speciality', 'ajaxController@user_speciality')->name('user_speciality');
+});
 

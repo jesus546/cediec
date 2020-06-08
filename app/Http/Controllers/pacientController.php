@@ -2,27 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\appointmet;
 use App\User;
 use Illuminate\Http\Request;
-
+use App\specialities;
+use Carbon\Carbon;;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class pacientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function schedule()
     {
-        return view('paciente.schedule');
+        return view('paciente.schedule', [
+            'specialities' => specialities::all()
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function store_schedule(Request $request, appointmet $appointmet)
+    {
+       
+         $appointmet = $appointmet->store($request);
+         
+         Alert::success('EXITO', 'Su Cita ha sido creada')->showConfirmButton('OK', '#3085d6');
+         return redirect()->route('paciente.appointments');
+    }
+
     public function appointments()
     {
         return view('paciente.appointments');
@@ -31,66 +36,14 @@ class pacientController extends Controller
     public function back_schedule($id)
     {
         $usuario = User::findOrFail($id);
-        return view('usuarios.pacient.schedule', compact('usuario'));
+        return view('usuarios.pacient.schedule', compact('usuario'), [
+            'specialities' => specialities::all()
+        ]);
     }
     public function back_appointments($id)
     {
         $usuario = User::findOrFail($id);
         return view('usuarios.pacient.appointments', compact('usuario'));
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+   
 }

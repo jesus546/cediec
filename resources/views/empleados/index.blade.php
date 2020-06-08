@@ -25,8 +25,8 @@
               <tr>
                 <th>Identificación</th>
                 <th>Nombres</th>
-                <th>Edad</th>
                 <th>Email</th>
+                <th>Rol</th>
                 <th>
               
                 <a href="{{route('empleados.create')}}" class="btn btn-success btn-sm float-right">Agregar Usuarios</a>
@@ -40,15 +40,15 @@
               <tr>
                 <td scope="row">{{$empleado->identificacion}}</td>
                 <td>{{$empleado->nombres}}</td>
-                <td>{{$empleado->age()}}</td>
                 <td>{{$empleado->email}}</td>
+                <td>{{$empleado->getRoleNames()}}</td>
                 <td>
                   
                   <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i></a>
                
                   <a class="btn btn-info btn-sm" href="{{url('/empleados/' . $empleado->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a>
                     @if ($empleado->hasRole('doctor'))
-                     <a class="btn btn-primary btn-sm" href="{{route('empleados.asignar_speciality', $empleado)}}"><i class="fas fa-code-branch"></i></a>
+                     <a class="btn btn-primary btn-sm" href="{{route('empleados.asignar_speciality', $empleado)}}"><i class="fab fa-medrt"></i></a>
                     @endif
         
                   <form action="{{route('empleados.destroy', $empleado->id)}}" method="POST" style="display:inline-block;">

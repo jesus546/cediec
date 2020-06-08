@@ -75,6 +75,7 @@ class User extends Authenticatable
        }
        return false;
     }
+    
 
     public function tipoIdentificacion()
     {
@@ -104,6 +105,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\specialities')->withTimestamps();
     }
-   
-   
+    public function user()
+    {
+        return $this->hasMany('App\appointmet');
+    }
 }

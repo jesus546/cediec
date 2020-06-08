@@ -19,4 +19,7 @@ class specialities extends Model
     {
         return self::create($request->all());
     }
+
+    
+
 }
