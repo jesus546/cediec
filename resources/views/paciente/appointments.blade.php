@@ -1,5 +1,4 @@
 @extends('themes.layaoutT')
-
 @section('cont')
 <div class="row ">
     <div class="col-8 " style="margin:auto">
@@ -18,19 +17,23 @@
                 <th>Id</th>
                 <th>Especialista</th>
                 <th>Fecha</th>
-                <th>Hora</th>
                 <th>Estado</th>
                 
               </tr>
             </thead>
             <tbody>  
-              <tr>
-                <td scope="row">1</td>
-                <td>asd</td>
-                <td>ada</td>
-                <td>adsa</td>
-                <td>ad</td>
-              </tr>  
+               @forelse ($appointments as $appointment)
+                   <tr>
+                     <td>{{$appointment->id}}</td>
+                     <td>{{$appointment->doctor()->nombres}}</td>
+                     <td>{{$appointment->dates->format('d/m/Y H:i')}}</td>
+                     <td>{{$appointment->status}}</td>
+                   </tr>
+               @empty
+                   <tr>
+                     <td colspan="5">No hay citas registradas</td>
+                   </tr>
+               @endforelse
             </tbody>
           </table>
         </div>

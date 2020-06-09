@@ -18,7 +18,6 @@
                 <th>Id</th>
                 <th>Especialista</th>
                 <th>Fecha</th>
-                <th>Hora</th>
                 <th>Estado</th>
                 <th><a class="btn btn-success btn-sm float-right" href="{{url('/pacient/' . $usuario->id . '/schedule/')}}" >Asignar cita </a></th>
 
@@ -26,14 +25,20 @@
               </tr>
             </thead>
             <tbody>  
-              <tr>
-                <td scope="row">1</td>
-                <td>asd</td>
-                <td>ada</td>
-                <td>adsa</td>
-                <td>ad</td>
-              </tr>  
-            </tbody>
+              @forelse ($appointments as $appointment)
+                  <tr>
+                    <td>{{$appointment->id}}</td>
+                    <td>{{$appointment->doctor()->nombres}}</td>
+                    <td>{{$appointment->dates->format('d/m/Y H:i')}}</td>
+                    <td>{{$appointment->status}}</td>
+                    <td><a class="btn btn-info btn-sm " href="{{url('/pacient/' . $usuario->id . '/appointments/'. $appointment->id. '/edit/')}}" ><i class="fas fa-pencil-alt"></a></td>
+                  </tr>
+              @empty
+                  <tr>
+                    <td colspan="5">No hay citas registradas</td>
+                  </tr>
+              @endforelse
+           </tbody>
           </table>
         </div>
         <!-- /.card-body -->

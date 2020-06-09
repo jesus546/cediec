@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\appointmet;
+use App\appointments;
 use App\User;
 use Illuminate\Http\Request;
 use App\specialities;
-use Carbon\Carbon;;
+
+use Illuminate\Support\Facades\Auth;
+
+
 use RealRashid\SweetAlert\Facades\Alert;
 
 class pacientController extends Controller
@@ -15,22 +18,23 @@ class pacientController extends Controller
     public function schedule()
     {
         return view('paciente.schedule', [
+            'usuario' =>Auth::user(),
             'specialities' => specialities::all()
         ]);
     }
 
-    public function store_schedule(Request $request, appointmet $appointmet)
+    public function store_schedule(Request $request, appointments $appointments)
     {
        
-         $appointmet = $appointmet->store($request);
-         
+         $appointments = $appointments->store($request);
          Alert::success('EXITO', 'Su Cita ha sido creada')->showConfirmButton('OK', '#3085d6');
-         return redirect()->route('paciente.appointments');
+         return redirect('/appointments');
     }
 
     public function appointments()
     {
-        return view('paciente.appointments');
+        $appointments = Auth::user()->appointments->sortBy('dates');
+        return view('paciente.appointments', compact('appointments'));
     }
     
     public function back_schedule($id)
@@ -43,7 +47,17 @@ class pacientController extends Controller
     public function back_appointments($id)
     {
         $usuario = User::findOrFail($id);
-        return view('usuarios.pacient.appointments', compact('usuario'));
+        return view('usuarios.pacient.appointments', compact('usuario'), [
+            'appointments' => $usuario->appointments->sortBy('dates')
+        ]);
+    }
+
+    public function back_appointments_id($id)
+    {
+        $usuario = User::findOrFail($id);
+        return view('usuarios.pacient.appointments_edit', compact('usuario'), [
+            'specialities' => specialities::all()
+        ]);
     }
    
 }
