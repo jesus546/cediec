@@ -44,6 +44,14 @@ class pacientController extends Controller
             'specialities' => specialities::all()
         ]);
     }
+
+    public function store_back_schedule(Request $request, appointments $appointments, $id)
+    {
+        $usuario = User::findOrFail($id);
+        $appointments = $appointments->store($request);
+         Alert::success('EXITO', 'se ha creado la cita')->showConfirmButton('OK', '#3085d6');
+         return redirect()->route('pacient.appointments', $usuario);
+    }
     public function back_appointments($id)
     {
         $usuario = User::findOrFail($id);
@@ -52,7 +60,7 @@ class pacientController extends Controller
         ]);
     }
 
-    public function back_appointments_id($id)
+    public function back_appointments_edit($id)
     {
         $usuario = User::findOrFail($id);
         return view('usuarios.pacient.appointments_edit', compact('usuario'), [

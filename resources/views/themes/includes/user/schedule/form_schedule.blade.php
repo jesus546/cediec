@@ -1,7 +1,7 @@
 
     
     <div class="card-body">
-    <form action="{{route('store_schedule')}}" method="post">
+    <form action="{{$route}}" method="post">
         @csrf
         <div class="form-group">
             <label for="speciality">Selecciona la especialidad</label>

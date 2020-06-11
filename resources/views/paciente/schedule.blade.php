@@ -15,13 +15,15 @@
       <h3 class="card-title">Agendar Cita</h3>
       
       </div>
-@include('themes.includes.user.form_schedule')
+@include('themes.includes.user.schedule.form_schedule', [
+  'route' => route('store_schedule')
+])
 
 </div>
 </div>
 @endsection
 
 @section('script')
-@include('themes.includes.user.foot_schedule')
+@include('themes.includes.user.schedule.foot_schedule')
 
 @endsection

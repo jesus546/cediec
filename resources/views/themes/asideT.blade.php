@@ -20,6 +20,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           
+          @role('User')
           <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
@@ -47,23 +48,22 @@
                 </li>
                 
           </ul>
-
+         @endrole
+         @can('listar especialidades')
+         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+               <li class="nav-item">
+               <a href="{{route('specialities.index')}}" class="nav-link ">
+                <i class="nav-icon fas fa-briefcase"></i>
+                  <p>
+                    Especialidades
+                  </p>
+                </a>
+              </li>
+        </ul>
+         @endcan  
+         
+          @can('listar empleados')
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
-                 <li class="nav-item">
-                 <a href="{{route('specialities.index')}}" class="nav-link ">
-                  <i class="nav-icon fas fa-briefcase"></i>
-                    <p>
-                      Especialidades
-                    </p>
-                  </a>
-                </li>
-                
-          </ul>
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
                  <li class="nav-item">
                  <a href="{{route('empleados.index')}}" class="nav-link ">
                   <i class="nav-icon fas fa-briefcase"></i>
@@ -74,6 +74,8 @@
                 </li>
                 
           </ul>
+          @endcan
+
           @can('listar usuario')
            <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">

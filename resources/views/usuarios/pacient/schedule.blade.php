@@ -15,7 +15,9 @@
       <h3 class="card-title">Asignar cita a {{$usuario->nombres}}</h3>
       
       </div>
-    @include('themes.includes.user.form_schedule')
+    @include('themes.includes.user.schedule.form_schedule', [
+      'route' => route('pacient.store_back_schedule', $usuario->id)
+    ])
   
 </div>
 </div>
@@ -23,5 +25,5 @@
 
 @section('script')
 
-@include('themes.includes.user.foot_schedule')
+@include('themes.includes.user.schedule.foot_schedule')
 @endsection

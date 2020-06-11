@@ -28,15 +28,21 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('pacient/{usuario}/schedule', 'pacientController@back_schedule')->name('pacient.schedule');
+    Route::get('pacient/{usuario}/schedule', 'pacientController@back_schedule')->name('pacient.schedule')
+    ->middleware('permission:asignar cita');
+    Route::post('pacient/{usuario}/store_back_schedule', 'pacientController@store_back_schedule')->name('pacient.store_back_schedule')
+    ->middleware('permission:asignar cita');
     
-    Route::get('pacient/{usuario}/appointments', 'pacientController@back_appointments')->name('pacient.appointments');
+    Route::get('pacient/{usuario}/appointments', 'pacientController@back_appointments')->name('pacient.appointments')
+    ->middleware('permission:index cita');
     Route::get('pacient/{usuario}/appointments/{appointment}/edit', 'pacientController@back_appointments_edit')->name('pacient.appointments.edit');  
 
     Route::resource('specialities', 'SpecialitiesController');
 
-    Route::get('/schedule', 'pacientController@schedule')->name('schedule');
-    Route::post('/store_schedule', 'pacientController@store_schedule')->name('store_schedule');
+    Route::get('/schedule', 'pacientController@schedule')->name('schedule')
+    ->middleware('role:User');
+    Route::post('/store_schedule', 'pacientController@store_schedule')->name('store_schedule')
+    ->middleware('role:User');
 
 
     Route::resource('empleados', 'empleadosController');
@@ -47,7 +53,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('empleados/{empleado}', 'empleadosController@speciality_assignment')
             ->name('empleados.speciality_assignment');
 
-    Route::get('/appointments', 'pacientController@appointments')->name('appointments');
+    Route::get('/appointments', 'pacientController@appointments')->name('appointments')
+    ->middleware('role:User');
     
 
     Route::get('/usuarios', 'usersController@index')->name('usuarios.index')

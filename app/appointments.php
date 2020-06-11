@@ -22,12 +22,13 @@ class appointments extends Model
 
     public function store($request)
     {
+        $user = User::findOrFail(decrypt($request->user_id));
         $date = Carbon::createFromFormat('Y/m/d H:i', $request->date_submit .' '. $request->time_submit);
         return self::create([
             'dates' => $date->toDateTimeString(),
             'doctor_id' => $request->doctor,
             'status' => 'pendiente',
-            'user_id' => $request->user()->id,
+            'user_id' => $user->id,
            
         ]);
     }
