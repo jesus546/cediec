@@ -1,9 +1,7 @@
 @extends('themes.layaoutT')
 
 @section('style')
-<link rel="stylesheet" href="{{asset('plugins/pickerdata/themes/default.date.css')}}">
-<link rel="stylesheet" href="{{asset('plugins/pickerdata/themes/default.time.css')}}">
-<link rel="stylesheet" href="{{asset('plugins/pickerdata/themes/default.css')}}">
+@include('themes.includes.user.schedule.header_schedule')
 @endsection
 
 @section('cont')
@@ -24,6 +22,6 @@
 @endsection
 
 @section('script')
+ @include('themes.includes.user.schedule.foot_schedule')
 
-@include('themes.includes.user.schedule.foot_schedule')
 @endsection

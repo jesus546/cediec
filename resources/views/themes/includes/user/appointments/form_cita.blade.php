@@ -19,7 +19,7 @@
             <tr>
               <td>{{$appointment->id}}</td>
                <!-- <td> /*$appointment->doctor()->nombres*/</td> -->
-              <td>{{$appointment->dates->format('d/m/Y H:i')}}</td>
+              <td>{{$appointment->dates->format('d/m/Y h:i a')}}</td>
               <td>{{$appointment->status}}</td>
             @hasanyrole('admisionista|super-admin')
             <td><a class="btn btn-info btn-sm " href="{{url('/pacient/' . $usuario->id . '/appointments/'. $appointment->id. '/edit/')}}" ><i class="fas fa-pencil-alt"></a></td>
