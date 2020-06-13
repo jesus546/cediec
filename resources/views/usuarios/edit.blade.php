@@ -138,8 +138,9 @@
             <div class="form-group">
               <label for="zona">Zona:</label>
               <select class="form-control form-control-sm" id="zona" name="zona" value="{{ old('zona') }}">
-                <option  value="Rural" @if ($usuario->zona=='Rural' ) selected @endif >Rural</option>
                 <option  value="Urbana"@if ($usuario->zona=='Urbana' ) selected @endif >Urbana</option>
+                <option  value="Rural" @if ($usuario->zona=='Rural' ) selected @endif >Rural</option>
+                
                 
               
             </select>
@@ -278,10 +279,10 @@
               </select>
             </div>
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-3">
             <div class="form-group form-control-sm">
               <label>Aseguradora:</label>
-              <select class="form-control ">
+              <select class="form-control form-control-sm ">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>

@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\departamento;
-use App\genero;
+
 use App\municipio;
 use App\specialities;
 use App\tipoIdentificacion;
-use App\zona;
+
 
 use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -32,11 +32,9 @@ class empleadosController extends Controller
     protected function create()
     {
         $tipoIdentificacion = tipoIdentificacion::all();
-        $genero = genero::all();
-        $zona = zona::all();
         $departamento = departamento::all();
         $municipio = municipio::all();
-       return view('empleados.create', compact('tipoIdentificacion', 'genero', 'zona', 'departamento', 'municipio'));
+       return view('empleados.create', compact('tipoIdentificacion', 'departamento', 'municipio'));
 
        
      
@@ -52,6 +50,8 @@ class empleadosController extends Controller
         $empleado->nombres = $request->nombres;
         $empleado->email = $request->email;
         $empleado->celular = $request->celular;
+        $empleado->genero = $request->genero;
+        $empleado->zona = $request->zona;
         $empleado->fechaDeNacimiento = $request->fechaDeNacimiento;
         $empleado->password = bcrypt($request->password);
         
@@ -74,12 +74,10 @@ class empleadosController extends Controller
     public function edit($id)
     {
         $tipoIdentificacion = tipoIdentificacion::all();
-        $genero = genero::all();
-        $zona = zona::all();
         $departamento = departamento::all();
         $municipio = municipio::all();
         $empleado = User::findOrFail($id);
-        return view('empleados.edit', compact('empleado', 'tipoIdentificacion', 'genero', 'zona', 'departamento', 'municipio'));
+        return view('empleados.edit', compact('empleado', 'tipoIdentificacion', 'departamento', 'municipio'));
     }
 
    
@@ -90,6 +88,8 @@ class empleadosController extends Controller
         $empleado->identificacion = $request->identificacion;
         $empleado->nombres = $request->nombres;
         $empleado->email = $request->email;
+        $empleado->genero = $request->genero;
+        $empleado->zona = $request->zona;
         if ($request->password != null) {
             $empleado->password = $request->password;
         }
