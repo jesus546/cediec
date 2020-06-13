@@ -8,7 +8,7 @@
 <script type="text/javascript">
   var input_date = $('.datepicker').pickadate({
   min: true,
-  formatSubmit: 'yyyy/mm/dd',
+  formatSubmit: 'yyyy-mm-dd',
 });
 var date_picker = input_date.pickadate('picker');
 
@@ -16,11 +16,11 @@ var date_picker = input_date.pickadate('picker');
 var input_time = $('.timepicker ').pickatime({
 min: [7,30],
 max:  [18,0],
-formatSubmit: 'h:i a',
+formatSubmit: 'H:i',
 });
 
 var time_picker = input_time.pickatime('picker');
-
+@if(!isset($appointments))
 ////////////
 var speciality = $('#speciality ');
 var doctor = $('#doctor ');
@@ -42,7 +42,7 @@ $.ajax({
     }
 });
 });
-   
+@endif
    
   
    

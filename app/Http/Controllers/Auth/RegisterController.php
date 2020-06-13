@@ -53,8 +53,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'fk_tipoDeidentificacion' => ['required' ],
-            'fk_genero' => ['required'],
-            'identificacion' => ['required', 'numeric', 'max:10', 'unique:users'],
+            'genero' => ['required'],
+            'identificacion' => ['required', 'string', 'max:10', 'unique:users'],
             'nombres' => ['required', 'string', 'max:255'],
             'apellidos' => ['required', 'string', 'max:255'],
             'direccion' => ['required', 'string', 'max:20'],
@@ -64,7 +64,7 @@ class RegisterController extends Controller
             'fechaDeNacimiento' => ['required', 'date'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'fk_zona' =>['required'],
+            'zona' =>['required'],
         ]);
     }
 
@@ -79,7 +79,7 @@ class RegisterController extends Controller
     
         return User::create([
             'fk_tipoDeidentificacion' => $data ['fk_tipoDeidentificacion'],
-            'fk_genero' => $data ['fk_genero'],
+            'genero' => $data ['genero'],
             'identificacion' => $data['identificacion'],
             'nombres' => $data['nombres'],
             'apellidos' => $data['apellidos'],
@@ -88,7 +88,7 @@ class RegisterController extends Controller
             'fk_departamento' => $data['fk_departamento'],
             'direccion' => $data['direccion'],
             'celular' => $data['celular'],
-            'fk_zona' => $data['fk_zona'],
+            'zona' => $data['zona'],
             'fechaDeNacimiento' => $data['fechaDeNacimiento'],
             'password' => Hash::make($data['password']),
           

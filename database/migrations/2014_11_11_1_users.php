@@ -26,10 +26,10 @@ class users extends Migration
             $table->string('ocupacion', 60)->nullable();
             $table->string('direccion', 30)->nullable();
             $table->string('password');
+            $table->enum('genero', ['Masculino', 'Femenino'])->nullable();
             $table->string('nombre_del_responsable', 60)->nullable();
             $table->integer('telefono_r')->nullable();
-            $table->unsignedBigInteger('fk_zona')->nullable();
-            $table->foreign('fk_zona')->references('zona_id')->on('zona');
+            $table->enum('zona', ['Rural', 'Urbana'])->nullable();
             $table->unsignedBigInteger('fk_parentezco')->nullable();
             $table->foreign('fk_parentezco')->references('paren_id')->on('parentezco');
             $table->date('fechaDeNacimiento')->nullable();    
@@ -39,8 +39,6 @@ class users extends Migration
             $table->foreign('fk_rH')->references('r_id')->on('RH');
             $table->unsignedBigInteger('fk_religion')->nullable();
             $table->foreign('fk_religion')->references('re_id')->on('religion');
-            $table->unsignedBigInteger('fk_genero')->nullable();
-            $table->foreign('fk_genero')->references('gen_id')->on('genero');
             $table->unsignedBigInteger('fk_discapacidad')->nullable();
             $table->foreign('fk_discapacidad')->references('dis_id')->on('discapacidad');
             $table->unsignedBigInteger('fk_nivelEducativo')->nullable();

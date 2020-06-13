@@ -23,7 +23,7 @@ class appointments extends Model
     public function store($request)
     {
         $user = User::findOrFail(decrypt($request->user_id));
-        $date = Carbon::createFromFormat('Y/m/d h:i a', $request->date_submit .' '. $request->time_submit);
+        $date = Carbon::createFromFormat('Y-m-d H:i', $request->date_submit .' '. $request->time_submit);
         return self::create([
             'dates' => $date->toDateTimeString(),
             'doctor_id' => $request->doctor,
@@ -32,10 +32,22 @@ class appointments extends Model
            
         ]);
     }
+    /*
 
     public function doctor()
     {
         $doctor = User::find($this->doctor_id);
         return $doctor;
+    }
+    */
+
+    public function my_update($request)
+    {
+        
+        $date = Carbon::createFromFormat('Y-m-d H:i', $request->date_submit .' '. $request->time_submit);
+        return self::update([
+            'dates' => $date->toDateTimeString(),
+           
+        ]);
     }
 }

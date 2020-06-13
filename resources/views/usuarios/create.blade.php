@@ -62,14 +62,11 @@
   
             <div class="col-sm-2">
               <div class="form-group">
-                <label>Genero:</label>
-                <select class="form-control ">
-                  <option>option 1</option>
-                  <option>option 2</option>
-                  <option>option 3</option>
-                  <option>option 4</option>
-                  <option>option 5</option>
-                </select>
+                <label for="genero">Genero:</label>
+                <select class="form-control" id="genero" name="genero" value="{{ old('genero') }}">
+                  <option  value="Masculino"  >Masculino</option>
+                  <option  value="Femenino" >Femenino</option>
+              </select>
               </div>
             </div>
   
@@ -136,14 +133,12 @@
             </div>
             <div class="col-sm-2">
               <div class="form-group">
-                <label>Zona:</label>
-                <select class="form-control ">
-                  <option>option 1</option>
-                  <option>option 2</option>
-                  <option>option 3</option>
-                  <option>option 4</option>
-                  <option>option 5</option>
-                </select>
+                <label for="zona">Zona:</label>
+                <select class="form-control" id="zona" name="zona" value="{{ old('zona') }}">
+                  <option  value="Rural"  >Rural</option>
+                  <option  value="Urbana" >Urbana</option>
+                
+              </select>
               </div>
             </div>
             <div class="col-sm-2">

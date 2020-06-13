@@ -14,23 +14,18 @@ class DatabaseSeeder extends Seeder
     {
         $this->truncateTablas([
             
-            'genero',
-            'tipoDeIdentificacion',
-            'zona'
+            
+            'tipoDeIdentificacion'
+            
              
 
         ]);
        
-        $this->call([
-            genero::class
-        ]);
+     
         $this->call([
             identificacion::class
         ]);
-        $this->call([
-            zona::class
-        ]);
-      
+       
         $this->call([
              rolesAndPermissions::class
         ]);

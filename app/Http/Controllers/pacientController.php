@@ -60,12 +60,18 @@ class pacientController extends Controller
         ]);
     }
 
-    public function back_appointments_edit($id)
+    public function back_appointments_edit($id, appointments $appointments)
     {
         $usuario = User::findOrFail($id);
         return view('usuarios.pacient.appointments_edit', compact('usuario'), [
-            'specialities' => specialities::all()
+            'specialities' => specialities::all(),
+            'appointments' => $appointments
         ]);
     }
+    public function back_appointments_update(Request $request, appointments $appointments, User $usuario)
+    {
+        
+    }
+   
    
 }

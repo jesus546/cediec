@@ -61,11 +61,11 @@
                         </div>
                          
                         <div class="form-group col-md-2">
-                            <label for="fk_genero">{{ __('Generos:')}}</label>
-                            <select class="form-control" id="fk_genero" name="fk_genero" value="{{ old('fk_genero') }}" required autocomplete="fk_genero" autofocus>
-                            @foreach ($genero as $gen)
-                            <option value="{{$gen['gen_id']}}">{{$gen['gen']}}</option>
-                            @endforeach
+                            <label for="genero">{{ __('Generos:')}}</label>
+                            <select class="form-control" id="genero" name="genero" value="{{ old('genero') }}">
+                                <option  value="Masculino"  >Masculino</option>
+                                <option  value="Femenino" >Femenino</option>
+                              
                             </select>
                         </div>
                         <div class="form-group col-md-2">
@@ -90,11 +90,11 @@
                         </div>
 
                         <div class="form-group col-md-2">
-                            <label for="fk_zona">{{ __('Zona:')}}</label>
-                            <select class="form-control" id="fk_zona" name="fk_zona" value="{{ old('fk_zona') }}" required autocomplete="zona" autofocus>
-                            @foreach ($zona as $zon)
-                            <option value="{{$zon['zona_id']}}">{{$zon['zona']}}</option>
-                            @endforeach
+                            <label for="zona">{{ __('Zona:')}}</label>
+                            <select class="form-control" id="zona" name="zona" value="{{ old('zona') }}">
+                                <option  value="Rural"  >Rural</option>
+                                <option  value="Urbana" >Urbana</option>
+                              
                             </select>
                         </div>
                         <div class="form-group col-md-2">

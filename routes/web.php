@@ -35,8 +35,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('pacient/{usuario}/appointments', 'pacientController@back_appointments')->name('pacient.appointments')
     ->middleware('permission:index cita');
-    Route::get('pacient/{usuario}/appointments/{appointment}/edit', 'pacientController@back_appointments_edit')->name('pacient.appointments.edit');  
-
+    Route::get('pacient/{usuario}/appointments/{appointments}/edit', 'pacientController@back_appointments_edit')->name('pacient.appointments.edit');  
+    Route::post('pacient/{usuario}/appointments/{appointments}/update', 'pacientController@back_appointments_update')->name('pacient.appointments.update');
     Route::resource('specialities', 'SpecialitiesController');
 
     Route::get('/schedule', 'pacientController@schedule')->name('schedule')

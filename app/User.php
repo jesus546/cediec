@@ -25,10 +25,10 @@ class User extends Authenticatable
         'apellidos' , 
         'email',
         'direccion',
-        'fk_genero',
+        'genero',
         'fk_departamento',
         'fk_municipio',
-        'fk_zona',
+        'zona',
         'password', 
         'celular', 
         'fechaDeNacimiento',
@@ -82,16 +82,7 @@ class User extends Authenticatable
         return $this->hasOne('App\tipoIdentificacion');
     }
 
-    public function genero()
-    {
-        return $this->hasOne('App\genero');
-    }
-
-    public function zona()
-    {
-        return $this->hasOne('App\zona');
-    }
-
+   
     public function departamento()
     {
         return $this->hasOne('App\departamento');

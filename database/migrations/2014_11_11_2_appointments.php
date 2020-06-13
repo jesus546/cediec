@@ -16,8 +16,8 @@ class appointments extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->timestamp('dates');
-            $table->unsignedBigInteger('doctor_id');
-            $table->enum('status', ['pendiente', 'aprobada', 'cancelada'])->default('pendiente');
+            $table->string('doctor_id');
+            $table->enum('status', ['pendiente', 'terminada', 'cancelada'])->default('pendiente');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

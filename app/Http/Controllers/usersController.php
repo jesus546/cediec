@@ -34,11 +34,9 @@ class usersController extends Controller
     protected function create()
     {
         $tipoIdentificacion = tipoIdentificacion::all();
-        $genero = genero::all();
-        $zona = zona::all();
         $departamento = departamento::all();
         $municipio = municipio::all();
-       return view('usuarios.create', compact('tipoIdentificacion', 'genero', 'zona', 'departamento', 'municipio'));
+       return view('usuarios.create', compact('tipoIdentificacion', 'departamento', 'municipio'));
 
        
      
@@ -55,6 +53,8 @@ class usersController extends Controller
         $usuarios->email = $request->email;
         $usuarios->celular = $request->celular;
         $usuarios->fechaDeNacimiento = $request->fechaDeNacimiento;
+        $usuarios->genero = $request->genero;
+        $usuarios->zona = $request->zona;
         $usuarios->password = bcrypt($request->password);
         
         if ($usuarios->save()) {
@@ -76,8 +76,6 @@ class usersController extends Controller
     public function edit($id)
     {
         $tipoIdentificacion = tipoIdentificacion::all();
-        $genero = genero::all();
-        $zona = zona::all();
         $departamento = departamento::all();
         $municipio = municipio::all();
         $usuario = User::findOrFail($id);
@@ -92,6 +90,8 @@ class usersController extends Controller
         $usuario->identificacion = $request->identificacion;
         $usuario->nombres = $request->nombres;
         $usuario->email = $request->email;
+        $usuario->genero = $request->genero;
+        $usuario->zona = $request->zona;
         if ($request->password != null) {
             $usuario->password = $request->password;
         }
