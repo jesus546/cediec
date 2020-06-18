@@ -31,7 +31,10 @@
         </section>
         <section class="content">
             <div class="container-fluid">
-                @yield('cont')
+                
+                    @yield('cont')
+               
+                
             </div>
            
         </section>

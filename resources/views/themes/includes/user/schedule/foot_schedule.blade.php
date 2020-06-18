@@ -16,6 +16,7 @@ var date_picker = input_date.pickadate('picker');
 var input_time = $('.timepicker ').pickatime({
 min: [7,30],
 max:  [18,0],
+interval: 15,
 formatSubmit: 'H:i',
 });
 

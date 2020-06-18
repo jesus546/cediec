@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     ->middleware('permission:asignar cita');
     Route::post('pacient/{usuario}/store_back_schedule', 'pacientController@store_back_schedule')->name('pacient.store_back_schedule')
     ->middleware('permission:asignar cita');
-    
+    Route::get('back_appointments', 'pacientController@show_appointments')->name('pacient.appointments.show');
     Route::get('pacient/{usuario}/appointments', 'pacientController@back_appointments')->name('pacient.appointments')
     ->middleware('permission:index cita');
     Route::get('pacient/{usuario}/appointments/{appointments}/edit', 'pacientController@back_appointments_edit')->name('pacient.appointments.edit');  

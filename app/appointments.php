@@ -40,6 +40,7 @@ class appointments extends Model
         return $doctor;
     }
     */
+  
 
     public function my_update($request)
     {

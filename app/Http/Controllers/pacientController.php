@@ -72,6 +72,20 @@ class pacientController extends Controller
     {
         
     }
-   
+   public function show_appointments()
+   {
+       $appointments_collection = appointments::all();
+       $appointments = [];
+       foreach ($appointments_collection as $key => $appointment) {
+           
+           $appointments = [
+               'title' => $appointment->user_id . ' cita con ' . $appointment->doctor_id,
+               'start' => $appointment->dates->format('Y-m-d\Th:i:s')
+           ];
+       }
+    return view('back_appointments.show_appointments', [
+        'appointments' =>  json_encode($appointments) 
+    ]);
+   }
    
 }
