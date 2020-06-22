@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\appointments;
+use App\Invoice;
 use App\User;
 use Illuminate\Http\Request;
 use App\specialities;
@@ -23,10 +24,10 @@ class pacientController extends Controller
         ]);
     }
 
-    public function store_schedule(Request $request, appointments $appointments)
+    public function store_schedule(Request $request, appointments $appointments, Invoice $invoice)
     {
-       
-         $appointments = $appointments->store($request);
+         $invoice = $invoice->store($request);
+         $appointments = $appointments->store($request, $invoice);
          Alert::success('EXITO', 'Su Cita ha sido creada')->showConfirmButton('OK', '#3085d6');
          return redirect('/appointments');
     }
@@ -45,10 +46,11 @@ class pacientController extends Controller
         ]);
     }
 
-    public function store_back_schedule(Request $request, appointments $appointments, $id)
+    public function store_back_schedule(Request $request, appointments $appointments, $id, Invoice $invoice)
     {
         $usuario = User::findOrFail($id);
-        $appointments = $appointments->store($request);
+        $invoice = $invoice->store($request);
+        $appointments = $appointments->store($request, $invoice);
          Alert::success('EXITO', 'se ha creado la cita')->showConfirmButton('OK', '#3085d6');
          return redirect()->route('pacient.appointments', $usuario);
     }
@@ -64,14 +66,25 @@ class pacientController extends Controller
     {
         $usuario = User::findOrFail($id);
         return view('usuarios.pacient.appointments_edit', compact('usuario'), [
-            'specialities' => specialities::all(),
             'appointments' => $appointments
         ]);
     }
-    public function back_appointments_update(Request $request, appointments $appointments, User $usuario)
+     
+    public function back_appointments_update(Request $request, appointments $appointments, $id)
     {
-        
+        $usuario = User::findOrFail($id);
+        $appointments->my_update($request);
+        Alert::success('EXITO', 'Cita actualizada')->showConfirmButton('OK', '#3085d6');
+        return redirect()->route('pacient.appointments', $usuario);
     }
+    
+    public function invoice()
+    {
+        return view('usuarios.pacient.invoice', [
+            'invoices' => Auth::user()->invoice,
+        ]);
+    }
+
    public function show_appointments()
    {
        $appointments_collection = appointments::all();

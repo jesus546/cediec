@@ -12,8 +12,8 @@
       <h3 class="card-title">Editar cita a {{$usuario->nombres}}</h3>
       
       </div>
-    @include('themes.includes.user.schedule.form_schedule', [
-      'route' => route('pacient.appointments.update', [$usuario->id, $appointments])
+    @include('themes.includes.user.schedule.form_schedule',[
+      'route' => route('pacient.appointments.update', [$usuario->id ,$appointments]),
     ])
   
 </div>

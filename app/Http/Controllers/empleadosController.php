@@ -53,7 +53,7 @@ class empleadosController extends Controller
         $empleado->genero = $request->genero;
         $empleado->zona = $request->zona;
         $empleado->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $empleado->password = bcrypt($request->password);
+        $empleado->password = $request->password;
         
         if ($empleado->save()) {
          

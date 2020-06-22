@@ -16,10 +16,12 @@ class appointments extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->timestamp('dates');
-            $table->string('doctor_id');
+            $table->unsignedBigInteger('doctor_id');
             $table->enum('status', ['pendiente', 'terminada', 'cancelada'])->default('pendiente');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('invoice_id');
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

@@ -38,7 +38,7 @@ $.ajax({
       doctor.empty();
       doctor.append('<option disabled selected>selecciona un doctor</option>');
       $.each(data, function(index, element){
-        doctor.append('<option value"'+element.id+'">'+element.nombres+'</option>');
+        doctor.append('<option value="'+element.id+'">'+element.nombres+'</option>');
       });
     }
 });

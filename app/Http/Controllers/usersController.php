@@ -55,7 +55,7 @@ class usersController extends Controller
         $usuarios->fechaDeNacimiento = $request->fechaDeNacimiento;
         $usuarios->genero = $request->genero;
         $usuarios->zona = $request->zona;
-        $usuarios->password = bcrypt($request->password);
+        $usuarios->password = $request->password;
         
         if ($usuarios->save()) {
          $usuarios->assignRole('User');

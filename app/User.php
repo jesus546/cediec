@@ -96,6 +96,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\specialities')->withTimestamps();
     }
+    public function invoice()
+    {
+        return $this->hasMany('App\Invoice');
+    }
     public function appointments()
     {
         return $this->hasMany('App\appointments');

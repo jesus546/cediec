@@ -18,7 +18,7 @@
         @forelse ($appointments as $appointment)
             <tr>
               <td>{{$appointment->id}}</td>
-              <td>{{$appointment->doctor_id}}</td> 
+              <td>{{$appointment->doctor()->nombres}}</td> 
               <td>{{$appointment->dates->format('d/m/Y h:i a')}}</td>
               <td>{{$appointment->status}}</td>
             @hasanyrole('admisionista|super-admin')

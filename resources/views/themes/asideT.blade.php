@@ -25,7 +25,7 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
                  <li class="nav-item">
-                  <a href="{{url('schedule')}}" class="nav-link ">
+                  <a href="{{route('schedule')}}" class="nav-link ">
                     <i class="nav-icon fas fa-book"></i>
                     <p>
                       Agendar Cita
@@ -43,6 +43,20 @@
                     <i class="nav-icon fas fa-calendar"></i>
                     <p>
                       Mis Citas
+                    </p>
+                  </a>
+                </li>
+                
+          </ul>
+
+          <ul class="nav nav-pills nav-sidebar flex-column  " data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+                 <li class="nav-item">
+                 <a href="{{route('invoice')}}" class="nav-link ">
+                  <i class=" nav-icon fas fa-file-invoice"></i>
+                    <p>
+                      Facturas
                     </p>
                   </a>
                 </li>

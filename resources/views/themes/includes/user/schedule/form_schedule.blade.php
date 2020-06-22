@@ -1,7 +1,7 @@
 
     
     <div class="card-body">
-    <form action="{{$route}}" method="post">
+    <form action="{{$route}}" method="POST">
         @csrf
         @if (!isset($appointments))
                 <div class="form-group">
@@ -23,6 +23,7 @@
                 </select>
                 </div>
         @else
+        
         <div class="form-group">
             <label for="status">seleccionar estado de la cita</label>
         <select class="form-control" id="status" name="status">
@@ -39,8 +40,8 @@
                         <label for="datepicker">Fecha </label>
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                        <input type="text" id="datepicker" name="date" class="form-control datepicker " placeholder="selecciones una fecha"  @if (isset($appointments))
-                          data-value="" @endif>
+                        <input id="datepicker" name="date" class="form-control datepicker " placeholder="selecciones una fecha"  @if (isset($appointments))
+                          data-value="{{$appointments->dates->format('Y-m-d')}}" @endif>
                         </div>
                         
                     </div>
@@ -50,9 +51,9 @@
                         <label for="timepicker">Hora</label>
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="far fa-clock"></i> </span>
-                        <input type="text" name="time" class="form-control timepicker " placeholder="seleccione una hora"
+                        <input name="time" class="form-control timepicker " placeholder="seleccione una hora"
                         @if (isset($appointments))
-                         data-value=""
+                         data-value="{{$appointments->dates->format('H:i')}}"
                         @endif>
                         </div>
                         

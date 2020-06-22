@@ -30,17 +30,26 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('pacient/{usuario}/schedule', 'pacientController@back_schedule')->name('pacient.schedule')
     ->middleware('permission:asignar cita');
+
     Route::post('pacient/{usuario}/store_back_schedule', 'pacientController@store_back_schedule')->name('pacient.store_back_schedule')
     ->middleware('permission:asignar cita');
+
     Route::get('back_appointments', 'pacientController@show_appointments')->name('pacient.appointments.show');
     Route::get('pacient/{usuario}/appointments', 'pacientController@back_appointments')->name('pacient.appointments')
     ->middleware('permission:index cita');
+
     Route::get('pacient/{usuario}/appointments/{appointments}/edit', 'pacientController@back_appointments_edit')->name('pacient.appointments.edit');  
+
     Route::post('pacient/{usuario}/appointments/{appointments}/update', 'pacientController@back_appointments_update')->name('pacient.appointments.update');
+
     Route::resource('specialities', 'SpecialitiesController');
+
+    Route::get('/invoice', 'pacientController@invoice')->name('invoice')
+    ->middleware('role:User');
 
     Route::get('/schedule', 'pacientController@schedule')->name('schedule')
     ->middleware('role:User');
+
     Route::post('/store_schedule', 'pacientController@store_schedule')->name('store_schedule')
     ->middleware('role:User');
 

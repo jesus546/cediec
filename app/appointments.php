@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class appointments extends Model
 {
     protected $fillable = [
-        'dates', 'doctor_id', 'status', 'user_id'
+        'dates', 'doctor_id', 'status', 'user_id', 'invoice_id'
     ];
     
     protected $dates = ['dates'];
@@ -19,36 +19,51 @@ class appointments extends Model
     {
         return $this->belongsTo('App\User');
     }
-
-    public function store($request)
+    public function invoice()
     {
-        $user = User::findOrFail(decrypt($request->user_id));
+        return $this->hasOne('App\Invoice');
+    }
+
+    public function store($request, $invoice)
+    {
+       
         $date = Carbon::createFromFormat('Y-m-d H:i', $request->date_submit .' '. $request->time_submit);
+
+        InvoiceMeta::create([
+               'key' => 'doctor',
+               'value' => $request->doctor,
+               'invoice_id' => $invoice->id,
+        ]);
+        InvoiceMeta::create([
+            'key' => 'concepto',
+            'value' => 'cita medica',
+            'invoice_id' => $invoice->id,
+     ]);
         return self::create([
             'dates' => $date->toDateTimeString(),
             'doctor_id' => $request->doctor,
             'status' => 'pendiente',
-            'user_id' => $user->id,
+            'user_id' => $invoice->user->id,
+            'invoice_id' => $invoice->id,
            
         ]);
     }
-    /*
+    
 
     public function doctor()
     {
         $doctor = User::find($this->doctor_id);
         return $doctor;
     }
-    */
-  
 
     public function my_update($request)
     {
         
         $date = Carbon::createFromFormat('Y-m-d H:i', $request->date_submit .' '. $request->time_submit);
-        return self::update([
+        self::updated([
             'dates' => $date->toDateTimeString(),
-           
+            'status' => $request->status,
+            
         ]);
     }
 }
