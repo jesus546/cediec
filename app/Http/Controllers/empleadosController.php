@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\departamento;
-
 use App\municipio;
 use App\specialities;
 use App\tipoIdentificacion;
-
-
 use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role as ModelsRole;
 
 class empleadosController extends Controller
 {
@@ -34,7 +33,8 @@ class empleadosController extends Controller
         $tipoIdentificacion = tipoIdentificacion::all();
         $departamento = departamento::all();
         $municipio = municipio::all();
-       return view('empleados.create', compact('tipoIdentificacion', 'departamento', 'municipio'));
+        $roles = ModelsRole::all();
+       return view('empleados.create', compact('tipoIdentificacion', 'departamento', 'municipio', 'roles'));
 
        
      
@@ -56,7 +56,7 @@ class empleadosController extends Controller
         $empleado->password = $request->password;
         
         if ($empleado->save()) {
-         
+         $empleado->syncRoles($request->roles);
          Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
 
          return redirect('/empleados');
@@ -77,7 +77,8 @@ class empleadosController extends Controller
         $departamento = departamento::all();
         $municipio = municipio::all();
         $empleado = User::findOrFail($id);
-        return view('empleados.edit', compact('empleado', 'tipoIdentificacion', 'departamento', 'municipio'));
+        $roles = ModelsRole::all();
+        return view('empleados.edit', compact('empleado', 'tipoIdentificacion', 'departamento', 'municipio', 'roles'));
     }
 
    
@@ -96,7 +97,7 @@ class empleadosController extends Controller
         
       
          if ($empleado->save()) {
-            
+            $empleado->syncRoles($request->roles);
             Alert::success('EXITO', 'Se ha actualizado el usuario')->showConfirmButton('OK', '#3085d6');
             return redirect('/empleados');
            }
@@ -108,7 +109,8 @@ class empleadosController extends Controller
         $empleado = User::findOrFail($id);
         
         if ($empleado->delete()) {
-            
+            $empleado->revokePermissionTo(Permission::all());
+            $empleado->roles()->detach();
             return redirect('/empleados');
         } else {
             alert()->error('Oops...', 'No se pudo eliminar el usuario');
@@ -128,7 +130,25 @@ class empleadosController extends Controller
     public function speciality_assignment(Request $request, $id)
     {
         $empleado = User::findOrFail($id);
-        $empleado->specialities()->sync($request->specialities);
+        if ($empleado->specialities()->sync($request->specialities)) {
+            Alert::success('EXITO', 'Se ha actualizado las especialdades')->showConfirmButton('OK', '#3085d6');
+            return redirect('/empleados');
+        }
+    }
+
+    public function asignar_permission($id)
+    {
+        $empleado = User::findOrFail($id);
+        $permissions = Permission::all();
+          return view('empleados.asignar.asignar_permission', compact('empleado', 'permissions'));
+    }
+
+    public function permission_assignment(Request $request, $id)
+    {
+        $empleado = User::findOrFail($id);
+        if ($empleado->syncPermissions($request->permissions)) {
+        Alert::success('EXITO', 'Se han actualizado los permisos')->showConfirmButton('OK', '#3085d6');
         return redirect('/empleados');
+        }
     }
 }

@@ -35,8 +35,10 @@ Route::group(['middleware' => ['auth']], function () {
     ->middleware('permission:asignar cita');
 
     Route::get('back_appointments', 'pacientController@show_appointments')->name('pacient.appointments.show');
+    Route::get('back_appointments/doctor/{empleado}/appointments', 'pacientController@show_doctor_appointments')->name('pacient.appointments.doctor.show');
+    
     Route::get('pacient/{usuario}/appointments', 'pacientController@back_appointments')->name('pacient.appointments')
-    ->middleware('permission:index cita');
+    ->middleware('permission:listar cita');
 
     Route::get('pacient/{usuario}/appointments/{appointments}/edit', 'pacientController@back_appointments_edit')->name('pacient.appointments.edit');  
 
@@ -56,18 +58,25 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('empleados', 'empleadosController');
 
-    Route::get('empleados/{empleado}/asignar_speciality', 'empleadosController@asignar_speciality')
-             ->name('empleados.asignar_speciality');
+    Route::get('empleados/{empleado}/asignar_speciality', 'empleadosController@asignar_speciality')->name('empleados.asignar_speciality')
+              ->middleware('permission:listar especialidades');
+              
+    Route::post('empleados/{empleado}/speciality_assignment', 'empleadosController@speciality_assignment')
+    ->name('empleados.speciality_assignment')->middleware('permission:listar especialidades');
 
-    Route::post('empleados/{empleado}', 'empleadosController@speciality_assignment')
-            ->name('empleados.speciality_assignment');
+    Route::get('empleados/{empleado}/asignar_permission', 'empleadosController@asignar_permission')
+              ->name('empleados.asignar_permission');
+    Route::post('empleados/{empleado}/permission_assignment', 'empleadosController@permission_assignment')
+            ->name('empleados.permission_assignment');
+
+    
 
     Route::get('/appointments', 'pacientController@appointments')->name('appointments')
     ->middleware('role:User');
     
 
     Route::get('/usuarios', 'usersController@index')->name('usuarios.index')
-                 ->middleware('permission:usuario index');
+                 ->middleware('permission:listar usuario');
 
     Route::post('/usuarios', 'usersController@store')->name('usuarios.store')
               ->middleware('permission:registrar usuario');

@@ -62,17 +62,16 @@ class pacientController extends Controller
         ]);
     }
 
-    public function back_appointments_edit($id, appointments $appointments)
+    public function back_appointments_edit(User $usuario, appointments $appointments)
     {
-        $usuario = User::findOrFail($id);
-        return view('usuarios.pacient.appointments_edit', compact('usuario'), [
-            'appointments' => $appointments
+        return view('usuarios.pacient.appointments_edit',[
+            'appointments' => $appointments,
+            'usuario' => $usuario
         ]);
     }
      
-    public function back_appointments_update(Request $request, appointments $appointments, $id)
+    public function back_appointments_update(Request $request, appointments $appointments, User $usuario)
     {
-        $usuario = User::findOrFail($id);
         $appointments->my_update($request);
         Alert::success('EXITO', 'Cita actualizada')->showConfirmButton('OK', '#3085d6');
         return redirect()->route('pacient.appointments', $usuario);
@@ -91,12 +90,29 @@ class pacientController extends Controller
        $appointments = [];
        foreach ($appointments_collection as $key => $appointment) {
            
-           $appointments = [
-               'title' => $appointment->user_id . ' cita con ' . $appointment->doctor_id,
-               'start' => $appointment->dates->format('Y-m-d\Th:i:s')
+           $appointments[] = [
+               'title' => $appointment->user->nombres . ' cita con doctor(a) ' . $appointment->doctor()->nombres,
+               'start' => $appointment->dates->format('Y-m-d\TH:i:s')
            ];
        }
     return view('back_appointments.show_appointments', [
+        'appointments' =>  json_encode($appointments) 
+    ]);
+   }
+
+   public function show_doctor_appointments(User $empleado)
+   {
+       $appointments_collection = appointments::where('doctor_id', $empleado->id)->get();
+       $appointments = [];
+       foreach ($appointments_collection as $key => $appointment) {
+           
+           $appointments[] = [
+               'title' => $appointment->user->nombres . ' cita con doctor(a) ' . $appointment->doctor()->nombres,
+               'start' => $appointment->dates->format('Y-m-d\TH:i:s')
+           ];
+       }
+    return view('back_appointments.show_appointments', [
+        'empleado' => $empleado,
         'appointments' =>  json_encode($appointments) 
     ]);
    }

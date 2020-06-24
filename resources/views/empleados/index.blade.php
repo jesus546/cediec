@@ -1,5 +1,14 @@
 @extends('themes/layaoutT')
-
+@section('style')
+    <style>
+       .permission {
+        background-color: rgb(226, 210, 63); 
+       }
+       .permission:hover {
+        background-color: rgb(156, 141, 8); 
+       }
+    </style>
+@endsection
 @section('cont')
 <div class="row ">
     <div class="col-10 " style="margin:auto">
@@ -29,7 +38,7 @@
                 <th>Rol</th>
                 <th>
               
-                <a href="{{route('empleados.create')}}" class="btn btn-success btn-sm float-right">Agregar Usuarios</a>
+                <a href="{{route('empleados.create')}}" class="btn btn-success btn-sm float-right">Agregar Empleado</a>
                 
                 </th>
                 
@@ -41,14 +50,15 @@
                 <td scope="row">{{$empleado->identificacion}}</td>
                 <td>{{$empleado->nombres}}</td>
                 <td>{{$empleado->email}}</td>
-                <td>{{$empleado->getRoleNames()}}</td>
+                <td>{{$empleado->getRoleNames()->implode(', ')}}</td>
                 <td>
                   
                   <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i></a>
-               
+                  <a class="btn permission btn-sm" href="{{route('empleados.asignar_permission', $empleado)}}" ><i class="fas fa-scroll"></i></a>
                   <a class="btn btn-info btn-sm" href="{{url('/empleados/' . $empleado->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a>
                     @if ($empleado->hasRole('doctor'))
                      <a class="btn btn-primary btn-sm" href="{{route('empleados.asignar_speciality', $empleado)}}"><i class="fab fa-medrt"></i></a>
+                     <a class="btn btn-primary btn-sm" href="{{route('pacient.appointments.doctor.show', $empleado)}}"><i class="fas fa-clock"></i></a>
                     @endif
         
                   <form action="{{route('empleados.destroy', $empleado->id)}}" method="POST" style="display:inline-block;">

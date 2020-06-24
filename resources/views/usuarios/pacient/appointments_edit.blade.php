@@ -13,7 +13,7 @@
       
       </div>
     @include('themes.includes.user.schedule.form_schedule',[
-      'route' => route('pacient.appointments.update', [$usuario->id ,$appointments]),
+      'route' => route('pacient.appointments.update', [$usuario,$appointments]),
     ])
   
 </div>

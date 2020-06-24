@@ -17,7 +17,7 @@
               <tr>
                 <th>Nombre</th>
                 <th># de medicos</th>
-                <th>Fecha</th>
+                <th><a href="{{route('specialities.create')}}" class="btn btn-success btn-xs ">Crear especialidades</a></th>
                 
                 
               </tr>
@@ -26,9 +26,8 @@
             @foreach ($specialities as $specialities)
             <tr>
                 <td scope="row">{{$specialities->name}}</td>
-                  <td>0</td>
+                  <td>{{$specialities->users->count()}}</td>
                   <td><a class="btn btn-info btn-sm" href="{{url('/specialities/' . $specialities->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a></td>
-    
                 </tr>  
             @endforeach
               

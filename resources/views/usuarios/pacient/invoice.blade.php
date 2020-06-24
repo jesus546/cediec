@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-header bg-blue">
          
-          <h3 class="card-title">facturas</h3>
+          <h3 class="card-title">Facturas</h3>
    
         </div>
      

@@ -4,29 +4,29 @@
 <div class="col-md-5" style="margin: auto">
     <div class="card card-info " >
         <div class="card-header">
-          <h3 class="card-title">asignar especialidades</h3>
+          <h3 class="card-title">Asignar o editar permisos</h3>
         </div>
         
         <div class="card-body">
-        <form action="{{route('empleados.speciality_assignment', $empleado->id)}}" method="POST">
+        <form action="{{route('empleados.asignar_permission', $empleado->id)}}" method="POST">
               @csrf
               <div class="col-sm-10">
                 <div class="row">
                     <div class="col-sm-6">
                       <!-- checkbox -->
                       <div class="form-group">
-                        @foreach ($specialities as $speciality)
+                        @foreach ($permissions as $permission)
                         <div class="form-check">
                         <input class="form-check-input" 
-                        id="{{$speciality->id}}" 
-                        value="{{$speciality->id}}"
-                        name="specialities[]"
-                        @if ($empleado->has_especiality($speciality->id))
+                        id="{{$permission->id}}" 
+                        value="{{$permission->id}}"
+                        name="permissions[]"
+                        @if ($empleado->hasPermissionTo($permission->id))
                             checked
                         @endif
                         type="checkbox">
-                            <label for="{{$speciality->id}}" class="form-check-label">
-                              <span>{{$speciality->name}}</span>
+                            <label for="{{$permission->id}}" class="form-check-label">
+                              <span>{{$permission->name}}</span>
                             </label>
                           </div>
                         @endforeach
