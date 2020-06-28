@@ -61,7 +61,7 @@ class usersController extends Controller
          $usuarios->assignRole('User');
          Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
 
-         return redirect('/usuarios');
+         return redirect()->route('usuarios.index');
         }
         
     }
@@ -100,7 +100,7 @@ class usersController extends Controller
          if ($usuario->save()) {
             $usuario->syncRoles('User');
             Alert::success('EXITO', 'Se ha actualizado el usuario')->showConfirmButton('OK', '#3085d6');
-            return redirect('/usuarios');
+            return redirect()->route('usuarios.index');
            }
     }
 
@@ -111,7 +111,7 @@ class usersController extends Controller
         
         if ($usuario->delete()) {
             $usuario->removeRole('User');
-            return redirect('/usuarios');
+            return redirect()->route('usuarios.index');
         } else {
             alert()->error('Oops...', 'No se pudo eliminar el usuario');
         }

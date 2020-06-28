@@ -124,6 +124,7 @@ class pacientController extends Controller
 
    public function show_doctor_appointments(User $empleado)
    {
+       $this->authorize('view_appointments_calendar', $empleado);
        $appointments_collection = appointments::where('doctor_id', $empleado->id)->get();
        $appointments = [];
        foreach ($appointments_collection as $key => $appointment) {

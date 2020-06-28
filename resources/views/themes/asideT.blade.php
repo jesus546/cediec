@@ -63,6 +63,19 @@
                 
           </ul>
          @endrole
+         @role('Doctor')
+         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+          <a href="{{route('pacient.appointments.doctor.show', Auth::user()->id)}}" class="nav-link ">
+            <i class=" nav-icon fas fa-calendar-week"></i>
+             <p>
+               Mis Citas
+             </p>
+           </a>
+         </li>
+        </ul>
+         @endrole
+
          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
           <a href="{{route('pacient.appointments.show')}}" class="nav-link ">
