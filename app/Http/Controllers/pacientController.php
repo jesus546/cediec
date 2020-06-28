@@ -29,7 +29,7 @@ class pacientController extends Controller
          $invoice = $invoice->store($request);
          $appointments = $appointments->store($request, $invoice);
          Alert::success('EXITO', 'Su Cita ha sido creada')->showConfirmButton('OK', '#3085d6');
-         return redirect('/appointments');
+         return redirect()->route('appointments');
     }
 
     public function appointments()
@@ -70,7 +70,7 @@ class pacientController extends Controller
         ]);
     }
      
-    public function back_appointments_update(Request $request, appointments $appointments, User $usuario)
+    public function back_appointments_update(Request $request, User $usuario, appointments $appointments)
     {
         $appointments->my_update($request);
         Alert::success('EXITO', 'Cita actualizada')->showConfirmButton('OK', '#3085d6');
@@ -79,11 +79,33 @@ class pacientController extends Controller
     
     public function invoice()
     {
-        return view('usuarios.pacient.invoice', [
+        return view('paciente.invoice', [
             'invoices' => Auth::user()->invoice,
         ]);
     }
+    
+    public function back_invoice(User $usuario)
+    {
+        return view('usuarios.pacient.invoice', [
+            'usuario' => $usuario,
+            'invoices' => $usuario->invoice,
+        ]);
+    }
 
+    public function back_invoice_edit(User $usuario, invoice $invoice)
+    {
+        return view('usuarios.pacient.invoice_edit', [
+            'usuario' => $usuario,
+            'invoice' => $invoice,
+        ]);
+    }
+
+    public function back_invoice_update(Request $request,User $usuario, invoice $invoice)
+    {
+        $invoice->my_update($request);
+        Alert::success('EXITO', 'Factura actualizada')->showConfirmButton('OK', '#3085d6');
+        return redirect()->route('back.invoice', $usuario);
+    }
    public function show_appointments()
    {
        $appointments_collection = appointments::all();
@@ -116,5 +138,7 @@ class pacientController extends Controller
         'appointments' =>  json_encode($appointments) 
     ]);
    }
+
+   
    
 }

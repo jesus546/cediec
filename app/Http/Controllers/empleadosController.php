@@ -23,7 +23,7 @@ class empleadosController extends Controller
 
     public function index()
     {
-        $empleados = User::role(['super-admin', 'admisionista', 'doctor'])->get();
+        $empleados = User::role(['super-admin', 'Admisionista', 'Doctor', 'Administrador'])->get();
         return view('empleados.index', ['empleados' => $empleados]);
     }
 
@@ -59,7 +59,7 @@ class empleadosController extends Controller
          $empleado->syncRoles($request->roles);
          Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
 
-         return redirect('/empleados');
+         return redirect()->route('empleados.index');
         }
         
     }
@@ -99,7 +99,7 @@ class empleadosController extends Controller
          if ($empleado->save()) {
             $empleado->syncRoles($request->roles);
             Alert::success('EXITO', 'Se ha actualizado el usuario')->showConfirmButton('OK', '#3085d6');
-            return redirect('/empleados');
+            return redirect()->route('empleados.index');
            }
     }
 
@@ -111,7 +111,7 @@ class empleadosController extends Controller
         if ($empleado->delete()) {
             $empleado->revokePermissionTo(Permission::all());
             $empleado->roles()->detach();
-            return redirect('/empleados');
+            return redirect()->route('empleados.index');
         } else {
             alert()->error('Oops...', 'No se pudo eliminar el usuario');
         }
@@ -132,7 +132,7 @@ class empleadosController extends Controller
         $empleado = User::findOrFail($id);
         if ($empleado->specialities()->sync($request->specialities)) {
             Alert::success('EXITO', 'Se ha actualizado las especialdades')->showConfirmButton('OK', '#3085d6');
-            return redirect('/empleados');
+            return redirect()->route('empleados.index');
         }
     }
 
@@ -148,7 +148,7 @@ class empleadosController extends Controller
         $empleado = User::findOrFail($id);
         if ($empleado->syncPermissions($request->permissions)) {
         Alert::success('EXITO', 'Se han actualizado los permisos')->showConfirmButton('OK', '#3085d6');
-        return redirect('/empleados');
+        return redirect()->route('empleados.index');
         }
     }
 }

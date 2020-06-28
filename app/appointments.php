@@ -21,7 +21,7 @@ class appointments extends Model
     }
     public function invoice()
     {
-        return $this->hasOne('App\Invoice');
+        return $this->belongsTo('App\Invoice');
     }
 
     public function store($request, $invoice)
@@ -58,12 +58,17 @@ class appointments extends Model
 
     public function my_update($request)
     {
-        
         $date = Carbon::createFromFormat('Y-m-d H:i', $request->date_submit .' '. $request->time_submit);
-        self::updated([
+
+        $invoice_status = ($request->status == 'terminada') ? 'aprobado' : $request->status;
+        self::update([
             'dates' => $date->toDateTimeString(),
             'status' => $request->status,
             
+        ]);
+
+        $this->invoice->update([
+           'status'=> $invoice_status
         ]);
     }
 }

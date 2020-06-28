@@ -48,6 +48,7 @@
                   
                   <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i></a>
                   <a class="btn btn-info btn-sm" href="{{url('/pacient/' . $usuario->id . '/appointments/')}}"   ><i class="fas fa-book" ></i> </a>
+                  <a class="btn btn-info btn-sm" href="{{route('back.invoice', $usuario)}}"   ><i class=" nav-icon fas fa-file-invoice"></i></a>
                   @can('editar usuario')
                   <a class="btn btn-info btn-sm" href="{{url('/usuarios/' . $usuario->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a>
                   @endcan

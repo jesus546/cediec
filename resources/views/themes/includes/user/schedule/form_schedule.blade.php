@@ -25,10 +25,10 @@
         @else
         
         <div class="form-group">
-            <label for="status">seleccionar estado de la cita</label>
+            <label for="status">Estado de la cita</label>
         <select class="form-control" id="status" name="status">
-            <option  value="pendiente" @if ($appointments->status=='pendiente' ) selected @endif>pediente</option>
-            <option  value="aprobada" @if ($appointments->status=='aprobada' )  selected @endif>terminada</option>
+            <option  value="pendiente" disabled @if ($appointments->status=='pendiente' ) selected   @endif>pediente</option>
+            <option  value="terminada" @if ($appointments->status=='terminada' )  selected @endif>terminada</option>
             <option  value="cancelada" @if ($appointments->status=='cancelada' ) selected @endif>cancelada</option>
         </select>
         </div>

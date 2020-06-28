@@ -48,5 +48,13 @@ class tablaUser extends Seeder
         ]);
 
         $doctor->assignRole('Doctor');
+
+        $doctor = User::create([
+            'identificacion' => '1192765893',
+            'nombres' => 'jesus david',
+            'email' => 'jesusdavid@hotmail.com',
+            'password' => '12345678'
+        ]);
+        $doctor->assignRole('User');
     }
 }

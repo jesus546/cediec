@@ -56,7 +56,7 @@
                   <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i></a>
                   <a class="btn permission btn-sm" href="{{route('empleados.asignar_permission', $empleado)}}" ><i class="fas fa-scroll"></i></a>
                   <a class="btn btn-info btn-sm" href="{{url('/empleados/' . $empleado->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a>
-                    @if ($empleado->hasRole('doctor'))
+                    @if ($empleado->hasRole('Doctor'))
                      <a class="btn btn-primary btn-sm" href="{{route('empleados.asignar_speciality', $empleado)}}"><i class="fab fa-medrt"></i></a>
                      <a class="btn btn-primary btn-sm" href="{{route('pacient.appointments.doctor.show', $empleado)}}"><i class="fas fa-clock"></i></a>
                     @endif

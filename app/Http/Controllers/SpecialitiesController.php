@@ -26,7 +26,7 @@ class SpecialitiesController extends Controller
     public function store(StoreRequest $request, specialities $specialities)
     {
         $specialities = $specialities->store($request);
-        return redirect('specialities');
+        return redirect()->route('specialities.index');
     }
 
    
@@ -46,7 +46,7 @@ class SpecialitiesController extends Controller
         $specialities = specialities::findOrFail($id);
         $specialities->name = $request->name;
         $specialities->save();
-        return redirect('specialities');
+        return redirect()->route('specialities.index');
     }
 
     public function destroy(specialities $specialities)

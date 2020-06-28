@@ -16,7 +16,7 @@ class Invoice extends Model
     }
     public function appointments()
     {
-        return $this->belongsTo('App\appointments');
+        return $this->hasOne('App\appointments');
     }
 
     public function metas()
@@ -37,6 +37,11 @@ class Invoice extends Model
            
         ]);
     }
+
+    public function my_update($request)
+    {
+        self::update($request->all());
+    }
     public function meta($key, $default = null)
     {
       $value = $this->metas->where('key',$key)->first();
@@ -53,4 +58,6 @@ class Invoice extends Model
        $user = User::findOrFail($user_id);
        return $user;
     }
+
+    
 }
