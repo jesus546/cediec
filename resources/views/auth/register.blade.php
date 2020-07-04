@@ -74,7 +74,8 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="fk_departamento">{{ __('Departamento:')}}</label>
-                            <select class="form-control" id="fk_departamento" name="fk_departamento" value="{{ old('fk_departamento') }}" required autocomplete="fk_departamento" autofocus>
+                            <select class="form-control" id="departamento" name="fk_departamento" value="{{ old('fk_departamento') }}" required autocomplete="fk_departamento" autofocus data-dependent="municipio">
+                            <option disabled selected>Selecciona el departamento</option>   
                             @foreach ($departamento as $dep)
                             <option value="{{$dep['id']}}">{{$dep['nombre']}}</option>
                             @endforeach
@@ -82,10 +83,8 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="fk_municipio">{{ __('Municipio:')}}</label>
-                            <select class="form-control" id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}" required autocomplete="fk_municipio" autofocus>
-                                @foreach ($municipio as $muni)
-                                <option value="{{$muni['id']}}">{{$muni['nombre']}}</option>
-                                @endforeach
+                            <select class="form-control" id="municipio" name="fk_municipio" value="{{ old('fk_municipio') }}" required autocomplete="fk_municipio" autofocus>
+                                <option >Selecciona primero el departamento</option>
                             </select>
                         </div>
 
@@ -158,4 +157,6 @@
 </div>
 @endsection
 
-
+@section('script')
+   @include('themes.includes.user.municipio.ajax_municipio')
+@endsection

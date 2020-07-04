@@ -27,7 +27,7 @@ class appointments extends Model
     public function store($request, $invoice)
     {
        
-        $date = Carbon::createFromFormat('Y-m-d H:i', $request->date_submit .' '. $request->time_submit);
+        $date = Carbon::createFromFormat('Y/m/d H:i', $request->date_submit .' '. $request->time_submit);
 
         InvoiceMeta::create([
                'key' => 'doctor',
@@ -58,7 +58,7 @@ class appointments extends Model
 
     public function my_update($request)
     {
-        $date = Carbon::createFromFormat('Y-m-d H:i', $request->date_submit .' '. $request->time_submit);
+        $date = Carbon::createFromFormat('Y/m/d H:i', $request->date_submit .' '. $request->time_submit);
 
         $invoice_status = ($request->status == 'terminada') ? 'aprobado' : $request->status;
         self::update([

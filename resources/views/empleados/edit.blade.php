@@ -168,127 +168,6 @@
               </select>
             </div>
           </div>
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label>Nombre Responsable:</label>
-              <input type="text" class="form-control" placeholder="Enter ..." >
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-group">
-              <label>Telefono:</label>
-              <input type="text" class="form-control" placeholder="Enter ..." >
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-group">
-              <label>Parentezco:</label>
-              <select class="form-control ">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-sm-2">
-            <div class="form-group">
-              <label>Religion:</label>
-              <select class="form-control ">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-group">
-              <label>Discapacidad:</label>
-              <select class="form-control ">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label>Nivel Educativo:</label>
-              <select class="form-control ">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-group">
-              <label>Parentezco:</label>
-              <select class="form-control ">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-group">
-              <label>Grupo etnico:</label>
-              <select class="form-control ">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label>Poblacion Riesgo:</label>
-              <select class="form-control ">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label>Tipo de aseguradora:</label>
-              <select class="form-control ">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-group">
-              <label>Aseguradora:</label>
-              <select class="form-control ">
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
-              </select>
-            </div>
-          </div>
         </div>
         <hr style=" background-color: black;">
           <div class="form-group">
@@ -301,7 +180,7 @@
             name="roles[]"
             @if ($empleado->hasRole($role->id))
                             checked
-                        @endif
+            @endif
             type="checkbox">
                 <label for="{{$role->id}}" class="form-check-label">
                   <span>{{$role->name}}</span>

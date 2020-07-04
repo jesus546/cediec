@@ -104,4 +104,73 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\appointments');
     }
+    public function clinic_datas()
+   {
+    return $this->hasMany('App\ClinicData');
+   }
+   public function clinic_data_array()
+   {
+   $datas = $this->clinic_datas->pluck('value','key')->toArray();
+    return $datas;
+   }
+
+   public function clinic_data($key, $array = null, $default = null)
+   {
+   $array = (!is_null($array)) ? $array : $this->clinic_data_array();
+   if(array_key_exists($key, $array)){
+    $value = $array[$key];
+    }else{
+   $value = $default;
+    }
+   return $value;
+    }
+
+    public function doctor_schedules()
+    {
+    return $this->hasMany('App\DoctorSchedule');
+    }
+    
+    public function disable_dates()
+    { 
+    return $this->hasMany('App\DisableDate');
+    }
+
+    public function disable_times()
+    {
+    return $this->hasMany('App\DisableTime');
+    }
+
+    public function manual_disabled_dates()
+    {
+     $disable_date = $this->disable_dates()->where('key', 'manual')->first();
+    if(!is_null($disable_date)){
+    return $disable_date->value;
+    }else{
+    return null;
+    }
+    }
+    public function days_off()
+    {
+    $days_off = $this->disable_dates()->where('key', 'days_off')->first();
+    if(!is_null($days_off)){
+    return $days_off->value;
+    }else{
+    return null;
+    }
+    }
+
+    public function hours() 
+    {
+    $hours = $this->disable_times()->where('key', 'hours')->first();
+    if(!is_null($hours)){
+        return $hours->value;
+    }else{
+        return null;
+    } 
+    }
+    public function doctor_appointments()
+     {
+    return $this->hasMany('App\appointments', 'doctor_id');
+    }
+
 }

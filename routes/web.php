@@ -68,46 +68,59 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::resource('empleados', 'empleadosController');
-
+   
+    #asignar especialidades
     Route::get('empleados/{empleado}/asignar_speciality', 'empleadosController@asignar_speciality')->name('empleados.asignar_speciality')
               ->middleware('permission:listar especialidades');
               
     Route::post('empleados/{empleado}/speciality_assignment', 'empleadosController@speciality_assignment')
     ->name('empleados.speciality_assignment')->middleware('permission:listar especialidades');
 
+
+    #asignacion de permisos
     Route::get('empleados/{empleado}/asignar_permission', 'empleadosController@asignar_permission')
               ->name('empleados.asignar_permission');
     Route::post('empleados/{empleado}/permission_assignment', 'empleadosController@permission_assignment')
             ->name('empleados.permission_assignment');
 
-    
 
-    
-    
-
+    #listar a un usuario
     Route::get('/usuarios', 'usersController@index')->name('usuarios.index')
                  ->middleware('permission:listar usuario');
-
+    #registrar a un usuario
+    Route::get('/usuarios/create', 'usersController@create')->name('usuarios.create')
+                ->middleware('permission:registrar usuario');
     Route::post('/usuarios', 'usersController@store')->name('usuarios.store')
               ->middleware('permission:registrar usuario');
            
-    Route::get('/usuarios/create', 'usersController@create')->name('usuarios.create')
-                ->middleware('permission:registrar usuario');
-
-    Route::put('/usuarios/{usuario}', 'usersController@update')->name('usuarios.update')
-                  ->middleware('permission:editar usuario');
-
+    #eliminar un usuario
     Route::delete('/usuarios/{usuario}', 'usersController@destroy')->name('usuarios.destroy')
                ->middleware('permission:eliminar usuario');
       
-
+   #editar usuario
     Route::get('/usuarios/{usuario}/edit', 'usersController@edit')->name('usuarios.edit')
                ->middleware('permission:editar usuario');
+    Route::put('/usuarios/{usuario}', 'usersController@update')->name('usuarios.update')
+                  ->middleware('permission:editar usuario');
+  #crear historia clinica
+    Route::resource('patient/{user}/clinic_data', 'ClinicDataController', ['only' => [
+                'index', 'create', 'store'
+            ]]);
+  #gestionar horario del doctor
+  Route::get('doctor/{empleado}/doctor_schedule', 'DoctorScheduleController@assign')
+  ->name('doctor.schedule.assign');
+  Route::post('doctor/{empleado}/doctor_schedule', 'DoctorScheduleController@assignment')
+  ->name('doctor.schedule.assignment');
+
 
     
 });
 
 Route::group(['middleware' => ['auth'], 'as' => 'ajax.'],  function () {
         Route::get('user_speciality', 'ajaxController@user_speciality')->name('user_speciality');
+        Route::get('municipio', 'ajaxController@municipio')->name('municipio');
+        Route::get('doctor/disable_dates', 'ajaxController@disable_dates')->name('doctor.disable_dates');
+        Route::get('doctor/disable_times', 'ajaxController@disable_times')->name('doctor.disable_times');
+
 });
 

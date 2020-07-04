@@ -86,7 +86,8 @@
            </a>
          </li>
         </ul>
-         
+
+        
          @can('listar especialidades')
          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                <li class="nav-item">

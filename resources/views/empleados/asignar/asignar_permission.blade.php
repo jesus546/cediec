@@ -8,7 +8,7 @@
         </div>
         
         <div class="card-body">
-        <form action="{{route('empleados.asignar_permission', $empleado->id)}}" method="POST">
+        <form action="{{route('empleados.permission_assignment', $empleado->id)}}" method="POST">
               @csrf
               <div class="col-sm-10">
                 <div class="row">

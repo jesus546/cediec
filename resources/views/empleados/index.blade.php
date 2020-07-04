@@ -59,6 +59,7 @@
                     @if ($empleado->hasRole('Doctor'))
                      <a class="btn btn-primary btn-sm" href="{{route('empleados.asignar_speciality', $empleado)}}"><i class="fab fa-medrt"></i></a>
                      <a class="btn btn-primary btn-sm" href="{{route('pacient.appointments.doctor.show', $empleado)}}"><i class="fas fa-clock"></i></a>
+                     <a class="btn btn-danger btn-sm " href="{{route('doctor.schedule.assign', $empleado)}}"><i class="fas fa-clock"></i></a>
                     @endif
         
                   <form action="{{route('empleados.destroy', $empleado->id)}}" method="POST" style="display:inline-block;">

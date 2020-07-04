@@ -41,7 +41,7 @@
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                         <input id="datepicker" name="date" class="form-control datepicker " placeholder="selecciones una fecha"  @if (isset($appointments))
-                          data-value="{{$appointments->dates->format('Y-m-d')}}" @endif>
+                          data-value="{{$appointments->dates->format('Y/m/d')}}" @endif>
                         </div>
                         
                     </div>
