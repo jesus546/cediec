@@ -19,7 +19,7 @@ class DoctorSchedule extends Model
 {
 	//Ahora debemos procesar las fechas para que las podamos manipular con javascript.
 	$disabled_dates = new DisableDate();
-	$values = $disabled_dates->process_disabled_dates($request->datepicker);
+	$values = $disabled_dates->process_disabled_dates($request->multi_date_input);
 
 	//Actualizar o almacenar las fechas
 	DisableDate::updateOrCreate([

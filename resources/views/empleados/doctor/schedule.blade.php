@@ -1,7 +1,7 @@
 @extends('themes/layaoutT')
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{{asset("plugins/jquery-ui/jquery-ui.css")}}">
+<link rel="stylesheet" type="text/css" href="{{asset("plugins/datepicker/jquery-ui.multidatespicker.css")}}">
 @endsection
 @section('cont')
 <div class="col-md-8" style="margin: auto">
@@ -14,13 +14,12 @@
         <form action="{{route('doctor.schedule.assignment', $empleado)}}" method="POST">
               @csrf
               <div class="row">
-                <label for="days_off">Días de descanso</label>
                 <div class="input-field col m12">
-                
-                <p><input type="text" id="datepicker" name="datepicker" id="days_off" type="text" ></p>
-                
+                  <label for="days_off">Días de asueto</label>
+                  <input id="multi_date_input" name="multi_date_input" readonly="" placeholder="Seleccione los días de asueto y vacaciones" id="days_off" type="text" class="validate">
+                  
                 </div>
-                </div>
+              </div>
                 
                 <div class="row">
                     <label>Días no laborables</label>
@@ -40,28 +39,28 @@
                 </div>
                 
                 @foreach($days as $key => $day)
-               <div class="row">
-                <div class="col s2">
-                <p>{{ $day }}</p>
-                </div>
-                <div class="col s2">
-                 <input id="{{ $key }}-turn_a_in" type="time" name="{{ $key }}-turn_a_in">
-                 <label for="{{ $key }}-turn_a_in">Turno A Entrada</label>
-                </div>
-                 <div class="col s2">
-                 <input id="{{ $key }}-turn_a_out" type="time" name="{{ $key }}-turn_a_out">
-                <label for="{{ $key }}-turn_a_out">Turno A Salida</label>
-                </div>
-                <div class="col s2">
-                <input id="{{ $key }}-turn_b_in" type="time" name="{{ $key }}-turn_b_in">
-                <label for="{{ $key }}-turn_b_in">Turno B Entrada</label>
-                </div>
-                 <div class="col s2">
-                <input id="{{ $key }}-turn_b_out" type="time" name="{{ $key }}-turn_c_out">
-                <label for="{{ $key }}-turn_b_out">Turno B Salida</label>
-                 </div>
-                 </div>
-                  @endforeach
+	            <div class="row">
+		             <div class="col s2">
+			              <p>{{ $day }}</p>
+		           </div>
+	        	<div class="col s2">
+			        <input id="{{ $key }}-turn_a_in" type="time" name="{{ $key }}-turn_a_in">
+			        <label for="{{ $key }}-turn_a_in">Turno A Entrada</label>
+		       </div>
+		       <div class="col s2">
+			       <input id="{{ $key }}-turn_a_out" type="time" name="{{ $key }}-turn_a_out">
+			       <label for="{{ $key }}-turn_a_out">Turno A Salida</label>
+		       </div>
+		       <div class="col s2">
+			      <input id="{{ $key }}-turn_b_in" type="time" name="{{ $key }}-turn_b_in">
+			      <label for="{{ $key }}-turn_b_in">Turno B Entrada</label>
+		        </div>
+		       <div class="col s2">
+			       <input id="{{ $key }}-turn_b_out" type="time" name="{{ $key }}-turn_b_out">
+			       <label for="{{ $key }}-turn_b_out">Turno B Salida</label>
+		       </div>
+	        </div>
+          @endforeach
                 
                  
       </div>
@@ -76,10 +75,11 @@
 @section('script')
 <script src="{{asset('plugins/jquery-ui/external/jquery/jquery.js')}}"></script>
 <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{asset('plugins/datepicker/jquery-ui.multidatespicker.js')}}"></script>
 <script>
 
-    $( "#datepicker" ).datepicker({
-      dateFormat: 'yy/m/d-',
+     $('#multi_date_input').multiDatesPicker({
+      dateFormat: 'yy/m/d',
     });
 
 </script>

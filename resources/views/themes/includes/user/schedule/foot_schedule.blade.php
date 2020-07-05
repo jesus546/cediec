@@ -6,19 +6,19 @@
 <script type="text/javascript" src="{{asset('plugins/pickadate/legacy.js')}}"></script>
 
 <script type="text/javascript">
-  var input_date = $('.datepicker').pickadate({
-  min: true,
+  var input_date = $('#datepicker').pickadate({
   formatSubmit: 'yyyy/mm/dd',
    });
     var date_picker = input_date.pickadate('picker');
 
 
-var input_time = $('.timepicker ').pickatime({
+var input_time = $('#timepicker ').pickatime({
 interval: 15,
 formatSubmit: 'H:i',
 });
 
 var time_picker = input_time.pickatime('picker');
+
 @if(!isset($appointments))
 ////////////
 var speciality = $('#speciality');

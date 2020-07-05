@@ -40,7 +40,7 @@
                         <label for="datepicker">Fecha </label>
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                        <input id="datepicker" name="date" class="form-control datepicker " placeholder="selecciones una fecha"  @if (isset($appointments))
+                        <input id="datepicker" name="date" class="form-control " placeholder="selecciones una fecha"  @if (isset($appointments))
                           data-value="{{$appointments->dates->format('Y/m/d')}}" @endif>
                         </div>
                         
@@ -51,7 +51,7 @@
                         <label for="timepicker">Hora</label>
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="far fa-clock"></i> </span>
-                        <input name="time" class="form-control timepicker " placeholder="seleccione una hora"
+                        <input name="time" class="form-control" id="timepicker" placeholder="seleccione una hora"
                         @if (isset($appointments))
                          data-value="{{$appointments->dates->format('H:i')}}"
                         @endif>

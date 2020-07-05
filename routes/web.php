@@ -80,6 +80,7 @@ Route::group(['middleware' => ['auth']], function () {
     #asignacion de permisos
     Route::get('empleados/{empleado}/asignar_permission', 'empleadosController@asignar_permission')
               ->name('empleados.asignar_permission');
+              
     Route::post('empleados/{empleado}/permission_assignment', 'empleadosController@permission_assignment')
             ->name('empleados.permission_assignment');
 
