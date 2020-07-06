@@ -80,8 +80,8 @@
       <div class="form-group">
         <label for="genero">Genero:</label>
         <select class="form-control @error('genero') is-invalid @enderror" id="genero" name="genero" value="{{ old('genero') }}">
-          <option  value="Masculino"@if (isset($empleados)) @if ($empleado->genero=='Masculino' ) selected @endif @endif>Masculino</option>
-          <option  value="Femenino" @if (isset($empleados))@if ($empleado->genero=='Femenino' ) selected @endif @endif>Femenino</option>
+          <option  value="Masculino"@if (isset($empleado)) @if ($empleado->genero=='Masculino' ) selected @endif @endif>Masculino</option>
+          <option  value="Femenino" @if (isset($empleado))@if ($empleado->genero=='Femenino' ) selected @endif @endif>Femenino</option>
       </select>
       @error('genero')
       <span class="invalid-feedback" role="alert">
@@ -95,13 +95,13 @@
       <div class="form-group">
         <label for="fk_estadoCivil">Estado civil:</label>
         <select class="form-control @error('fk_estadoCivil') is-invalid @enderror" id="fk_estadoCivil" name="fk_estadoCivil" value="{{ old('fk_estadoCivil') }}">
-          <option  value="Soltero(a)"@if (isset($empleados)) @if ($empleado->fk_estadoCivil=='Soltero(a)' ) selected @endif @endif >Soltero(a)</option>
-          <option  value="Casado(a)"@if (isset($empleados)) @if ($empleado->fk_estadoCivil=='Casado(a)' ) selected @endif @endif>Casado(a)</option>
-          <option  value="Viudo(a)" @if (isset($empleados))@if ($empleado->fk_estadoCivil=='Viudo(a)' ) selected @endif @endif>Viudo(a)</option>
-          <option  value="Divorciado(a)" @if (isset($empleados))@if ($empleado->fk_estadoCivil=='Divorciado(a)' ) selected @endif @endif>Divorciado(a)</option>
-          <option  value="Separado(a)"@if (isset($empleados)) @if ($empleado->fk_estadoCivil=='Separado(a)' ) selected @endif @endif>Separado(a)</option>
-          <option  value="Comprometido(a)"@if (isset($empleados))@if ($empleado->fk_estadoCivil=='Comprometido(a)' ) selected @endif @endif>Comprometido(a)</option>
-          <option  value="Union libre" @if (isset($empleados))@if ($empleado->fk_estadoCivil=='Union libre' ) selected @endif @endif>Union libre</option>
+          <option  value="Soltero(a)"@if (isset($empleado)) @if ($empleado->fk_estadoCivil=='Soltero(a)' ) selected @endif @endif >Soltero(a)</option>
+          <option  value="Casado(a)"@if (isset($empleado)) @if ($empleado->fk_estadoCivil=='Casado(a)' ) selected @endif @endif>Casado(a)</option>
+          <option  value="Viudo(a)" @if (isset($empleado))@if ($empleado->fk_estadoCivil=='Viudo(a)' ) selected @endif @endif>Viudo(a)</option>
+          <option  value="Divorciado(a)" @if (isset($empleado))@if ($empleado->fk_estadoCivil=='Divorciado(a)' ) selected @endif @endif>Divorciado(a)</option>
+          <option  value="Separado(a)"@if (isset($empleado)) @if ($empleado->fk_estadoCivil=='Separado(a)' ) selected @endif @endif>Separado(a)</option>
+          <option  value="Comprometido(a)"@if (isset($empleado))@if ($empleado->fk_estadoCivil=='Comprometido(a)' ) selected @endif @endif>Comprometido(a)</option>
+          <option  value="Union libre" @if (isset($empleado))@if ($empleado->fk_estadoCivil=='Union libre' ) selected @endif @endif>Union libre</option>
       </select>
       @error('fk_estadoCivil')
       <span class="invalid-feedback" role="alert">
@@ -189,11 +189,11 @@
       <div class="form-group">
         <label for="zona">Zona:</label>
         <select class="form-control" id="zona" name="zona" value="{{ old('zona') }}">
-          <option  value="Rural"  @if (isset($empleados))
+          <option  value="Rural"  @if (isset($empleado))
           @if ($empleado->zona=='Rural' ) selected @endif
           @endif>Rural</option>
           <option  value="Urbana" 
-          @if (isset($empleados))
+          @if (isset($empleado))
           @if ($empleado->zona=='Urbana' ) selected @endif
           @endif>Urbana</option>
         
@@ -229,6 +229,6 @@
       </div>
     </div>
   </div>
-  
-  
+
+  @include('themes.includes.empleados.roles')
   </div>
