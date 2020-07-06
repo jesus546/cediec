@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\departamento;
 use App\municipio;
+use App\rh;
 use App\specialities;
 use App\tipoIdentificacion;
 use App\User;
@@ -33,8 +34,9 @@ class empleadosController extends Controller
         $tipoIdentificacion = tipoIdentificacion::all();
         $departamento = departamento::all();
         $municipio = municipio::all();
+        $rh = rh::all();
         $roles = ModelsRole::all();
-       return view('empleados.create', compact('tipoIdentificacion', 'departamento', 'municipio', 'roles'));
+       return view('empleados.create', compact('tipoIdentificacion', 'departamento', 'municipio', 'roles', 'rh'));
 
        
      
@@ -48,8 +50,14 @@ class empleadosController extends Controller
         $empleado->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
         $empleado->identificacion = $request->identificacion;
         $empleado->nombres = $request->nombres;
+        $empleado->apellidos = $request->apellidos;
+        $empleado->rh = $request->rh;
         $empleado->email = $request->email;
+        $empleado->direccion = $request->direccion;
+        $empleado->fk_estadoCivil = $request->fk_estadoCivil;
+        $empleado->telefono = $request->telefono;
         $empleado->celular = $request->celular;
+        $empleado->fk_departamento= $request->fk_departamento;
         $empleado->genero = $request->genero;
         $empleado->zona = $request->zona;
         $empleado->fechaDeNacimiento = $request->fechaDeNacimiento;
@@ -76,9 +84,10 @@ class empleadosController extends Controller
         $tipoIdentificacion = tipoIdentificacion::all();
         $departamento = departamento::all();
         $municipio = municipio::all();
+        $rh = rh::all();
         $empleado = User::findOrFail($id);
         $roles = ModelsRole::all();
-        return view('empleados.edit', compact('empleado', 'tipoIdentificacion', 'departamento', 'municipio', 'roles'));
+        return view('empleados.edit', compact('empleado', 'tipoIdentificacion', 'departamento', 'municipio', 'roles', 'rh'));
     }
 
    
@@ -88,9 +97,18 @@ class empleadosController extends Controller
         $empleado->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
         $empleado->identificacion = $request->identificacion;
         $empleado->nombres = $request->nombres;
+        $empleado->apellidos = $request->apellidos;
+        $empleado->fk_rh = $request->fk_rh;
         $empleado->email = $request->email;
+        $empleado->direccion = $request->direccion;
+        $empleado->fk_estadoCivil = $request->fk_estadoCivil;
+        $empleado->telefono = $request->telefono;
+        $empleado->celular = $request->celular;
+        $empleado->fk_departamento= $request->fk_departamento;
         $empleado->genero = $request->genero;
         $empleado->zona = $request->zona;
+        $empleado->fechaDeNacimiento = $request->fechaDeNacimiento;
+        $empleado->password = $request->password;
         if ($request->password != null) {
             $empleado->password = $request->password;
         }

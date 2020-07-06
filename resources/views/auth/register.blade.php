@@ -70,11 +70,11 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label for="direccion" >{{ __('Direccion:') }}</label>
-                            <input type="text" maxlength="20" id="direccion" class="form-control"  placeholder="Ej:Ca 80 #5-16" name="direccion" value="{{ old('direccion') }}" required autocomplete="direccion" autofocus>
+                            <input type="text" maxlength="20" id="direccion" class="form-control"  placeholder="Ej:Ca 80 #5-16" name="direccion" value="{{ old('direccion') }}" autocomplete="direccion" autofocus>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="fk_departamento">{{ __('Departamento:')}}</label>
-                            <select class="form-control" id="departamento" name="fk_departamento" value="{{ old('fk_departamento') }}" required autocomplete="fk_departamento" autofocus data-dependent="municipio">
+                            <select class="form-control" id="fk_departamento" name="fk_departamento" value="{{ old('fk_departamento') }}"  autocomplete="fk_departamento" autofocus data-dependent="municipio">
                             <option disabled selected>Selecciona el departamento</option>   
                             @foreach ($departamento as $dep)
                             <option value="{{$dep['id']}}">{{$dep['nombre']}}</option>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="fk_municipio">{{ __('Municipio:')}}</label>
-                            <select class="form-control" id="municipio" name="fk_municipio" value="{{ old('fk_municipio') }}" required autocomplete="fk_municipio" autofocus>
+                            <select class="form-control" id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autocomplete="fk_municipio" autofocus>
                                 <option >Selecciona primero el departamento</option>
                             </select>
                         </div>
@@ -98,15 +98,23 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label for="celular" >{{ __('Celular:') }}</label>
-                            <input type="text" maxlength="10" id="celular" class="form-control"  name="celular" value="{{ old('celular') }}" required autocomplete="celular" autofocus>
-                              
+                            <input type="text" maxlength="10" id="celular" class="form-control @error('celular') is-invalid @enderror"  name="celular" value="{{ old('celular') }}" autocomplete="celular" autofocus>
+                            @error('celular')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                 
                         </div>
 
                         <div class="form-group col-md-3">
                             <label for="fechaDeNacimiento" >{{ __('Fecha De Nacimiento:') }}</label>
-                            <input type="date" id="fechaDeNacimiento" class="form-control "  name="fechaDeNacimiento" value="{{ old('fechaDeNacimiento') }}" required autocomplete="fecha de nacimiento" autofocus>
-                             
+                            <input type="date" id="fechaDeNacimiento" class="form-control @error('fechaDeNacimiento') is-invalid @enderror "  name="fechaDeNacimiento" value="{{ old('fechaDeNacimiento') }}"  autocomplete="fecha de nacimiento" autofocus>
+                            @error('fechaDeNacimiento')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                         </div>
 
                         <div class="form-group col-md-3">

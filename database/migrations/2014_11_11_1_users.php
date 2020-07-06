@@ -28,14 +28,13 @@ class users extends Migration
             $table->string('password');
             $table->enum('genero', ['Masculino', 'Femenino'])->nullable();
             $table->string('nombre_del_responsable', 60)->nullable();
-            $table->integer('telefono_r')->nullable();
+            $table->string('telefono_r',10)->nullable();
             $table->enum('zona', ['Rural', 'Urbana'])->nullable();
-            $table->unsignedBigInteger('fk_parentezco')->nullable();
-            $table->foreign('fk_parentezco')->references('paren_id')->on('parentezco');
+            $table->enum('fk_parentezco', ['Hijo(a)', 'Suegro(a)', 'Padre', 'Madre', 
+            'Abuelo(a)','Esposo(a)', 'Sobrino(a)', 'Tio(a)', 'Hermano(a)', 'Primo(a)','Yerno(a)', 'Cuñado(a)'])->nullable();
             $table->date('fechaDeNacimiento')->nullable();    
-            $table->unsignedBigInteger('fk_estadoCivil')->nullable();
-            $table->foreign('fk_estadoCivil')->references('est_id')->on('estadoCivil');
-            $table->unsignedBigInteger('fk_rH')->nullable();
+            $table->enum('fk_estadoCivil', ['Soltero(a)', 'Casado(a)','Viudo(a)', 'Divorciado(a)', 'Separado(a)', 'Comprometido(a)','Union libre' ])->nullable();
+            $table->unsignedBigInteger('fk_rh')->nullable();
             $table->foreign('fk_rH')->references('r_id')->on('RH');
             $table->unsignedBigInteger('fk_religion')->nullable();
             $table->foreign('fk_religion')->references('re_id')->on('religion');

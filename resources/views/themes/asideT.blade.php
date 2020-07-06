@@ -128,7 +128,16 @@
            
             </ul>
           @endcan
-    
+          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+            <a href="{{route('doctor.gestionar_horario')}}" class="nav-link ">
+              <i class="nav-icon fas fa-clock"></i>
+               <p>
+                 Gestionar horario
+               </p>
+             </a>
+           </li>
+            </ul>
     
     
          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">

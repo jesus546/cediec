@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\aseguradora;
 use Illuminate\Http\Request;
 
 use App\departamento;
+use App\discapacidad;
 use App\genero;
+use App\grupoEtnico;
+use App\Http\Requests\usuario\storeUserRequest;
 use App\municipio;
+use App\nivelEducativo;
+use App\poblacionRiesgo;
+use App\religion as AppReligion;
+use App\rh;
+use App\tipoAseguradora;
 use App\tipoIdentificacion;
 use App\zona;
 
@@ -36,7 +45,26 @@ class usersController extends Controller
         $tipoIdentificacion = tipoIdentificacion::all();
         $departamento = departamento::all();
         $municipio = municipio::all();
-       return view('usuarios.create', compact('tipoIdentificacion', 'departamento', 'municipio'));
+        $rh = rh::all();
+        $religion = AppReligion::all();
+        $discapacidad = discapacidad::all();
+        $nivelEducativo = nivelEducativo::all();
+        $grupoEtnico = grupoEtnico::all();
+        $poblacionRiesgo = poblacionRiesgo::all();
+        $tipoAseguradora = tipoAseguradora::all();
+        $aseguradora = aseguradora::all();
+       return view('usuarios.create', compact('tipoIdentificacion', 
+                                               'departamento', 
+                                               'municipio', 
+                                               'rh', 
+                                               'religion', 
+                                               'discapacidad',
+                                               'nivelEducativo',
+                                               'grupoEtnico',
+                                               'poblacionRiesgo',
+                                               'tipoAseguradora',
+                                               'aseguradora'
+                                                ));
 
        
      
@@ -44,18 +72,10 @@ class usersController extends Controller
 
 
    
-    public function store(Request $request)
+    public function store(storeUserRequest $request)
     {
         $usuarios = new User();
-        $usuarios->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
-        $usuarios->identificacion = $request->identificacion;
-        $usuarios->nombres = $request->nombres;
-        $usuarios->email = $request->email;
-        $usuarios->celular = $request->celular;
-        $usuarios->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $usuarios->genero = $request->genero;
-        $usuarios->zona = $request->zona;
-        $usuarios->password = $request->password;
+        $usuarios->$request->all();
         
         if ($usuarios->save()) {
          $usuarios->assignRole('User');

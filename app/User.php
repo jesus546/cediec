@@ -23,15 +23,29 @@ class User extends Authenticatable
         'identificacion',
         'nombres',
         'apellidos' , 
+        'telefono',
         'email',
         'direccion',
         'genero',
-        'fk_departamento',
-        'fk_municipio',
         'zona',
         'password', 
         'celular', 
         'fechaDeNacimiento',
+        'ocupacion',
+        'nombre_del_responsable',
+        'telefono_r',
+        'fk_parentezco',
+        'fk_estadoCivil',
+        'fk_rH',
+        'fk_religion',
+        'fk_discapacidad',
+        'fk_nivelEducativo',
+        'fk_grupoEtnico',
+        'fk_departamento',
+        'fk_municipio',
+        'fk_tipoAseguradora',
+        'fk_aseguradora',
+        'fk_poblacionRiesgo',
     ];
 
   
@@ -92,6 +106,7 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\municipio');
     }
+    
     public function specialities()
     {
         return $this->belongsToMany('App\specialities')->withTimestamps();

@@ -15,7 +15,11 @@ class DatabaseSeeder extends Seeder
         $this->truncateTablas([
             
             
-            'tipoDeIdentificacion'
+            'tipoDeIdentificacion',
+            'RH',
+            'religion',
+            'grupoEtnico',
+            'nivelEducativo'
             
              
 

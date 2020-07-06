@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
+use App\municipio;
 use App\specialities;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
-
-
+use Symfony\Component\Console\Input\Input;
 
 class ajaxController extends Controller
 {
@@ -22,9 +20,15 @@ class ajaxController extends Controller
         }
     }
 
-    public function municipio(Request $request){
-        
-       
+    public function municipio_ajax(Request $request)
+    {
+        if($request->ajax()) { 
+            $municipios = municipio::where('fk_departamento', $request->fk_departamento)->get();
+            foreach ($municipios as $municipio) {
+                $municipioArr[$municipio->id] = $municipio->nombre;
+            } 
+        }
+            return response()->json($municipioArr);
     }
 
     public function disable_dates(Request $request)

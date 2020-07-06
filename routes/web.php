@@ -62,7 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/store_schedule', 'pacientController@store_schedule')->name('store_schedule')
     ->middleware('role:User');
-
+   
     Route::get('/appointments', 'pacientController@appointments')->name('appointments')
     ->middleware('role:User');
 
@@ -108,6 +108,8 @@ Route::group(['middleware' => ['auth']], function () {
                 'index', 'create', 'store'
             ]]);
   #gestionar horario del doctor
+  Route::get('doctor/gestionar_horario', 'DoctorScheduleController@gestionar_horario')
+  ->name('doctor.gestionar_horario');
   Route::get('doctor/{empleado}/doctor_schedule', 'DoctorScheduleController@assign')
   ->name('doctor.schedule.assign');
   Route::post('doctor/{empleado}/doctor_schedule', 'DoctorScheduleController@assignment')
@@ -119,7 +121,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => ['auth'], 'as' => 'ajax.'],  function () {
         Route::get('user_speciality', 'ajaxController@user_speciality')->name('user_speciality');
-        Route::get('municipio', 'ajaxController@municipio')->name('municipio');
+        Route::get('municipios', 'ajaxController@municipio_ajax')->name('municipio');
         Route::get('doctor/disable_dates', 'ajaxController@disable_dates')->name('doctor.disable_dates');
         Route::get('doctor/disable_times', 'ajaxController@disable_times')->name('doctor.disable_times');
 
