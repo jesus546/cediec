@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             'RH',
             'religion',
             'grupoEtnico',
-            'nivelEducativo'
+            'nivelEducativo',
+            'aseguradora',
             
              
 

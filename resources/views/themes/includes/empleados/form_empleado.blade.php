@@ -176,7 +176,7 @@
     <div class="col-md-4">
       <div class="form-group">
         <label>Direccion:</label>
-        <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($empleados))
+        <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($empleado))
         value="{{$empleado->direccion}}" @endif  autocomplete="direccion" autofocus >
         @error('direccion')
               <span class="invalid-feedback" role="alert">
@@ -209,22 +209,14 @@
         <option value="{{$dep['id']}}">{{$dep['nombre']}}</option>
         @endforeach
         </select>
-        @error('fk_departamento')
-        <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-        </span>
-      @enderror  
+   
       </div>
     </div>
     <div class="col-md-3">
       <div class="form-group">
-        <label>Municipio:</label>
-        <select class="form-control ">
-          <option>option 1</option>
-          <option>option 2</option>
-          <option>option 3</option>
-          <option>option 4</option>
-          <option>option 5</option>
+        <label for="fk_municipio">{{ __('Municipio:')}}</label>
+        <select class="form-control" id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autocomplete="fk_municipio" autofocus>
+            <option >Selecciona primero el departamento</option>
         </select>
       </div>
     </div>
@@ -232,3 +224,7 @@
 
   @include('themes.includes.empleados.roles')
   </div>
+
+  @section('script')
+   @include('themes.includes.user.municipio.ajax_municipio')
+@endsection

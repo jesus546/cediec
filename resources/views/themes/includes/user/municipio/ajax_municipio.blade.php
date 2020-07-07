@@ -12,10 +12,10 @@ $.ajax({
       fk_departamento:fk_departamento.val(),
     },
     success: function(data){
-      fk_municipio .empty();
-      fk_municipio .append('<option disabled selected>selecciona un doctor</option>');
-      $.each(data, function(index, element){
-        fk_municipio .append('<option value="'+element.id+'">'+element.nombre+'</option>');
+      fk_municipio.empty();
+      fk_municipio.append('<option disabled selected>selecciona un municipio</option>');
+      $.each(data, function(index, value){
+        fk_municipio.append('<option value="'+index+'">'+value+'</option>');
       });
     }
 });

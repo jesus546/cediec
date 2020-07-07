@@ -119,6 +119,89 @@ class identificacion extends Seeder
              ]);
          }
 
+         $dis= [
+
+           
+            'Discapacidad Auditiva',
+            'Discapacidad Física',
+            'Discapacidad Intelectual',
+            'Discapacidad Multiple',
+            'Discapacidad Psicosocial',
+            'Discapacidad Visual',
+            'Sordoceguera',
+
+         ];
+ 
+         foreach ($dis as $key => $value){
+             DB::table('discapacidad')->insert([
+                 'discapacidad' => $value
+             ]);
+         }
+
+         $Tasegu= [
+
+           
+            'EPS',
+            'EPSI',
+            'ISS',
+
+         ];
+ 
+         foreach ($Tasegu as $key => $value){
+             DB::table('tipoDeAseguradora')->insert([
+                 'tipoAsegu' => $value
+             ]);
+         }
+
+         $asegu= [
+
+           
+            'Salud Colmena E.P.S.',
+            'Salud Total E.P.S.',
+            'Cafesalud E.P.S. ',
+            'E.P.S.  Sanitas',
+            'Compensar  E.P.S.',
+            'EPS Prog. Comfenalco Antioquia	',
+            'SuSalud EPS - (Suramericana)',
+            'Colseguros E.P.S',
+            'Comfenalco Valle E.P.S.',
+            'E.P.S.  Saludcoop',
+            'Humana Vivir  S.A.  E.P.S.',
+            'EPS Servicios Medicos Colpatria',
+            'Coomeva E.P.S.',
+            'E.P.S. Famisanar CAFAM-COLSUBSIDIO',
+            'E.P.S Servicio Occidental de Salud ',
+            'Cruz Blanca E.P.S. S.A',
+            'Solsalud S.A. EPS',
+            'SALUDVIDA S.A. EPS',
+            'SALUDCOLOMBIA EPS S.A.',
+            'RED SALUD ATENCION HUMANA EPS S.A.',
+            'Mutual SER EPS',
+            'COMPARTA EPS'
+         ];
+ 
+         foreach ($asegu as $key => $value){
+             DB::table('aseguradora')->insert([
+                 'asegu' => $value
+             ]);
+         }
+        
+         $pR= [
+
+           
+            'DESPLAZADO',
+            'DESPLAZADO CABEZA FAMILIA',
+
+
+         ];
+ 
+         foreach ($pR as $key => $value){
+             DB::table('poblacionRiesgo')->insert([
+                 'poblaRies' => $value
+             ]);
+         }
+
+
          
          
     }

@@ -20,15 +20,15 @@ class users extends Migration
             $table->string('identificacion')->unique();
             $table->string('nombres', 60)->nullable();
             $table->string('apellidos', 60)->nullable();
-            $table->integer('telefono')->nullable();
-            $table->string('celular', 10)->nullable();
+            $table->string('telefono', 11)->nullable();
+            $table->string('celular', 11)->nullable();
             $table->string('email', 60)->unique();
             $table->string('ocupacion', 60)->nullable();
             $table->string('direccion', 30)->nullable();
             $table->string('password');
             $table->enum('genero', ['Masculino', 'Femenino'])->nullable();
             $table->string('nombre_del_responsable', 60)->nullable();
-            $table->string('telefono_r',10)->nullable();
+            $table->string('telefono_r',11)->nullable();
             $table->enum('zona', ['Rural', 'Urbana'])->nullable();
             $table->enum('fk_parentezco', ['Hijo(a)', 'Suegro(a)', 'Padre', 'Madre', 
             'Abuelo(a)','Esposo(a)', 'Sobrino(a)', 'Tio(a)', 'Hermano(a)', 'Primo(a)','Yerno(a)', 'Cuñado(a)'])->nullable();

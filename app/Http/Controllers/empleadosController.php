@@ -33,10 +33,9 @@ class empleadosController extends Controller
     {
         $tipoIdentificacion = tipoIdentificacion::all();
         $departamento = departamento::all();
-        $municipio = municipio::all();
         $rh = rh::all();
         $roles = ModelsRole::all();
-       return view('empleados.create', compact('tipoIdentificacion', 'departamento', 'municipio', 'roles', 'rh'));
+       return view('empleados.create', compact('tipoIdentificacion', 'departamento', 'roles', 'rh'));
 
        
      
@@ -51,7 +50,8 @@ class empleadosController extends Controller
         $empleado->identificacion = $request->identificacion;
         $empleado->nombres = $request->nombres;
         $empleado->apellidos = $request->apellidos;
-        $empleado->rh = $request->rh;
+        $empleado->fk_rh = $request->fk_rh;
+        $empleado->fk_municipio = $request->fk_municipio;
         $empleado->email = $request->email;
         $empleado->direccion = $request->direccion;
         $empleado->fk_estadoCivil = $request->fk_estadoCivil;
@@ -66,9 +66,9 @@ class empleadosController extends Controller
         if ($empleado->save()) {
          $empleado->syncRoles($request->roles);
          Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
-
          return redirect()->route('empleados.index');
         }
+        
         
     }
 
@@ -83,11 +83,10 @@ class empleadosController extends Controller
     {
         $tipoIdentificacion = tipoIdentificacion::all();
         $departamento = departamento::all();
-        $municipio = municipio::all();
         $rh = rh::all();
         $empleado = User::findOrFail($id);
         $roles = ModelsRole::all();
-        return view('empleados.edit', compact('empleado', 'tipoIdentificacion', 'departamento', 'municipio', 'roles', 'rh'));
+        return view('empleados.edit', compact('empleado', 'tipoIdentificacion', 'departamento', 'roles', 'rh'));
     }
 
    
@@ -100,6 +99,7 @@ class empleadosController extends Controller
         $empleado->apellidos = $request->apellidos;
         $empleado->fk_rh = $request->fk_rh;
         $empleado->email = $request->email;
+        $empleado->fk_municipio = $request->fk_municipio;
         $empleado->direccion = $request->direccion;
         $empleado->fk_estadoCivil = $request->fk_estadoCivil;
         $empleado->telefono = $request->telefono;
@@ -108,17 +108,17 @@ class empleadosController extends Controller
         $empleado->genero = $request->genero;
         $empleado->zona = $request->zona;
         $empleado->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $empleado->password = $request->password;
         if ($request->password != null) {
             $empleado->password = $request->password;
         }
         
       
-         if ($empleado->save()) {
+        if ($empleado->save()) {
             $empleado->syncRoles($request->roles);
             Alert::success('EXITO', 'Se ha actualizado el usuario')->showConfirmButton('OK', '#3085d6');
             return redirect()->route('empleados.index');
-           }
+        }
+        
     }
 
    

@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\Input;
 
 class ajaxController extends Controller
 {
+    
     public function user_speciality(Request $request){
         
         if ($request->ajax()) {
@@ -27,8 +28,10 @@ class ajaxController extends Controller
             foreach ($municipios as $municipio) {
                 $municipioArr[$municipio->id] = $municipio->nombre;
             } 
-        }
+
             return response()->json($municipioArr);
+        }
+            
     }
 
     public function disable_dates(Request $request)

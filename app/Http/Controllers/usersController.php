@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 use App\departamento;
 use App\discapacidad;
-use App\genero;
 use App\grupoEtnico;
 use App\Http\Requests\usuario\storeUserRequest;
 use App\municipio;
@@ -17,8 +16,6 @@ use App\religion as AppReligion;
 use App\rh;
 use App\tipoAseguradora;
 use App\tipoIdentificacion;
-use App\zona;
-
 use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -44,7 +41,6 @@ class usersController extends Controller
     {
         $tipoIdentificacion = tipoIdentificacion::all();
         $departamento = departamento::all();
-        $municipio = municipio::all();
         $rh = rh::all();
         $religion = AppReligion::all();
         $discapacidad = discapacidad::all();
@@ -55,7 +51,6 @@ class usersController extends Controller
         $aseguradora = aseguradora::all();
        return view('usuarios.create', compact('tipoIdentificacion', 
                                                'departamento', 
-                                               'municipio', 
                                                'rh', 
                                                'religion', 
                                                'discapacidad',
@@ -75,8 +70,30 @@ class usersController extends Controller
     public function store(storeUserRequest $request)
     {
         $usuarios = new User();
-        $usuarios->$request->all();
-        
+        $usuarios->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
+        $usuarios->identificacion = $request->identificacion;
+        $usuarios->nombres = $request->nombres;
+        $usuarios->apellidos = $request->apellidos;
+        $usuarios->fk_rh = $request->fk_rh;
+        $usuarios->email = $request->email;
+        $usuarios->direccion = $request->direccion;
+        $usuarios->fk_estadoCivil = $request->fk_estadoCivil;
+        $usuarios->telefono = $request->telefono;
+        $usuarios->celular = $request->celular;
+        $usuarios->fk_departamento= $request->fk_departamento;
+        $usuarios->fk_municipio = $request->fk_municipio;
+        $usuarios->genero = $request->genero;
+        $usuarios->zona = $request->zona;
+        $usuarios->fechaDeNacimiento = $request->fechaDeNacimiento;
+        $usuarios->nombre_del_responsable = $request->nombre_del_responsable;
+        $usuarios->telefono_r = $request->telefono_r;
+        $usuarios->fk_parentezco = $request->fk_parentezco;
+        $usuarios->fk_religion = $request->fk_religion;
+        $usuarios->fk_nivelEducativo = $request->fk_nivelEducativo;
+        $usuarios->fk_grupoEtnico = $request->fk_grupoEtnico;
+        $usuarios->fk_poblacionRiesgo = $request->fk_poblacionRiesgo;
+        $usuarios->fk_tipoAseguradora = $request->fk_tipoAseguradora;
+        $usuarios->fk_aseguradora = $request->fk_aseguradora;
         if ($usuarios->save()) {
          $usuarios->assignRole('User');
          Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
@@ -95,11 +112,28 @@ class usersController extends Controller
   
     public function edit($id)
     {
+        $usuario = User::findOrFail($id);
         $tipoIdentificacion = tipoIdentificacion::all();
         $departamento = departamento::all();
-        $municipio = municipio::all();
-        $usuario = User::findOrFail($id);
-        return view('usuarios.edit', compact('usuario', 'tipoIdentificacion', 'genero', 'zona', 'departamento', 'municipio'));
+        $rh = rh::all();
+        $religion = AppReligion::all();
+        $discapacidad = discapacidad::all();
+        $nivelEducativo = nivelEducativo::all();
+        $grupoEtnico = grupoEtnico::all();
+        $poblacionRiesgo = poblacionRiesgo::all();
+        $tipoAseguradora = tipoAseguradora::all();
+        $aseguradora = aseguradora::all();
+        return view('usuarios.edit', compact('usuario', 
+                                             'tipoIdentificacion', 
+                                             'departamento', 
+                                             'rh', 
+                                             'religion', 
+                                            'discapacidad',
+                                             'nivelEducativo',
+                                             'grupoEtnico',
+                                             'poblacionRiesgo',
+                                             'tipoAseguradora',
+                                             'aseguradora'));
     }
 
    
@@ -109,9 +143,27 @@ class usersController extends Controller
         $usuario->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
         $usuario->identificacion = $request->identificacion;
         $usuario->nombres = $request->nombres;
+        $usuario->apellidos = $request->apellidos;
+        $usuario->fk_rh = $request->fk_rh;
         $usuario->email = $request->email;
+        $usuario->direccion = $request->direccion;
+        $usuario->fk_estadoCivil = $request->fk_estadoCivil;
+        $usuario->telefono = $request->telefono;
+        $usuario->celular = $request->celular;
+        $usuario->fk_departamento= $request->fk_departamento;
+        $usuario->fk_municipio = $request->fk_municipio;
         $usuario->genero = $request->genero;
         $usuario->zona = $request->zona;
+        $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
+        $usuario->nombre_del_responsable = $request->nombre_del_responsable;
+        $usuario->telefono_r = $request->telefono_r;
+        $usuario->fk_parentezco = $request->fk_parentezco;
+        $usuario->fk_religion = $request->fk_religion;
+        $usuario->fk_nivelEducativo = $request->fk_nivelEducativo;
+        $usuario->fk_grupoEtnico = $request->fk_grupoEtnico;
+        $usuario->fk_poblacionRiesgo = $request->fk_poblacionRiesgo;
+        $usuario->fk_tipoAseguradora = $request->fk_tipoAseguradora;
+        $usuario->fk_aseguradora = $request->fk_aseguradora;
         if ($request->password != null) {
             $usuario->password = $request->password;
         }
