@@ -1,16 +1,11 @@
 <?php
 
-namespace App\Http\Requests\usuario;
+namespace App\Http\Requests\usuario_empleado;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeUserRequest extends FormRequest
+class user_EmplStore extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
@@ -36,21 +31,12 @@ class storeUserRequest extends FormRequest
         'password' => 'required|min:10|string', 
         'celular' => 'required|max:10|string', 
         'fechaDeNacimiento'=> 'required|date',
-        'ocupacion'=> 'required|max:60|string',
-        'nombre_del_responsable'=> 'required|max:60|string',
-        'telefono_r' => 'required|min:10|string',
-        'fk_parentezco' => 'required',
+        'fk_rh' => 'required',
         'fk_estadoCivil'=> 'required',
-        'fk_rH'=> 'required',
-        'fk_religion' => 'required',
-        'fk_discapacidad'=> 'required',
-        'fk_nivelEducativo'=> 'required',
-        'fk_grupoEtnico'=> 'required',
+        'roles'=> 'required',
         'fk_departamento'=> 'required',
         'fk_municipio'=> 'required',
-        'fk_tipoAseguradora'=> 'required',
-        'fk_aseguradora'=> 'required',
-        'fk_poblacionRiesgo'=> 'required',
+   
         ];
     }
 
@@ -76,26 +62,14 @@ class storeUserRequest extends FormRequest
         'zona.required' => 'este campo es requerido',
         'password.required' => 'este campo es requerido',
         'password.min' => 'minimo son 10 caracteres',
-        'celular.required' => 'este campo es requerido', 
+        'celular.required' => 'este campo es requerido',
+        'celular.max' => 'maximo son 10 caracteres',
         'fechaDeNacimiento.required' => 'este campo es requerido',
-        'ocupacion.required' => 'este campo es requerido',
-        'ocupacion.max' => 'maximo son 60 caracteres',
-        'nombre_del_responsable.required' => 'este campo es requerido',
-        'nombre_del_responsable.max' => 'maximo son 60 caracteres',
-        'telefono_r.required' => 'este campo es requerido',
-        'telefono_r.min' => 'minimo son 10 caracteres',
-        'fk_parentezco.required' => 'este campo es requerido',
         'fk_estadoCivil.required' => 'este campo es requerido',
+        'roles.required' => 'este campo es requerido',
         'fk_rH.required' => 'este campo es requerido',
-        'fk_religion.required' => 'este campo es requerido',
-        'fk_discapacidad.required' => 'este campo es requerido',
-        'fk_nivelEducativo.required' => 'este campo es requerido',
-        'fk_grupoEtnico.required' => 'este campo es requerido',
         'fk_departamento.required' => 'este campo es requerido',
         'fk_municipio.required' => 'este campo es requerido',
-        'fk_tipoAseguradora.required' => 'este campo es requerido',
-        'fk_aseguradora.required' => 'este campo es requerido',
-        'fk_poblacionRiesgo.required' => 'este campo es requerido',
         ];
     }
 }

@@ -22,11 +22,7 @@ class userPolicy
          return true;
     } 
 
-    public function gestionar_horario_doctor(User $empleado,User $model)
-    {   
-         if ($empleado->hasRole('Doctor')) {
-             return $empleado->id == $model->id;
-         }
-         return true;
-    } 
+  
+
+  
 }

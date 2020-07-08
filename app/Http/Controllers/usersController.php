@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\aseguradora;
-use Illuminate\Http\Request;
-
 use App\departamento;
 use App\discapacidad;
 use App\grupoEtnico;
 use App\Http\Requests\usuario\storeUserRequest;
-use App\municipio;
+use App\Http\Requests\usuario\updateUserRequest;
 use App\nivelEducativo;
 use App\poblacionRiesgo;
 use App\religion as AppReligion;
@@ -17,6 +15,7 @@ use App\rh;
 use App\tipoAseguradora;
 use App\tipoIdentificacion;
 use App\User;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class usersController extends Controller
@@ -30,10 +29,16 @@ class usersController extends Controller
    
    
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::role('User')->get();
-        return view('usuarios.index', ['users' => $users]);
+        if ($request) {
+            $query  = trim($request->get('search'));
+            $users = User::where('identificacion', 'LIKE', '%'.$query.'%')
+                        ->orderBy('id', 'asc')
+                        ->role('User')
+                        ->get();
+            return view('usuarios.index', ['users' => $users, 'search' => $query]);
+        }
     }
 
   
@@ -84,6 +89,7 @@ class usersController extends Controller
         $usuarios->fk_municipio = $request->fk_municipio;
         $usuarios->genero = $request->genero;
         $usuarios->zona = $request->zona;
+        $usuarios->password = $request->password;
         $usuarios->fechaDeNacimiento = $request->fechaDeNacimiento;
         $usuarios->nombre_del_responsable = $request->nombre_del_responsable;
         $usuarios->telefono_r = $request->telefono_r;
@@ -137,7 +143,7 @@ class usersController extends Controller
     }
 
    
-    public function update(Request $request, $id)
+    public function update(updateUserRequest $request, $id)
     {
         $usuario = User::findOrFail($id);
         $usuario->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;

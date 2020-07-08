@@ -8,13 +8,14 @@
           <h3 class="card-title">Usuarios</h3>
 
           <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+            <form>
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="search" type="search" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                </div>
               </div>
-            </div>         
+            </form>             
           </div>     
         </div>
      
@@ -47,10 +48,15 @@
                 <td>
                   
                   <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i></a>
-                  <a class="btn btn-info btn-sm" href="{{url('/pacient/' . $usuario->id . '/appointments/')}}"   ><i class="fas fa-book" ></i> </a>
+                  @can('listar cita paciente')
+                  <a class="btn btn-info btn-sm" href="{{route('pacient.appointments', $usuario)}}"   ><i class="fas fa-book" ></i> </a>
+                  @endcan
+                  @can('ver factura paciente')
                   <a class="btn btn-info btn-sm" href="{{route('back.invoice', $usuario)}}"   ><i class=" nav-icon fas fa-file-invoice"></i></a>
+                  @endcan
+                  
                   @can('editar usuario')
-                  <a class="btn btn-info btn-sm" href="{{url('/usuarios/' . $usuario->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a>
+                  <a class="btn btn-info btn-sm" href="{{route('usuarios.edit', $usuario)}}" ><i class="fas fa-pencil-alt"></i> </a>
                   @endcan
         
                   

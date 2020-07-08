@@ -17,7 +17,11 @@
               <tr>
                 <th>Nombre</th>
                 <th># de medicos</th>
-                <th><a href="{{route('specialities.create')}}" class="btn btn-success btn-xs ">Crear especialidades</a></th>
+                <th>
+                  @can('crear especialidad')
+                  <a href="{{route('specialities.create')}}" class="btn btn-success btn-xs ">Crear especialidades</a>
+                  @endcan
+                  </th>
                 
                 
               </tr>
@@ -27,7 +31,11 @@
             <tr>
                 <td scope="row">{{$specialities->name}}</td>
                   <td>{{$specialities->users->count()}}</td>
-                  <td><a class="btn btn-info btn-sm" href="{{url('/specialities/' . $specialities->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a></td>
+                  <td>
+                  @can('eliminar especialidad')
+                  <a class="btn btn-info btn-sm" href="{{url('/specialities/' . $specialities->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a>
+                  @endcan
+                  </td>
                 </tr>  
             @endforeach
               

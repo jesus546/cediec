@@ -9,6 +9,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class DoctorScheduleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function gestionar_horario()
     {
         $empleados = User::role('Doctor')->get();

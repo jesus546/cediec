@@ -17,6 +17,7 @@
                 <label for="{{$role->id}}" class="form-check-label">
                   <span>{{$role->name}}</span>
                 </label>
+                
               </div>
             @endforeach
             

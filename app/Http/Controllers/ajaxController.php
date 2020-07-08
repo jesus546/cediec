@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\Input;
 
 class ajaxController extends Controller
 {
+
     
     public function user_speciality(Request $request){
         

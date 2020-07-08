@@ -16,15 +16,28 @@ class rolesAndPermissions extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
     
     
-         Permission::create([ 'name' => 'asignar cita']);
-         Permission::create(['name' => 'listar cita']);
-         Permission::create(['name' => 'enviar mensaje']);
-         Permission::create(['name' => 'registrar usuario']);
-         Permission::create(['name' => 'eliminar usuario']);
-         Permission::create(['name' => 'editar usuario']);
-         Permission::create(['name' => 'listar usuario']);
+         Permission::create([ 'name' => 'listar usuario']);
          Permission::create(['name' => 'listar especialidades']);
          Permission::create(['name' => 'listar empleados']);
+         Permission::create(['name' => 'listar cita paciente']);
+         Permission::create(['name' => 'ver citas programadas']);
+         Permission::create(['name' => 'ver factura paciente']);
+         Permission::create(['name' => 'ver citas doctor']);
+         Permission::create(['name' => 'asignar cita']);
+         Permission::create([ 'name' => 'asignar horario doctor']);
+         Permission::create(['name' => 'asignar permisos']);
+         Permission::create(['name' => 'asignar especialidad']);
+         Permission::create(['name' => 'editar usuario']);
+         Permission::create(['name' => 'editar empleado']);
+         Permission::create(['name' => 'editar especialidad']);
+         Permission::create(['name' => 'editar factura paciente']);
+         Permission::create(['name' => 'editar cita paciente']);
+         Permission::create(['name' => 'eliminar usuario']);
+         Permission::create(['name' => 'eliminar empleado']);
+         Permission::create(['name' => 'eliminar especialidad']);
+         Permission::create(['name' => 'registrar usuario']);
+         Permission::create(['name' => 'registrar empleado']);
+         Permission::create(['name' => 'crear especialidad']);
 
         
         $role = Role::create(['name' => 'User']);

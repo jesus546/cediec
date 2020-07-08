@@ -1,9 +1,5 @@
 @extends('themes/layaoutT')
 
-@section('style')
-<link rel="stylesheet" href="{{asset("plugins/select2/css/select2.min.css")}}">
-
-@endsection
 
 @section('cont')
 <div class="row">

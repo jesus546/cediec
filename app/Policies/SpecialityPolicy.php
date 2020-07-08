@@ -13,7 +13,7 @@ class SpecialityPolicy
     
     public function create(User $user)
     {
-        return $user->hasRole('super-admin');
+        return $user->hasPermissionTo('crear especialidad');
     }
 
  

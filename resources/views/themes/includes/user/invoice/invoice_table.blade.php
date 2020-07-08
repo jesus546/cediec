@@ -19,9 +19,12 @@
             <td>{{$invoice->cantidad}}</td>
             <td>{{$invoice->status}}</td>
             <td>
+            @can('editar factura paciente')
             @if (isset($usuario))
             <a class="btn btn-info btn-sm" href="{{route('back.invoice.edit', [$usuario, $invoice])}}" ><i class="fas fa-pencil-alt"></i> </a>
             @endif
+            @endcan
+            
             </td>
            
        

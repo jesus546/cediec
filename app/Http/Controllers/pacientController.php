@@ -15,7 +15,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class pacientController extends Controller
 {
-   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function schedule()
     {
         return view('paciente.schedule', [

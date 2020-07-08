@@ -75,19 +75,19 @@
          </li>
         </ul>
          @endrole
-
-         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-          <a href="{{route('pacient.appointments.show')}}" class="nav-link ">
-            <i class=" nav-icon fas fa-calendar-week"></i>
-             <p>
-               Citas programadas
-             </p>
-           </a>
-         </li>
-        </ul>
-
-        
+      @can('ver citas programadas')
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+        <a href="{{route('pacient.appointments.show')}}" class="nav-link ">
+          <i class=" nav-icon fas fa-calendar-week"></i>
+           <p>
+             Citas programadas
+           </p>
+         </a>
+       </li>
+      </ul>
+      @endcan
+ 
          @can('listar especialidades')
          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                <li class="nav-item">
@@ -110,8 +110,7 @@
                       Empleados
                     </p>
                   </a>
-                </li>
-                
+                </li>  
           </ul>
           @endcan
 
@@ -128,6 +127,7 @@
            
             </ul>
           @endcan
+          @can('update', Model::class)
           <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
             <a href="{{route('doctor.gestionar_horario')}}" class="nav-link ">
@@ -138,6 +138,8 @@
              </a>
            </li>
             </ul>
+          @endcan
+          
     
     
          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">

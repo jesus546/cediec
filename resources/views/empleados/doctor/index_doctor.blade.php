@@ -39,7 +39,10 @@
                 <td>{{$empleado->age()}}</td>
                 <td>{{$empleado->email}}</td>
                 <td>
-                    <a class="btn btn-danger btn-sm " href="{{route('doctor.schedule.assign', $empleado)}}">Asignar horario</i></a>          
+                  @can('asignar horario doctor')
+                  <a class="btn btn-danger btn-sm " href="{{route('doctor.schedule.assign', $empleado)}}">Asignar horario</i></a>
+                  @endcan
+                              
                 </td>
               </tr>
               @endforeach

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\departamento;
-use App\municipio;
+use App\Http\Requests\usuario_empleado\user_EmplStore;
 use App\rh;
 use App\specialities;
 use App\tipoIdentificacion;
 use App\User;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role as ModelsRole;
@@ -22,10 +23,19 @@ class empleadosController extends Controller
    
    
 
-    public function index()
+    public function index(Request $request)
     {
-        $empleados = User::role(['super-admin', 'Admisionista', 'Doctor', 'Administrador'])->get();
-        return view('empleados.index', ['empleados' => $empleados]);
+        
+        if ($request) {
+            $query  = trim($request->get('search'));
+            $empleados = User::where('identificacion', 'LIKE', '%'.$query.'%')
+                        ->orderBy('id', 'asc')
+                        ->role(['super-admin', 'Admisionista', 'Doctor', 'Administrador'])
+                        ->get();
+            return view('empleados.index', ['empleados' => $empleados, 'search' => $query]);
+        }
+        
+        
     }
 
   
@@ -45,29 +55,30 @@ class empleadosController extends Controller
    
     public function store(Request $request)
     {
-        $empleado = new User();
-        $empleado->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
-        $empleado->identificacion = $request->identificacion;
-        $empleado->nombres = $request->nombres;
-        $empleado->apellidos = $request->apellidos;
-        $empleado->fk_rh = $request->fk_rh;
-        $empleado->fk_municipio = $request->fk_municipio;
-        $empleado->email = $request->email;
-        $empleado->direccion = $request->direccion;
-        $empleado->fk_estadoCivil = $request->fk_estadoCivil;
-        $empleado->telefono = $request->telefono;
-        $empleado->celular = $request->celular;
-        $empleado->fk_departamento= $request->fk_departamento;
-        $empleado->genero = $request->genero;
-        $empleado->zona = $request->zona;
-        $empleado->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $empleado->password = $request->password;
-        
-        if ($empleado->save()) {
-         $empleado->syncRoles($request->roles);
+
+        $empleados = new AuthUser();
+        $empleados->fk_tipoDeidentificacion = $request->input('fk_tipoDeidentificacion');
+        $empleados->identificacion = $request->input('identificacion');
+        $empleados->nombres = $request->input('nombres');
+        $empleados->apellidos = $request->input('apellidos');
+        $empleados->fk_rh = $request->input('fk_rh');
+        $empleados->email = $request->input('email');
+        $empleados->direccion = $request->input('direccion');
+        $empleados->fk_estadoCivil = $request->input('fk_estadoCivil');
+        $empleados->telefono = $request->input('telefono');
+        $empleados->celular = $request->input('celular');
+        $empleados->fk_departamento= $request->input('fk_departamento');
+        $empleados->fk_municipio = $request->input('fk_municipio');
+        $empleados->genero = $request->input('genero');
+        $empleados->zona = $request->input('zona');
+        $empleados->fechaDeNacimiento = $request->input('fechaDeNacimiento');
+        $empleados->password = $request->input('password');
+        if ($empleados->save()) {
+         $empleados->syncRoles($request->input('roles'));
          Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
          return redirect()->route('empleados.index');
         }
+
         
         
     }

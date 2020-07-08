@@ -6,12 +6,9 @@
           <th>Especialista</th>
           <th>Fecha</th>
           <th>Estado</th>
-          @hasanyrole('admisionista|super-admin')
+          @can('asignar cita')
           <th><a class="btn btn-success btn-sm float-right" href="{{url('/pacient/' . $usuario->id . '/schedule/')}}" >Asignar cita </a></th>
-          @endhasanyrole
-          
-
-          
+          @endcan
         </tr>
       </thead>
       <tbody>  
@@ -21,9 +18,9 @@
               <td>{{$appointment->doctor()->nombres}}</td> 
               <td>{{$appointment->dates->format('d/m/Y h:i a')}}</td>
               <td>{{$appointment->status}}</td>
-            @hasanyrole('admisionista|super-admin')
+              @can('editar cita paciente')
             <td><a class="btn btn-info btn-sm " href="{{url('/pacient/' . $usuario->id . '/appointments/'. $appointment->id. '/edit/')}}" ><i class="fas fa-pencil-alt"></a></td>
-            @endhasanyrole
+              @endcan
              
             </tr>
         @empty
