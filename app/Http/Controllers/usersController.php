@@ -72,40 +72,10 @@ class usersController extends Controller
 
 
    
-    public function store(storeUserRequest $request)
+    public function store(Request $request, User $usuarios)
     {
-        $usuarios = new User();
-        $usuarios->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
-        $usuarios->identificacion = $request->identificacion;
-        $usuarios->nombres = $request->nombres;
-        $usuarios->apellidos = $request->apellidos;
-        $usuarios->fk_rh = $request->fk_rh;
-        $usuarios->email = $request->email;
-        $usuarios->direccion = $request->direccion;
-        $usuarios->fk_estadoCivil = $request->fk_estadoCivil;
-        $usuarios->telefono = $request->telefono;
-        $usuarios->celular = $request->celular;
-        $usuarios->fk_departamento= $request->fk_departamento;
-        $usuarios->fk_municipio = $request->fk_municipio;
-        $usuarios->genero = $request->genero;
-        $usuarios->zona = $request->zona;
-        $usuarios->password = $request->password;
-        $usuarios->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $usuarios->nombre_del_responsable = $request->nombre_del_responsable;
-        $usuarios->telefono_r = $request->telefono_r;
-        $usuarios->fk_parentezco = $request->fk_parentezco;
-        $usuarios->fk_religion = $request->fk_religion;
-        $usuarios->fk_nivelEducativo = $request->fk_nivelEducativo;
-        $usuarios->fk_grupoEtnico = $request->fk_grupoEtnico;
-        $usuarios->fk_poblacionRiesgo = $request->fk_poblacionRiesgo;
-        $usuarios->fk_tipoAseguradora = $request->fk_tipoAseguradora;
-        $usuarios->fk_aseguradora = $request->fk_aseguradora;
-        if ($usuarios->save()) {
-         $usuarios->assignRole('User');
-         Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
-
+        $usuarios = $usuarios->store_user($request);
          return redirect()->route('usuarios.index');
-        }
         
     }
 
@@ -143,7 +113,7 @@ class usersController extends Controller
     }
 
    
-    public function update(updateUserRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $usuario = User::findOrFail($id);
         $usuario->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;

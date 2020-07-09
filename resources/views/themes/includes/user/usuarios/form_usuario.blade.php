@@ -23,7 +23,7 @@
       <div class="form-group">
         <label for="identificacion" >Identificacion:</label>
       <input id="identificacion" type="text" maxlength="10"  class="form-control @error('identificacion') is-invalid @enderror" name="identificacion" @if (isset($usuario))
-      value="{{$usuario->identificacion}}" @else value="{{ old('identificacion') }}" @endif  autocomplete="identificacion" autofocus>
+      value="{{$usuario->identificacion}}" @else value="{{ old('identificacion') }}"  @endif  autocomplete="identificacion" autofocus>
         @error('identificacion')
          <span class="invalid-feedback" role="alert">
          <strong>{{ $message }}</strong>
@@ -33,14 +33,14 @@
     </div>
       <div class="col-md-4">
         <div class="form-group">
-        <label for="nombres" >Nombres:</label>
-        <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" @if (isset($usuario))
-        value="{{$usuario->nombres}}"@else value="{{ old('nombres') }}" @endif   autocomplete="nombres" autofocus >
-                @error('nombres')
-                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-              @enderror
+          <label for="nombres" >Nombres:</label>
+          <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" @if (isset($usuario))
+           value="{{$usuario->nombres}}"@else value="{{ old('nombres') }}" @endif   autocomplete="nombres" autofocus >
+                  @error('nombres')
+                   <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
           </div>
       </div>
     
@@ -51,7 +51,7 @@
       <div class="form-group">
         <label for="apellidos">Apellidos:</label>
         <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" @if (isset($usuario))
-        value="{{$usuario->apellidos}}" @endif   autocomplete="apellidos" autofocus >
+        value="{{$usuario->apellidos}}"@else value="{{ old('apellidos') }}" @endif   autocomplete="apellidos" autofocus >
         @error('apellidos')
         <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -115,7 +115,7 @@
       <div class="form-group">
         <label for="fechaDeNacimiento">Fecha de nacimiento:</label>
         <input type="date" name="fechaDeNacimiento" class="form-control @error('fechaDeNacimiento') is-invalid @enderror" @if (isset($usuario))
-        value="{{$usuario->fechaDenacimiento}}" @endif    autocomplete="fecha de nacimiento"  >
+        value="{{$usuario->fechaDenacimiento}}" @else value="{{ old('fechaDeNacimiento') }}" @endif    autocomplete="fecha de nacimiento"  >
         @error('fechaDeNacimiento')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -130,8 +130,8 @@
     <div class="col-md-3">
       <div class="form-group">
         <label>Telefono:</label>
-        <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" @if (isset($usuario))
-        value="{{$usuario->telefono}}" @endif   autocomplete="telefono" autofocus >
+        <input id="telefono" type="text" maxlength="10" class="form-control @error('telefono') is-invalid @enderror" name="telefono" @if (isset($usuario))
+        value="{{$usuario->telefono}}"@else value="{{ old('telefono') }}" @endif   autocomplete="telefono" autofocus >
         @error('telefono')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -143,15 +143,20 @@
     <div class="col-md-3">
       <div class="form-group">
         <label>Celular:</label>
-        <input type="text" class="form-control" name="celular" @if (isset($usuario))
-        value="{{$usuario->celular}}" @endif  autocomplete="celular"  >
+        <input type="text" maxlength="10" class="form-control @error('celular') is-invalid @enderror" name="celular" @if (isset($usuario))
+        value="{{$usuario->celular}}"@else value="{{ old('celular') }}" @endif  autocomplete="celular"  >
+        @error('celular')
+        <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+        </span>
+         @enderror
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label  for="email">Email:</label>
         <input id="email" type="email" placeholder="Ej: name@hotmail.com" class="form-control @error('email') is-invalid @enderror" name="email" @if (isset($usuario))
-        value="{{$usuario->email}}" @endif autocomplete="email" >
+        value="{{$usuario->email}}"@else value="{{ old('email') }}" @endif autocomplete="email" >
         @error('email')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -176,8 +181,8 @@
     <div class="col-md-4">
       <div class="form-group">
         <label>Direccion:</label>
-        <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($usuario)) value="{{$usuario->direccion}}" @endif  autocomplete="direccion" autofocus >
-        <input id="nombre_del_responsable" type="text" class="form-control @error('nombre_del_responsable') is-invalid @enderror" name="nombre_del_responsable" value="{{ old('nombre_del_responsable') }}" autocomplete="nombre_del_responsable" autofocus >
+        <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($usuario))
+        value="{{$usuario->direccion}}"@else value="{{ old('direccion') }}" @endif  autocomplete="direccion" autofocus >
         @error('direccion')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -188,7 +193,7 @@
     <div class="col-md-2">
       <div class="form-group">
         <label for="zona">Zona:</label>
-        <select class="form-control" id="zona" name="zona" value="{{ old('zona') }}">
+        <select class="form-control @error('zona') is-invalid @enderror" id="zona" name="zona" value="{{ old('zona') }}">
           <option  value="Rural"  @if (isset($usuario))
           @if ($usuario->zona=='Rural' ) selected @endif
           @endif>Rural</option>
@@ -198,25 +203,41 @@
           @endif>Urbana</option>
         
       </select>
+
+      @error('zona')
+              <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+              </span>
+       @enderror
       </div>
     </div>
     <div class="col-md-3">
       <div class="form-group">
         <label for="fk_departamento">{{ __('Departamento:')}}</label>
-        <select class="form-control" id="fk_departamento" name="fk_departamento" value="{{ old('fk_departamento') }}" autocomplete="fk_departamento" autofocus d>
-        <option disabled selected>-- Seleccione --</option>   
+        <select class="form-control @error('fk_departamento') is-invalid @enderror" id="fk_departamento" name="fk_departamento" value="{{ old('fk_departamento') }}" autocomplete="fk_departamento" autofocus data-dependent="municipio">
+        <option disabled selected>Selecciona el departamento</option>   
         @foreach ($departamento as $dep)
         <option value="{{$dep['id']}}">{{$dep['nombre']}}</option>
         @endforeach
         </select>
+        @error('fk_departamento')
+      <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+      </span>
+      @enderror
    
       </div>
     </div>
     <div class="col-md-3">
-        <label for="fk_municipio">{{ __('Municipio:')}}</label>
-        <select class="form-control" id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autocomplete="fk_municipio" autofocus>
-            <option >Selecciona primero el departamento</option>
-        </select>
+      <label for="fk_municipio">{{ __('Municipio:')}}</label>
+      <select class="form-control @error('fk_municipio') is-invalid @enderror" id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autocomplete="fk_municipio" autofocus>
+          <option >Selecciona primero el departamento</option>
+      </select>
+      @error('fk_municipio')
+    <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+    </span>
+    @enderror
     </div>
   </div>
 
@@ -224,7 +245,9 @@
   <div class="col-md-4">
     <div class="form-group">
       <label>Nombres del responsable:</label>
-      <input id="nombre_del_responsable" type="text" class="form-control @error('nombre_del_responsable') is-invalid @enderror" name="nombre_del_responsable" value="{{ old('nombre_del_responsable') }}" autocomplete="nombre_del_responsable" autofocus >
+      <input id="nombre_del_responsable" type="text" class="form-control @error('nombre_del_responsable') is-invalid @enderror"
+      @if (isset($usuario)) value="{{$usuario->nombre_del_responsable}}" @else value="{{ old('nombre_del_responsable') }}" @endif 
+      name="nombre_del_responsable"  autocomplete="nombre_del_responsable" autofocus >
       @error('nombre_del_responsable')
       <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -236,7 +259,9 @@
   <div class="col-md-3">
     <div class="form-group">
       <label>Telefono:</label>
-      <input id="telefono_r" type="text" class="form-control @error('telefono_r') is-invalid @enderror" name="telefono_r" value="{{ old('telefono_r') }}" autocomplete="telefono_r" autofocus >
+      <input id="telefono_r" type="text" class="form-control @error('telefono_r') is-invalid @enderror" name="telefono_r" 
+      @if (isset($usuario)) value="{{$usuario->telefono_r}}" @else value="{{ old('telefono_r') }}" @endif 
+       autocomplete="telefono_r" autofocus >
       @error('telefono_r')
       <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -277,7 +302,7 @@
                     <option value="{{$reli['re_id']}}">{{$reli['religion']}}</option>
         @endforeach
       </select>
-      @error('fk_rH')
+      @error('fk_religion')
       <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
       </span>

@@ -13,7 +13,7 @@ class SpecialityPolicy
     
     public function create(User $user)
     {
-        return $user->hasPermissionTo('crear especialidad');
+
     }
 
  

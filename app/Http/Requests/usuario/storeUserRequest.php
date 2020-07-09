@@ -6,21 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class storeUserRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+    
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+
+
     public function rules()
     {
         return [
@@ -51,6 +44,7 @@ class storeUserRequest extends FormRequest
         'fk_tipoAseguradora'=> 'required',
         'fk_aseguradora'=> 'required',
         'fk_poblacionRiesgo'=> 'required',
+   
         ];
     }
 
@@ -76,14 +70,11 @@ class storeUserRequest extends FormRequest
         'zona.required' => 'este campo es requerido',
         'password.required' => 'este campo es requerido',
         'password.min' => 'minimo son 10 caracteres',
-        'celular.required' => 'este campo es requerido', 
+        'celular.required' => 'este campo es requerido',
+        'celular.max' => 'maximo son 10 caracteres',
         'fechaDeNacimiento.required' => 'este campo es requerido',
-        'ocupacion.required' => 'este campo es requerido',
-        'ocupacion.max' => 'maximo son 60 caracteres',
-        'nombre_del_responsable.required' => 'este campo es requerido',
-        'nombre_del_responsable.max' => 'maximo son 60 caracteres',
-        'telefono_r.required' => 'este campo es requerido',
-        'telefono_r.min' => 'minimo son 10 caracteres',
+        'fk_estadoCivil.required' => 'este campo es requerido',
+        'fk_municipio.required' => 'este campo es requerido',
         'fk_parentezco.required' => 'este campo es requerido',
         'fk_estadoCivil.required' => 'este campo es requerido',
         'fk_rH.required' => 'este campo es requerido',
@@ -92,7 +83,6 @@ class storeUserRequest extends FormRequest
         'fk_nivelEducativo.required' => 'este campo es requerido',
         'fk_grupoEtnico.required' => 'este campo es requerido',
         'fk_departamento.required' => 'este campo es requerido',
-        'fk_municipio.required' => 'este campo es requerido',
         'fk_tipoAseguradora.required' => 'este campo es requerido',
         'fk_aseguradora.required' => 'este campo es requerido',
         'fk_poblacionRiesgo.required' => 'este campo es requerido',

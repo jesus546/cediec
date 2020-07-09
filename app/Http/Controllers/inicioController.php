@@ -17,6 +17,20 @@ class inicioController extends Controller
     {
         return view('inicio');
     }
+    
+    public function contactenos()
+    {
+       
+    }
+    
+    public function servicios()
+    {
+       
+    }
 
+    
+    
+    
+   
     
 }

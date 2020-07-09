@@ -61,10 +61,10 @@
                 <td>
                   
                   <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i></a>
-                  @can('editar empleado')
+                  @can('asignar permisos')
                   <a class="btn permission btn-sm" href="{{route('empleados.asignar_permission', $empleado)}}" ><i class="fas fa-scroll"></i></a>
                   @endcan
-                  @can('editar')
+                  @can('editar empleado')
                   <a class="btn btn-info btn-sm" href="{{url('/empleados/' . $empleado->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a>
                   @endcan
                  

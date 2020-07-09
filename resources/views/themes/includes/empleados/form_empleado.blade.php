@@ -130,7 +130,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <label>Telefono:</label>
-        <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" @if (isset($empleado))
+        <input id="telefono" type="text" maxlength="10" class="form-control @error('telefono') is-invalid @enderror" name="telefono" @if (isset($empleado))
         value="{{$empleado->telefono}}"@else value="{{ old('telefono') }}" @endif   autocomplete="telefono" autofocus >
         @error('telefono')
               <span class="invalid-feedback" role="alert">
@@ -143,7 +143,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <label>Celular:</label>
-        <input type="text" class="form-control @error('celular') is-invalid @enderror" name="celular" @if (isset($empleado))
+        <input type="text" maxlength="10" class="form-control @error('celular') is-invalid @enderror" name="celular" @if (isset($empleado))
         value="{{$empleado->celular}}"@else value="{{ old('celular') }}" @endif  autocomplete="celular"  >
         @error('celular')
         <span class="invalid-feedback" role="alert">

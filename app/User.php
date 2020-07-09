@@ -5,6 +5,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Traits\HasRoles;
 
 
@@ -81,6 +82,23 @@ class User extends Authenticatable
             $this->attributes['password'] = bcrypt($value);
         }
     }
+    public function store_empl($request)
+    {
+        $empleados = self::create($request->all());
+        $roles= [$request->roles];
+        $empleados->syncRoles($roles);
+        Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
+        return $empleados;
+    }
+
+    public function store_user($request)
+    {
+        $usuarios = self::create($request->all());
+        $usuarios->assignRole('User');
+        Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
+        return $usuarios;
+    }
+
 
     public function has_especiality($id)
     {

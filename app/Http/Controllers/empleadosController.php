@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\departamento;
 use App\Http\Requests\usuario_empleado\user_EmplStore;
+use App\Http\Requests\usuario_empleado\user_EmplUpdate;
 use App\rh;
 use App\specialities;
 use App\tipoIdentificacion;
@@ -53,34 +54,11 @@ class empleadosController extends Controller
 
 
    
-    public function store(Request $request)
+    public function store(Request $request, User $empleados)
     {
 
-        $empleados = new AuthUser();
-        $empleados->fk_tipoDeidentificacion = $request->input('fk_tipoDeidentificacion');
-        $empleados->identificacion = $request->input('identificacion');
-        $empleados->nombres = $request->input('nombres');
-        $empleados->apellidos = $request->input('apellidos');
-        $empleados->fk_rh = $request->input('fk_rh');
-        $empleados->email = $request->input('email');
-        $empleados->direccion = $request->input('direccion');
-        $empleados->fk_estadoCivil = $request->input('fk_estadoCivil');
-        $empleados->telefono = $request->input('telefono');
-        $empleados->celular = $request->input('celular');
-        $empleados->fk_departamento= $request->input('fk_departamento');
-        $empleados->fk_municipio = $request->input('fk_municipio');
-        $empleados->genero = $request->input('genero');
-        $empleados->zona = $request->input('zona');
-        $empleados->fechaDeNacimiento = $request->input('fechaDeNacimiento');
-        $empleados->password = $request->input('password');
-        if ($empleados->save()) {
-         $empleados->syncRoles($request->input('roles'));
-         Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
+        $empleados = $empleados->store_empl($request);
          return redirect()->route('empleados.index');
-        }
-
-        
-        
     }
 
   
@@ -133,9 +111,8 @@ class empleadosController extends Controller
     }
 
    
-    public function destroy($id)
+    public function destroy(User $empleado)
     {
-        $empleado = User::findOrFail($id);
         
         if ($empleado->delete()) {
             $empleado->revokePermissionTo(Permission::all());
