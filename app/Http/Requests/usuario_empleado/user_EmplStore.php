@@ -19,7 +19,7 @@ class user_EmplStore extends FormRequest
     public function rules()
     {
         return [
-        'fk_tipoDeidentificacion' => 'required',
+        'fk_tipoDeidentificacion' => 'required|integer',
         'identificacion' => 'required|unique:users|min:10|string',
         'nombres' => 'required|max:60|string',
         'apellidos' => 'required|max:60|string' , 
@@ -31,11 +31,10 @@ class user_EmplStore extends FormRequest
         'password' => 'required|min:10|string', 
         'celular' => 'required|max:10|string', 
         'fechaDeNacimiento'=> 'required|date',
-        'fk_rh' => 'required',
+        'fk_rH' => 'required|integer',
         'fk_estadoCivil'=> 'required',
-        'roles'=> 'required',
-        'fk_departamento'=> 'required',
-        'fk_municipio'=> 'required',
+        'fk_departamento'=> 'required|integer',
+        'fk_municipio'=> 'required|integer'
    
         ];
     }
@@ -66,10 +65,11 @@ class user_EmplStore extends FormRequest
         'celular.max' => 'maximo son 10 caracteres',
         'fechaDeNacimiento.required' => 'este campo es requerido',
         'fk_estadoCivil.required' => 'este campo es requerido',
-        'roles.required' => 'este campo es requerido',
         'fk_rH.required' => 'este campo es requerido',
         'fk_departamento.required' => 'este campo es requerido',
         'fk_municipio.required' => 'este campo es requerido',
         ];
     }
+
+  
 }

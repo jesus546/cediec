@@ -18,21 +18,21 @@ class ClinicDataController extends Controller
     }
 
     
-    public function create(User $user)
+    public function create(User $usuario)
     {
         return view('usuarios.pacient.clinic_data',[
-            'user' => $user,
-            'datas' => $user->clinic_data_array()
+            'usuario' => $usuario,
+            'datas' => $usuario->clinic_data_array()
 
         ]);
 
     }
 
   
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(Request $request, User $usuario, ClinicData $clinic_data)
+{
+    $clinic_data->store($request, $usuario);
+}
 
     
     public function show(ClinicData $clinicData)

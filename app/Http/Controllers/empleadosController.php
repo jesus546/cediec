@@ -54,7 +54,7 @@ class empleadosController extends Controller
 
 
    
-    public function store(Request $request, User $empleados)
+    public function store(user_EmplStore $request, User $empleados)
     {
 
         $empleados = $empleados->store_empl($request);
@@ -132,7 +132,7 @@ class empleadosController extends Controller
             'specialities' => specialities::all()
           ]);
     }
-
+    
     public function speciality_assignment(Request $request, $id)
     {
         $empleado = User::findOrFail($id);
@@ -156,5 +156,10 @@ class empleadosController extends Controller
         Alert::success('EXITO', 'Se han actualizado los permisos')->showConfirmButton('OK', '#3085d6');
         return redirect()->route('empleados.index');
         }
+    }
+
+    public function mensaje()
+    {
+        return view('mensajes.modal_chat');
     }
 }

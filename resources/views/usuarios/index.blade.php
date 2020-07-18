@@ -47,7 +47,7 @@
                 <td>{{$usuario->email}}</td>
                 <td>
                   
-                  <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i></a>
+                  <a class="btn btn-primary btn-sm" href="{{route('clinic_data.create', $usuario)}}"><i class="fas fa-folder"></i></a>
                   @can('listar cita paciente')
                   <a class="btn btn-info btn-sm" href="{{route('pacient.appointments', $usuario)}}"   ><i class="fas fa-book" ></i> </a>
                   @endcan

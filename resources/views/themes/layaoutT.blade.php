@@ -6,11 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CEDIEC | IPS SALUD</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('img/favicon.ico')}}">
+    <script src="{{asset("plugins/jquery/jquery.min.js")}}"></script>
     <link rel="stylesheet" href="{{asset("plugins/fontawesome-free/css/all.min.css")}}">
     <link rel="stylesheet" href="{{asset("dist/css/adminlte.min.css")}}">
+    <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{{asset("plugins/overlayScrollbars/css/OverlayScrollbars.min.css")}}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    
     @yield('style')
     
 </head>
@@ -33,10 +36,7 @@
             <div class="container-fluid">
                 
                     @yield('cont')
-               
-                
             </div>
-           
         </section>
         
        
@@ -51,7 +51,7 @@
 
    
     @yield('script')
-<script src="{{asset("plugins/jquery/jquery.min.js")}}"></script>
+
 <script src="{{asset("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}"></script>
 <script src="{{asset("dist/js/adminlte.js")}}"></script>
 <script src="{{asset("plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>

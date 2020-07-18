@@ -72,7 +72,7 @@ class usersController extends Controller
 
 
    
-    public function store(Request $request, User $usuarios)
+    public function store(storeUserRequest $request, User $usuarios)
     {
         $usuarios = $usuarios->store_user($request);
          return redirect()->route('usuarios.index');

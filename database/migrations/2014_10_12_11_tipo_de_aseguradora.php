@@ -14,7 +14,7 @@ class TipoDeAseguradora extends Migration
     public function up()
     {
         Schema::create('tipoDeAseguradora', function (Blueprint $table) {
-            $table->bigIncrements('tip_id');
+            $table->id();
             $table->string('tipoAsegu');
             $table->timestamps();
             $table->charset = 'utf8mb4';

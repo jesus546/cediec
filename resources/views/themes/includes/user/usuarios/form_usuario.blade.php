@@ -386,7 +386,7 @@
       <label>Tipo de aseguradora:</label>
       <select class="form-control @error('fk_tipoAseguradora') is-invalid @enderror" id="fk_tipoAseguradora" name="fk_tipoAseguradora" value="{{ old('fk_tipoAseguradora') }}" autocomplete="fk_tipoAseguradora" autofocus>
         @foreach ($tipoAseguradora  as $tipoAsegurador )
-                    <option value="{{$tipoAsegurador['tip_id']}}">{{$tipoAsegurador['tipoAsegu']}}</option>
+                    <option value="{{$tipoAsegurador['id']}}">{{$tipoAsegurador['tipoAsegu']}}</option>
         @endforeach
       </select>
       @error('fk_tipoAseguradora')
@@ -401,7 +401,7 @@
       <label>Aseguradora:</label>
       <select class="form-control " id="fk_aseguradora" name="fk_aseguradora" value="{{ old('fk_aseguradora') }}" autocomplete="fk_aseguradora" autofocus>
         @foreach ($aseguradora as $asegurador)
-                    <option value="{{$asegurador['ase_id']}}">{{$asegurador['asegu']}}</option>
+                    <option value="{{$asegurador['id']}}">{{$asegurador['asegu']}}</option>
         @endforeach
       </select>
       @error('fk_aseguradora')

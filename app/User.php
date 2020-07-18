@@ -138,9 +138,10 @@ class User extends Authenticatable
         return $this->hasMany('App\appointments');
     }
     public function clinic_datas()
-   {
+    {
     return $this->hasMany('App\ClinicData');
-   }
+    }
+    
    public function clinic_data_array()
    {
    $datas = $this->clinic_datas->pluck('value','key')->toArray();

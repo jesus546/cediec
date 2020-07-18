@@ -201,6 +201,21 @@ class identificacion extends Seeder
              ]);
          }
 
+         $regime= [
+
+           
+            'Contributivo',
+            'Subsidiadio',
+
+
+         ];
+ 
+         foreach ($regime as $key => $value){
+             DB::table('regimes')->insert([
+                 'name' => $value
+             ]);
+         }
+
 
          
          

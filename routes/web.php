@@ -28,6 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     
+    Route::get('/mensaje', 'empleadosController@mensaje')->name('mensaje');
+
     #asignacion de cita paciente
     Route::get('pacient/{usuario}/schedule', 'pacientController@back_schedule')->name('pacient.schedule')
     ->middleware('permission:asignar cita');
@@ -59,8 +61,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('pacient/{usuario}/invoice/{invoice}/update', 'pacientController@back_invoice_update')->name('back.invoice.update')
     ->middleware('permission:editar factura paciente');
 
+    //precios y asignar precio segun eps y aseguradora
     
-
+    Route::resource('price', 'priceController');
+    Route::get('asignar/{price}/asegu', 'priceAseguController@asignar_asegu_price')->name('asignar_asegu_price')
+    ->middleware('role:super-admin');
+    Route::post('/asignar/{price}/price', 'priceAseguController@price_assignment')->name('price_assignment.price')
+    ->middleware('role:super-admin');
     /////////
     Route::resource('specialities', 'SpecialitiesController');
     ///////////
@@ -115,7 +122,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/usuarios/{usuario}', 'usersController@update')->name('usuarios.update')
                   ->middleware('permission:editar usuario');
   #crear historia clinica
-    Route::resource('patient/{user}/clinic_data', 'ClinicDataController', ['only' => [
+    Route::resource('patient/{usuario}/clinic_data', 'ClinicDataController', ['only' => [
                 'index', 'create', 'store'
             ]]);
   #gestionar horario del doctor
@@ -127,12 +134,12 @@ Route::group(['middleware' => ['auth']], function () {
   
   Route::post('doctor/{empleado}/doctor_schedule', 'DoctorScheduleController@assignment')
   ->name('doctor.schedule.assignment')->middleware('permission:asignar horario doctor');
-
+ 
 
     
 });
 
-Route::group(['middleware' => ['auth'], 'as' => 'ajax.'],  function () {
+Route::group([ 'as' => 'ajax.'],  function () {
         Route::get('user_speciality', 'ajaxController@user_speciality')->name('user_speciality');
         Route::get('municipios', 'ajaxController@municipio_ajax')->name('municipio');
         Route::get('doctor/disable_dates', 'ajaxController@disable_dates')->name('doctor.disable_dates');

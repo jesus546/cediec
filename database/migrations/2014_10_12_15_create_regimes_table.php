@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Mensaje extends Migration
+class CreateRegimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class Mensaje extends Migration
      */
     public function up()
     {
-        Schema::create('mensaje', function (Blueprint $table) {
-            $table->bigIncrements('men_id');
-            $table->text('texto');
+        Schema::create('regimes', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->timestamps();
-            $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 
@@ -29,6 +27,6 @@ class Mensaje extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mensaje');
+        Schema::dropIfExists('regimes');
     }
 }

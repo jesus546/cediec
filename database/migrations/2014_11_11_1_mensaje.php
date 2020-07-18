@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Aseguradora extends Migration
+class Mensaje extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class Aseguradora extends Migration
      */
     public function up()
     {
-        Schema::create('aseguradora', function (Blueprint $table) {
+        Schema::create('mensaje', function (Blueprint $table) {
             $table->id();
-            $table->string('asegu');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->text('mensaje');
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
@@ -29,6 +31,6 @@ class Aseguradora extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aseguradora');
+        Schema::dropIfExists('mensaje');
     }
 }

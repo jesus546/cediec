@@ -75,6 +75,21 @@
          </li>
         </ul>
          @endrole
+
+
+         @role('super-admin')
+         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+          <a href="{{route('price.index')}}" class="nav-link ">
+            <i class="nav-icon  fas fa-file-invoice-dollar"></i>
+             <p>
+               Precios
+             </p>
+           </a>
+         </li>
+        </ul>
+
+         @endrole
       @can('ver citas programadas')
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">

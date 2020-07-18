@@ -5,7 +5,7 @@
       <div class="form-group">
         
         <label for="fk_tipoDeidentificacion">{{ __('Tipo De Identificación:')}}</label>
-        <select class="form-control @error('fk_tipoDeidentificacion') is-invalid @enderror" id="fk_tipoDeidentificacion" name="fk_tipoDeidentificacion" value="{{ old('fk_tipoDeidentificacion') }}" autocomplete="fk_tipoDeidentificacion" autofocus>
+        <select class="form-control @error('fk_tipoDeidentificacion') is-invalid @enderror" id="fk_tipoDeidentificacion" name="fk_tipoDeidentificacion" value="{{ old('fk_tipoDeidentificacion') }}"  autofocus>
         
           @foreach ($tipoIdentificacion as $tipoidenti)
           <option value="{{$tipoidenti['tipoDeIden_ID']}}">{{$tipoidenti['tipo']}}</option>
@@ -23,7 +23,7 @@
       <div class="form-group">
         <label for="identificacion" >Identificacion:</label>
       <input id="identificacion" type="text" maxlength="10"  class="form-control @error('identificacion') is-invalid @enderror" name="identificacion" @if (isset($empleado))
-      value="{{$empleado->identificacion}}" @else value="{{ old('identificacion') }}"  @endif  autocomplete="identificacion" autofocus>
+      value="{{$empleado->identificacion}}" @else value="{{ old('identificacion') }}"  @endif   autofocus>
         @error('identificacion')
          <span class="invalid-feedback" role="alert">
          <strong>{{ $message }}</strong>
@@ -35,7 +35,7 @@
         <div class="form-group">
         <label for="nombres" >Nombres:</label>
         <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" @if (isset($empleado))
-         value="{{$empleado->nombres}}"@else value="{{ old('nombres') }}" @endif   autocomplete="nombres" autofocus >
+         value="{{$empleado->nombres}}"@else value="{{ old('nombres') }}" @endif    autofocus >
                 @error('nombres')
                  <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
       <div class="form-group">
         <label for="apellidos">Apellidos:</label>
         <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" @if (isset($empleado))
-        value="{{$empleado->apellidos}}"@else value="{{ old('apellidos') }}" @endif   autocomplete="apellidos" autofocus >
+        value="{{$empleado->apellidos}}"@else value="{{ old('apellidos') }}" @endif    autofocus >
         @error('apellidos')
         <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -63,7 +63,7 @@
     <div class="col-md-2">
       <div class="form-group">
         <label>RH:</label>
-        <select class="form-control @error('fk_rH') is-invalid @enderror" id="fk_rH" name="fk_rH" value="{{ old('fk_rH') }}" autocomplete="fk_rH" autofocus>
+        <select class="form-control @error('fk_rH') is-invalid @enderror" id="fk_rH" name="fk_rH" value="{{ old('fk_rH') }}"  autofocus>
           @foreach ($rh as $r)
                       <option value="{{$r['r_id']}}">{{$r['r']}}</option>
           @endforeach
@@ -115,7 +115,7 @@
       <div class="form-group">
         <label for="fechaDeNacimiento">Fecha de nacimiento:</label>
         <input type="date" name="fechaDeNacimiento" class="form-control @error('fechaDeNacimiento') is-invalid @enderror" @if (isset($empleado))
-        value="{{$empleado->fechaDenacimiento}}" @else value="{{ old('fechaDeNacimiento') }}" @endif    autocomplete="fecha de nacimiento"  >
+        value="{{$empleado->fechaDenacimiento}}" @else value="{{ old('fechaDeNacimiento') }}" @endif    >
         @error('fechaDeNacimiento')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -131,7 +131,7 @@
       <div class="form-group">
         <label>Telefono:</label>
         <input id="telefono" type="text" maxlength="10" class="form-control @error('telefono') is-invalid @enderror" name="telefono" @if (isset($empleado))
-        value="{{$empleado->telefono}}"@else value="{{ old('telefono') }}" @endif   autocomplete="telefono" autofocus >
+        value="{{$empleado->telefono}}"@else value="{{ old('telefono') }}" @endif   autofocus >
         @error('telefono')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -144,7 +144,7 @@
       <div class="form-group">
         <label>Celular:</label>
         <input type="text" maxlength="10" class="form-control @error('celular') is-invalid @enderror" name="celular" @if (isset($empleado))
-        value="{{$empleado->celular}}"@else value="{{ old('celular') }}" @endif  autocomplete="celular"  >
+        value="{{$empleado->celular}}"@else value="{{ old('celular') }}" @endif  >
         @error('celular')
         <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -156,7 +156,7 @@
       <div class="form-group">
         <label  for="email">Email:</label>
         <input id="email" type="email" placeholder="Ej: name@hotmail.com" class="form-control @error('email') is-invalid @enderror" name="email" @if (isset($empleado))
-        value="{{$empleado->email}}" @else value="{{ old('email') }}" @endif autocomplete="email" >
+        value="{{$empleado->email}}" @else value="{{ old('email') }}" @endif  >
         @error('email')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -168,7 +168,7 @@
     <div class="col-md-2">
       <div class="form-group">
         <label for="password">Contraseña:</label>
-        <input id="password" maxlength="10" type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" name="password" autocomplete="new-password" >
+        <input id="password" maxlength="10" type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" name="password"  >
         @error('password')
         <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -182,7 +182,7 @@
       <div class="form-group">
         <label>Direccion:</label>
         <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($empleado))
-        value="{{$empleado->direccion}}"@else value="{{ old('direccion') }}" @endif  autocomplete="direccion" autofocus >
+        value="{{$empleado->direccion}}"@else value="{{ old('direccion') }}" @endif   autofocus >
         @error('direccion')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -213,7 +213,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <label for="fk_departamento">{{ __('Departamento:')}}</label>
-        <select class="form-control @error('fk_departamento') is-invalid @enderror" id="fk_departamento" name="fk_departamento" value="{{ old('fk_departamento') }}" autocomplete="fk_departamento" autofocus data-dependent="municipio">
+        <select class="form-control @error('fk_departamento') is-invalid @enderror" id="fk_departamento" name="fk_departamento" value="{{ old('fk_departamento') }}"  autofocus >
         <option disabled selected>Selecciona el departamento</option>   
         @foreach ($departamento as $dep)
         <option value="{{$dep['id']}}">{{$dep['nombre']}}</option>
@@ -229,7 +229,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <label for="fk_municipio">{{ __('Municipio:')}}</label>
-        <select class="form-control @error('fk_municipio') is-invalid @enderror" id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autocomplete="fk_municipio" autofocus>
+        <select class="form-control @error('fk_municipio') is-invalid @enderror" id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autofocus>
             <option >Selecciona primero el departamento</option>
         </select>
         @error('fk_municipio')
