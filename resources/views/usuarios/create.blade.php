@@ -7,7 +7,7 @@
 
 @section('cont')
 <div class="row">
-  <div class="col-md-9" style="margin:auto" >
+  <div class="col-md-10" style="margin:auto" >
     <div class="card card-primary " >
       <div class="card-header">
         <h3 class="card-title">Registrar</h3>

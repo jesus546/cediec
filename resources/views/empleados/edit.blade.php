@@ -6,10 +6,11 @@
 @endsection
 
 @section('cont')
+<div class="row">
 <div class="col-md-10" style="margin:auto" >
   <div class="card card-primary " >
     <div class="card-header">
-      <h3 class="card-title">Registrar</h3>
+      <h3 class="card-title">Editar empleado</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
@@ -28,7 +29,7 @@
      </form>
   </div>
 </div>
-
+</div>
 
 @endsection
 

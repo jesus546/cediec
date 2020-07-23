@@ -47,6 +47,7 @@ class User extends Authenticatable
         'fk_tipoAseguradora',
         'fk_aseguradora',
         'fk_poblacionRiesgo',
+        'fk_regime'
     ];
 
   
@@ -97,6 +98,11 @@ class User extends Authenticatable
         $usuarios->assignRole('User');
         Alert::success('EXITO', 'se ha creado su usuario')->showConfirmButton('OK', '#3085d6');
         return $usuarios;
+    }
+
+    public function update_user($request)
+    {
+        $usuario = self::update($request->all());
     }
 
 

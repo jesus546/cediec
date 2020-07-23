@@ -6,7 +6,6 @@
         
         <label for="fk_tipoDeidentificacion">{{ __('Tipo De Identificación:')}}</label>
         <select class="form-control @error('fk_tipoDeidentificacion') is-invalid @enderror" id="fk_tipoDeidentificacion" name="fk_tipoDeidentificacion" value="{{ old('fk_tipoDeidentificacion') }}" autocomplete="fk_tipoDeidentificacion" autofocus>
-        
           @foreach ($tipoIdentificacion as $tipoidenti)
           <option value="{{$tipoidenti['tipoDeIden_ID']}}">{{$tipoidenti['tipo']}}</option>
           @endforeach
@@ -230,7 +229,8 @@
     </div>
     <div class="col-md-3">
       <label for="fk_municipio">{{ __('Municipio:')}}</label>
-      <select class="form-control @error('fk_municipio') is-invalid @enderror" id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autocomplete="fk_municipio" autofocus>
+      <select class="form-control  @error('fk_municipio') is-invalid @enderror" 
+      id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autocomplete="fk_municipio" autofocus>
           <option >Selecciona primero el departamento</option>
       </select>
       @error('fk_municipio')
@@ -242,6 +242,19 @@
   </div>
 
   <div class="form-row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Ocupacion:</label>
+        <input id="ocupacion" type="text" class="form-control @error('ocupacion') is-invalid @enderror"
+        @if (isset($usuario)) value="{{$usuario->ocupacion}}" @else value="{{ old('ocupacion') }}" @endif 
+        name="ocupacion"  autocomplete="ocupacion" autofocus >
+        @error('ocupacion')
+        <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+      </div>
+    </div>
   <div class="col-md-4">
     <div class="form-group">
       <label>Nombres del responsable:</label>
@@ -294,6 +307,11 @@
   @enderror
     </div>
   </div>
+  
+</div>
+  
+  
+<div class="form-row">
   <div class="col-md-3">
     <div class="form-group">
       <label>Religion:</label>
@@ -309,10 +327,6 @@
    @enderror
     </div>
   </div>
-</div>
-  
-  
-<div class="form-row">
     <div class="col-md-3">
         <div class="form-group">
           <label>Discapacidad:</label>
@@ -361,26 +375,40 @@
         </div>
       </div>
 
-      <div class="col-md-3">
-        <div class="form-group">
-          <label>Poblacion Riesgo:</label>
-          <select class="form-control @error('fk_poblacionRiesgo') is-invalid @enderror" id="fk_poblacionRiesgo" name="fk_poblacionRiesgo" value="{{ old('fk_poblacionRiesgo') }}" autocomplete="fk_poblacionRiesgo" autofocus>
-            @foreach ($poblacionRiesgo as $poblacionRiesg)
-                        <option value="{{$poblacionRiesg['pobla_id']}}">{{$poblacionRiesg['poblaRies']}}</option>
-            @endforeach
-          </select>
-          @error('fk_poblacionRiesgo')
-          <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-          </span>
-       @enderror
-        </div>
-      </div>
-
 </div>
   
-  <div class="form-row">
-     
+<div class="form-row">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label>Poblacion Riesgo:</label>
+      <select class="form-control @error('fk_poblacionRiesgo') is-invalid @enderror" id="fk_poblacionRiesgo" name="fk_poblacionRiesgo" value="{{ old('fk_poblacionRiesgo') }}" autocomplete="fk_poblacionRiesgo" autofocus>
+        @foreach ($poblacionRiesgo as $poblacionRiesg)
+                    <option value="{{$poblacionRiesg['pobla_id']}}">{{$poblacionRiesg['poblaRies']}}</option>
+        @endforeach
+      </select>
+      @error('fk_poblacionRiesgo')
+      <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+      </span>
+   @enderror
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Regimen:</label>
+      <select class="form-control @error('fk_regime') is-invalid @enderror" id="fk_regime" name="fk_regime" value="{{ old('fk_poblacionRiesgo') }}" autocomplete="fk_poblacionRiesgo" autofocus>
+        @foreach ($regimes as $regime)
+                    <option value="{{$regime['id']}}">{{$regime['name']}}</option>
+        @endforeach
+      </select>
+      @error('fk_regime')
+      <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+      </span>
+   @enderror
+    </div>
+  </div>
   <div class="col-md-3">
     <div class="form-group">
       <label>Tipo de aseguradora:</label>

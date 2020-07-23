@@ -79,24 +79,10 @@ class empleadosController extends Controller
     }
 
    
-    public function update(Request $request, $id)
+    public function update(user_EmplUpdate $request, $id)
     {
         $empleado = User::findOrFail($id);
-        $empleado->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
-        $empleado->identificacion = $request->identificacion;
-        $empleado->nombres = $request->nombres;
-        $empleado->apellidos = $request->apellidos;
-        $empleado->fk_rh = $request->fk_rh;
-        $empleado->email = $request->email;
-        $empleado->fk_municipio = $request->fk_municipio;
-        $empleado->direccion = $request->direccion;
-        $empleado->fk_estadoCivil = $request->fk_estadoCivil;
-        $empleado->telefono = $request->telefono;
-        $empleado->celular = $request->celular;
-        $empleado->fk_departamento= $request->fk_departamento;
-        $empleado->genero = $request->genero;
-        $empleado->zona = $request->zona;
-        $empleado->fechaDeNacimiento = $request->fechaDeNacimiento;
+       $empleado->update_user($request);
         if ($request->password != null) {
             $empleado->password = $request->password;
         }
@@ -104,7 +90,7 @@ class empleadosController extends Controller
       
         if ($empleado->save()) {
             $empleado->syncRoles($request->roles);
-            Alert::success('EXITO', 'Se ha actualizado el usuario')->showConfirmButton('OK', '#3085d6');
+            Alert::success('EXITO', 'Se ha actualizado el usuario')->showConfirmButton('OK', '#3085d6'); 
             return redirect()->route('empleados.index');
         }
         

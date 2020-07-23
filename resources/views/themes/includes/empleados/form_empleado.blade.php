@@ -130,7 +130,8 @@
     <div class="col-md-3">
       <div class="form-group">
         <label>Telefono:</label>
-        <input id="telefono" type="text" maxlength="10" class="form-control @error('telefono') is-invalid @enderror" name="telefono" @if (isset($empleado))
+        <input id="telefono" type="text" maxlength="10" class="form-control @error('telefono') is-invalid @enderror"
+        data-inputmask="'mask': '9999 9999 9999 9999'" name="telefono" @if (isset($empleado))
         value="{{$empleado->telefono}}"@else value="{{ old('telefono') }}" @endif   autofocus >
         @error('telefono')
               <span class="invalid-feedback" role="alert">
@@ -247,5 +248,7 @@
 </div>
 
   @section('script')
+   
+
    @include('themes.includes.user.municipio.ajax_municipio')
 @endsection

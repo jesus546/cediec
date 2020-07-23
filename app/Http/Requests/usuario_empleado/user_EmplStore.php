@@ -20,7 +20,7 @@ class user_EmplStore extends FormRequest
     {
         return [
         'fk_tipoDeidentificacion' => 'required|integer',
-        'identificacion' => 'required|unique:users|min:10|string',
+        'identificacion' => 'required|unique:users|min:10|integer',
         'nombres' => 'required|max:60|string',
         'apellidos' => 'required|max:60|string' , 
         'telefono' => 'required|max:10|string',

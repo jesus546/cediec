@@ -10,6 +10,7 @@ use App\Http\Requests\usuario\storeUserRequest;
 use App\Http\Requests\usuario\updateUserRequest;
 use App\nivelEducativo;
 use App\poblacionRiesgo;
+use App\regime;
 use App\religion as AppReligion;
 use App\rh;
 use App\tipoAseguradora;
@@ -54,6 +55,7 @@ class usersController extends Controller
         $poblacionRiesgo = poblacionRiesgo::all();
         $tipoAseguradora = tipoAseguradora::all();
         $aseguradora = aseguradora::all();
+        $regimes = regime::all();
        return view('usuarios.create', compact('tipoIdentificacion', 
                                                'departamento', 
                                                'rh', 
@@ -63,7 +65,8 @@ class usersController extends Controller
                                                'grupoEtnico',
                                                'poblacionRiesgo',
                                                'tipoAseguradora',
-                                               'aseguradora'
+                                               'aseguradora',
+                                               'regimes'
                                                 ));
 
        
@@ -99,6 +102,7 @@ class usersController extends Controller
         $poblacionRiesgo = poblacionRiesgo::all();
         $tipoAseguradora = tipoAseguradora::all();
         $aseguradora = aseguradora::all();
+        $regimes = regime::all();
         return view('usuarios.edit', compact('usuario', 
                                              'tipoIdentificacion', 
                                              'departamento', 
@@ -109,37 +113,15 @@ class usersController extends Controller
                                              'grupoEtnico',
                                              'poblacionRiesgo',
                                              'tipoAseguradora',
-                                             'aseguradora'));
+                                             'aseguradora',
+                                             'regimes'));
     }
 
    
-    public function update(Request $request, $id)
+    public function update(updateUserRequest $request, $id)
     {
         $usuario = User::findOrFail($id);
-        $usuario->fk_tipoDeidentificacion = $request->fk_tipoDeidentificacion;
-        $usuario->identificacion = $request->identificacion;
-        $usuario->nombres = $request->nombres;
-        $usuario->apellidos = $request->apellidos;
-        $usuario->fk_rh = $request->fk_rh;
-        $usuario->email = $request->email;
-        $usuario->direccion = $request->direccion;
-        $usuario->fk_estadoCivil = $request->fk_estadoCivil;
-        $usuario->telefono = $request->telefono;
-        $usuario->celular = $request->celular;
-        $usuario->fk_departamento= $request->fk_departamento;
-        $usuario->fk_municipio = $request->fk_municipio;
-        $usuario->genero = $request->genero;
-        $usuario->zona = $request->zona;
-        $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $usuario->nombre_del_responsable = $request->nombre_del_responsable;
-        $usuario->telefono_r = $request->telefono_r;
-        $usuario->fk_parentezco = $request->fk_parentezco;
-        $usuario->fk_religion = $request->fk_religion;
-        $usuario->fk_nivelEducativo = $request->fk_nivelEducativo;
-        $usuario->fk_grupoEtnico = $request->fk_grupoEtnico;
-        $usuario->fk_poblacionRiesgo = $request->fk_poblacionRiesgo;
-        $usuario->fk_tipoAseguradora = $request->fk_tipoAseguradora;
-        $usuario->fk_aseguradora = $request->fk_aseguradora;
+        $usuario->update_user($request);
         if ($request->password != null) {
             $usuario->password = $request->password;
         }

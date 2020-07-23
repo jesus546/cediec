@@ -15,18 +15,31 @@ class updateUserRequest extends FormRequest
     public function rules()
     {
         return [
-        'identificacion' => 'unique:users|min:10|string',
+        'fk_tipoDeidentificacion' => 'integer',
+        'identificacion' => 'unique:users,identificacion, '.$this->route('usuario').'|min:10|integer',
         'nombres' => 'max:60|string',
         'apellidos' => 'max:60|string' , 
-        'telefono' => 'max:10|string',
-        'email'=> 'unique:users|max:255|string|email',
+        'telefono' => 'integer',
+        'email'=> 'unique:users,email,'.$this->route('usuario').'|max:255|string|email',
         'direccion' => 'max:30|string',
-        'password' => 'min:10|string', 
-        'celular' => 'max:10|string', 
+        'celular' => 'integer', 
         'fechaDeNacimiento'=> 'date',
         'ocupacion'=> 'max:60|string',
         'nombre_del_responsable'=> 'max:60|string',
-        'telefono_r' => 'min:10|string',
+        'telefono_r' => 'integer',
+        'fk_rH' => 'integer',
+        'fk_departamento'=> 'integer',
+        'fk_municipio'=> 'integer',
+        'fk_parentezco' => 'string',
+        'fk_estadoCivil'=> 'string',
+        'fk_regime' => 'integer',
+        'fk_religion' => 'integer',
+        'fk_discapacidad'=> 'integer',
+        'fk_nivelEducativo'=> 'integer',
+        'fk_grupoEtnico'=> 'integer',
+        'fk_tipoAseguradora'=> 'integer',
+        'fk_aseguradora'=> 'integer',
+        'fk_poblacionRiesgo'=> 'integer',
         ];
     }
 
@@ -38,14 +51,12 @@ class updateUserRequest extends FormRequest
         'identificacion.min' => 'minimo son 10 caracteres',
         'nombres.max' => 'maximo son 60 caracteres',
         'apellidos.max' => 'maximo son 60 caracteres',
-        'telefono.min' => 'minimo son 10 caracteres',
         'email.unique' => 'ya se encuentra en la base de datos',
         'email.email' => 'este campo tiene que ser email',
         'direccion.max' => 'maximo son 30 caracteres',
         'password.min' => 'minimo son 10 caracteres',
         'ocupacion.max' => 'maximo son 60 caracteres',
         'nombre_del_responsable.max' => 'maximo son 60 caracteres',
-        'telefono_r.min' => 'minimo son 10 caracteres',
         
         ];
     }

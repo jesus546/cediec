@@ -53,12 +53,12 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'fk_tipoDeidentificacion' => ['required' ],
-            'genero' => ['required'],
-            'identificacion' => ['required', 'string', 'min:10', 'unique:users'],
+            'genero' => ['required', 'string'],
+            'identificacion' => ['required', 'integer', 'min:10', 'unique:users'],
             'nombres' => ['required', 'string', 'max:255'],
             'apellidos' => ['required', 'string', 'max:255'],
             'direccion' => ['required', 'string', 'max:20'],
-            'celular' => ['required', 'string', 'max:10'],
+            'celular' => ['required', 'integer', 'max:10'],
             'fk_departamento' => ['required'],
             'fk_municipio' => ['required'],
             'fechaDeNacimiento' => ['required', 'date'],

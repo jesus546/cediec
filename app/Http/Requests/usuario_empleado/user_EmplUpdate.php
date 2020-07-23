@@ -19,15 +19,19 @@ class user_EmplUpdate extends FormRequest
     public function rules()
     {
         return [
-        'identificacion' => 'unique:users|min:10|string',
+        'fk_tipoDeidentificacion' => 'integer',
+        'identificacion' => 'unique:users,identificacion, '.$this->route('empleado').'|min:10|integer',
         'nombres' => 'max:60|string',
         'apellidos' => 'max:60|string' , 
-        'telefono' => 'max:10|string',
-        'email'=> 'unique:users, email|max:255|string|email',
+        'telefono' => 'integer',
+        'email'=> 'unique:users,email,'.$this->route('empleado').'|max:255|string|email',
         'direccion' => 'max:30|string',
-        'password' => 'min:10|string', 
-        'celular' => 'max:10|string', 
+        'celular' => 'integer', 
         'fechaDeNacimiento'=> 'date',
+        'fk_rH' => 'integer',
+        'fk_estadoCivil'=> 'string',
+        'fk_departamento'=> 'integer',
+        'fk_municipio'=> 'integer'
 
         ];
     }
@@ -37,14 +41,18 @@ class user_EmplUpdate extends FormRequest
         return [
         'identificacion.unique' => 'ya se encuentra en la base de datos',
         'identificacion.min' => 'minimo son 10 caracteres',
-        'nombres.max' => 'maxaimo son 60 caracteres',
+        'identificacion.integer' => 'tiene que ser numerico',
+        'nombres.max' => 'maximo son 60 caracteres',
+        'telefono.integer' => 'tiene que ser numerico',
+        'celular.integer' => 'tiene que ser numerico',
         'apellidos.max' => 'maximo son 60 caracteres',
-        'telefono.min' => 'minimo son 10 caracteres',
         'email.unique' => 'ya se encuentra en la base de datos',
         'email.email' => 'este campo tiene que ser email',
         'direccion.max' => 'maximo son 30 caracteres',
-        'password.min' => 'minimo son 10 caracteres',
-        'celular.max' => 'maximo son 10 caracteres',
+        'fk_rH.integer' => 'seleccion este campo',
+        'fk_departamento.integer'=> 'seleccione el departamento',
+        'fk_municipio.integer'=> 'seleccione el municipio',
+
         ];
     }
 }
