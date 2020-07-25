@@ -142,7 +142,7 @@
            
             </ul>
           @endcan
-          @can('gestionar horario doctor')
+          @can('asignar horario doctor')
           <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
             <a href="{{route('doctor.gestionar_horario')}}" class="nav-link ">

@@ -7,7 +7,7 @@
           <h3 class="card-title">editar precio</h3>
         </div>
         
-        <div class="card-body">
+        <div class="card-body" >
         <form action="{{route('price.update', $price)}}" method="POST">
              @method('PATCH')
              @csrf
@@ -21,6 +21,19 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                </div>
+              </div>
+              <div class="col-sm-10">
+                <!-- checkbox -->
+                <div class="form-group">
+                  <label for="regime_id">{{ __('regimen:')}}</label>
+                  <select class="form-control " id="regime_id" name="regime_id" >
+                  <option disabled selected>Selecciona el regimen</option>   
+                  @foreach ($regimes as $regime)
+                  <option value="{{$regime['id']}}">{{$regime['name']}}</option>
+                  @endforeach
+                  </select>
+
                 </div>
               </div>
                  

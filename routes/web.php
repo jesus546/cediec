@@ -64,9 +64,10 @@ Route::group(['middleware' => ['auth']], function () {
     //precios y asignar precio segun eps y aseguradora
     
     Route::resource('price', 'priceController');
-    Route::get('asignar/{price}/asegu', 'priceAseguController@asignar_asegu_price')->name('asignar_asegu_price')
+
+    Route::get('asignar/{price}/asegu', 'priceController@asignar_asegu_price')->name('asignar_asegu_price')
     ->middleware('role:super-admin');
-    Route::post('/asignar/{price}/price', 'priceAseguController@price_assignment')->name('price_assignment.price')
+    Route::post('asignar/{price}/price', 'priceController@price_assignment')->name('price_assignment.price')
     ->middleware('role:super-admin');
     /////////
     Route::resource('specialities', 'SpecialitiesController');
@@ -127,7 +128,7 @@ Route::group(['middleware' => ['auth']], function () {
             ]]);
   #gestionar horario del doctor
   Route::get('doctor/gestionar_horario', 'DoctorScheduleController@gestionar_horario')
-  ->name('doctor.gestionar_horario')->middleware('permission:gestionar horario doctor');
+  ->name('doctor.gestionar_horario')->middleware('permission:asignar horario doctor');
 
   Route::get('doctor/{empleado}/doctor_schedule', 'DoctorScheduleController@assign')
   ->name('doctor.schedule.assign')->middleware('permission:asignar horario doctor');

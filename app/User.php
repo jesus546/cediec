@@ -103,6 +103,8 @@ class User extends Authenticatable
     public function update_user($request)
     {
         $usuario = self::update($request->all());
+
+        return $usuario;
     }
 
 

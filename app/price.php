@@ -11,32 +11,31 @@ class price extends Model
         'precio'
    ];
 
+   public function regime()
+   {
+       return $this->belongsToMany(regime::class, 'price_insurance')->withTimestamps();
+   }
+
+   public function aseguradora()
+   {
+       return $this->belongsToMany(aseguradora::class, 'price_insurance')->withTimestamps();
+   }
+
+
    public function store($request)
     {
         return self::create($request->all());
     }
     public function my_update($request)
     {
-        return self::update($request->all());
+        $price = self::update($request->all());
+        return  $price;
     }
-   public function regime()
-   {
-       return $this->belongsToMany(regime::class,'price_insurance_regime')
-       ->withPivot( 'price_id','regime_id')->withTimestamps();
-   }
-
-   public function aseguradora()
-   {
-       return $this->belongsToMany(aseguradora::class, 'price_insurance_regime' )
-       ->withPivot('aseguradora_id','regime_id')->withTimestamps();
-   }
-
-
 
     public function has_aseguradora($id)
     {
        foreach ($this->aseguradora as $asegurador) {
-           if ($asegurador->pivot->aseguradora_id == $id ) return true;
+           if ($asegurador->id == $id ) return true;
        }
        return false;
     }

@@ -12,20 +12,7 @@
           <form action="{{route('price_assignment.price', $price->id)}}" method="POST">
               @csrf
                 
-                    <div class="col-sm-7">
-                      <!-- checkbox -->
-                      <div class="form-group">
-                        <label for="regime_id">{{ __('regimen:')}}</label>
-                        <select class="form-control " id="regime_id" name="regime_id" >
-                        <option disabled selected>Selecciona el regimen</option>   
-                        @foreach ($regimes as $regime)
-                        <option value="{{$regime['id']}}">{{$regime['name']}}</option>
-                        @endforeach
-                        </select>
-    
-                      </div>
-                    </div>
-            
+                  
                       <div class="col-sm-7">
                         <!-- checkbox -->
                         <div class="form-group">
@@ -35,6 +22,9 @@
                           id="{{$asegu->id}}" 
                           value="{{$asegu->id}}"
                           name="aseguradora_id[]"
+                          @if ($price->has_aseguradora($asegu->id))
+                            checked
+                          @endif
                           type="checkbox">
                               <label for="{{$asegu->id}}" class="form-check-label">
                                 <span>{{$asegu->asegu}}</span>

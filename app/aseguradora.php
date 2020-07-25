@@ -13,13 +13,7 @@ class aseguradora extends Model
 
    public function price()
    {
-        return $this->belongsToMany(Price::class, 'price_insurance_regime' )
-        ->withPivot('price_id','aseguradora_id')->withTimestamps();
+        return $this->belongsToMany(Price::class )->withTimestamps();
    }
 
-   public function regime()
-   {
-       return $this->belongsToMany(regime::class,'price_insurance_regime')
-       ->withPivot('regime_id', 'aseguradora_id')->withTimestamps();
-   }
 }
