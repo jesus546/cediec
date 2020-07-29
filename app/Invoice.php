@@ -26,10 +26,13 @@ class Invoice extends Model
  
     }
 
+    
+
+    
     public function store($request)
     {
         $user = User::findOrFail(decrypt($request->user_id));
-
+        
         return self::create([
             'cantidad' => 500,
             'status' =>'pendiente',

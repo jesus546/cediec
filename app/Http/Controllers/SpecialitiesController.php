@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Speciality\StoreRequest;
 use App\Http\Requests\Speciality\UpdateRequest;
 use App\specialities;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SpecialitiesController extends Controller
 {
@@ -29,6 +29,7 @@ class SpecialitiesController extends Controller
     public function store(StoreRequest $request, specialities $specialities)
     {
         $specialities = $specialities->store($request);
+        Alert::success('EXITO', 'Se ha creado la especialidas')->showConfirmButton('OK', '#3085d6'); 
         return redirect()->route('specialities.index');
     }
 
@@ -49,6 +50,7 @@ class SpecialitiesController extends Controller
         $specialities = specialities::findOrFail($id);
         $specialities->name = $request->name;
         $specialities->save();
+        Alert::success('EXITO', 'Se ha actualizado la especialidad')->showConfirmButton('OK', '#3085d6'); 
         return redirect()->route('specialities.index');
     }
 

@@ -22,6 +22,17 @@ class userPolicy
          return true;
     } 
 
+    public function listar_empleado(User $empleados)
+    {   
+         $empleados = $empleados->hasPermissionTo('listar empleados');
+         return $empleados;
+    } 
+    public function registrar_empleado(User $empleados)
+    {   
+         $empleados = $empleados->hasPermissionTo('registrar empleado');
+         return $empleados;
+    } 
+
   
 
   

@@ -15,7 +15,7 @@
          @include('themes.includes.empleados.form_empleado')
         <!-- /.card-body -->
         <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Crear Usuario Empleado</button>
+        <button type="submit" class="btn btn-primary">Crear Empleado</button>
         </div>
   
         

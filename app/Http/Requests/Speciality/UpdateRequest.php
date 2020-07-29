@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
         public function rules()
     {
         return [
-            'name' => 'unique:specialities|max:255',
+            'name' => 'unique:specialities,name, '.$this->route('specialities').'|max:255',
         ];
     }
     public function messages()

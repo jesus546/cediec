@@ -24,9 +24,9 @@ class empleadosController extends Controller
    
    
 
-    public function index(Request $request)
+    public function index(Request $request, User $empleados)
     {
-        
+        $this->authorize('listar_empleado', $empleados);
         if ($request) {
             $query  = trim($request->get('search'));
             $empleados = User::where('identificacion', 'LIKE', '%'.$query.'%')
@@ -40,8 +40,9 @@ class empleadosController extends Controller
     }
 
   
-    protected function create()
+    protected function create(User $empleados)
     {
+        $this->authorize('registrar_empleado', $empleados);
         $tipoIdentificacion = tipoIdentificacion::all();
         $departamento = departamento::all();
         $rh = rh::all();
@@ -56,7 +57,7 @@ class empleadosController extends Controller
    
     public function store(user_EmplStore $request, User $empleados)
     {
-
+        $this->authorize('registrar_empleado', $empleados);
         $empleados = $empleados->store_empl($request);
          return redirect()->route('empleados.index');
     }
