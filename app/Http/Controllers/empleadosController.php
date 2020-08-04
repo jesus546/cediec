@@ -32,7 +32,7 @@ class empleadosController extends Controller
             $empleados = User::where('identificacion', 'LIKE', '%'.$query.'%')
                         ->orderBy('id', 'asc')
                         ->role(['super-admin', 'Admisionista', 'Doctor', 'Administrador'])
-                        ->get();
+                        ->paginate(10);
             return view('empleados.index', ['empleados' => $empleados, 'search' => $query]);
         }
         
@@ -104,12 +104,9 @@ class empleadosController extends Controller
         if ($empleado->delete()) {
             $empleado->revokePermissionTo(Permission::all());
             $empleado->roles()->detach();
-            return redirect()->route('empleados.index');
-        } else {
-            alert()->error('Oops...', 'No se pudo eliminar el usuario');
-        }
-        
-
+            $empleado->specialities()->detach();
+            return response()->json(['status'=>'se ha eliminado el precio']);
+        } 
     }
 
     public function asignar_speciality($id)

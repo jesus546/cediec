@@ -35,9 +35,9 @@ class usersController extends Controller
         if ($request) {
             $query  = trim($request->get('search'));
             $users = User::where('identificacion', 'LIKE', '%'.$query.'%')
-                        ->orderBy('id', 'asc')
+                        ->orderBy('identificacion', 'asc')
                         ->role('User')
-                        ->get();
+                        ->paginate(10);
             return view('usuarios.index', ['users' => $users, 'search' => $query]);
         }
     }
@@ -141,11 +141,8 @@ class usersController extends Controller
         
         if ($usuario->delete()) {
             $usuario->removeRole('User');
-            return redirect()->route('usuarios.index');
-        } else {
-            alert()->error('Oops...', 'No se pudo eliminar el usuario');
-        }
+            return response()->json(['status'=>'se ha eliminado el precio']);
+        } 
         
-
     }
 }

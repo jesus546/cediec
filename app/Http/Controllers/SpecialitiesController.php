@@ -29,7 +29,7 @@ class SpecialitiesController extends Controller
     public function store(StoreRequest $request, specialities $specialities)
     {
         $specialities = $specialities->store($request);
-        Alert::success('EXITO', 'Se ha creado la especialidas')->showConfirmButton('OK', '#3085d6'); 
+        Alert::success('EXITO', 'Se ha creado la especialidasd')->showConfirmButton('OK', '#3085d6'); 
         return redirect()->route('specialities.index');
     }
 
@@ -56,6 +56,11 @@ class SpecialitiesController extends Controller
 
     public function destroy(specialities $specialities)
     {
+        if ($specialities->delete()) {
+            $specialities->specialities()->detach();
+            return redirect()->route('specialities.index');
+        }  
         
+
     }
 }

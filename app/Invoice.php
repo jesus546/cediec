@@ -26,9 +26,11 @@ class Invoice extends Model
  
     }
 
-    
-
-    
+    public function price()
+    {
+        return $this->belongsTo('App\price');
+    }
+   
     public function store($request)
     {
         $user = User::findOrFail(decrypt($request->user_id));

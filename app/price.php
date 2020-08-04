@@ -13,18 +13,23 @@ class price extends Model
 
    public function regime()
    {
-       return $this->belongsToMany(regime::class, 'price_insurance')->withTimestamps();
+       return $this->belongsToMany(regime::class, 'price_regime')->withTimestamps();
    }
 
    public function aseguradora()
    {
        return $this->belongsToMany(aseguradora::class, 'price_insurance')->withTimestamps();
    }
-
-
-   public function store($request)
+   public function invoice()
     {
-        return self::create($request->all());
+        return $this->belongsTo('App\Invoice');
+    }
+
+   public function store_price($request)
+    {
+        $price = self::create($request->all());
+        $price->regime()->attach($request->regime_id);
+        return $price;
     }
     public function my_update($request)
     {
@@ -39,5 +44,8 @@ class price extends Model
        }
        return false;
     }
+
+   
+
 
 }

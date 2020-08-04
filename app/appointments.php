@@ -23,7 +23,9 @@ class appointments extends Model
     {
         return $this->belongsTo('App\Invoice');
     }
-
+   
+   
+    
     public function store($request, $invoice)
     {
        

@@ -15,7 +15,9 @@ class DoctorScheduleController extends Controller
     }
     public function gestionar_horario()
     {
-        $empleados = User::role('Doctor')->get();
+        $empleados = User::role('Doctor')
+                    ->orderBy('identificacion', 'asc')
+                    ->simplePaginate(5);
         return view('empleados.doctor.index_doctor', ['empleados' => $empleados]);
     }
     public function assign(User $empleado)

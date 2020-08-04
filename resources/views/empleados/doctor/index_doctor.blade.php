@@ -51,6 +51,11 @@
             </tbody>
           </table>
         </div>
+        <div class="card-footer clearfix">
+          <ul class="pagination pagination-sm m-0 float-right">
+             {{$empleados->links()}}
+          </ul>
+        </div>
       </div>
     </div>
   </div>

@@ -115,6 +115,17 @@ class User extends Authenticatable
        }
        return false;
     }
+
+    public function regime()
+   {
+       return $this->belongsToMany(regime::class);
+   }
+
+   public function aseguradora()
+   {
+       return $this->belongsToMany(aseguradora::class);
+   }
+
     
 
     public function tipoIdentificacion()
@@ -127,7 +138,7 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\departamento');
     }
-
+   
     public function municipio()
     {
         return $this->hasOne('App\municipio');
@@ -214,5 +225,19 @@ class User extends Authenticatable
      {
     return $this->hasMany('App\appointments', 'doctor_id');
     }
-
+    
+    public function has_regime_user($id)
+    {
+       foreach ($this->regime as $regime) {
+           if ($regime->id == $id ) return true;
+       }
+       return false;
+    }
+    public function has_aseguradora_user($id)
+    {
+       foreach ($this->aseguradora as $aseguradora) {
+           if ($aseguradora->id == $id ) return true;
+       }
+       return false;
+    }
 }

@@ -27,8 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/perfil', 'HomeController@profile')->name('perfil');
 
     Route::get('/home', 'HomeController@index')->name('home');
-    
-    Route::get('/mensaje', 'empleadosController@mensaje')->name('mensaje');
+  
 
     #asignacion de cita paciente
     Route::get('pacient/{usuario}/schedule', 'pacientController@back_schedule')->name('pacient.schedule')

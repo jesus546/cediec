@@ -41,6 +41,7 @@
             <tbody>
               @foreach ($users as $usuario)
               <tr>
+                <input type="hidden" class="dele_user_value" value="{{$usuario->id}}">
                 <td scope="row">{{$usuario->identificacion}}</td>
                 <td>{{$usuario->nombres}}</td>
                 <td>{{$usuario->age()}}</td>
@@ -61,11 +62,7 @@
         
                   
                   @can('eliminar usuario')
-                  <form action="{{route('usuarios.destroy', $usuario->id)}}" method="POST" style="display:inline-block;">
-                    @method('DELETE')
-                    @csrf
-                    <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i></button>
-                    </form>
+                  <button class="btn btn-danger btn-sm delete_user" type="button" ><i class="fas fa-trash"></i></button>
                   @endcan
                              
                 </td>
@@ -76,7 +73,58 @@
             </tbody>
           </table>
         </div>
+        <div class="card-footer clearfix">
+          <ul class="pagination pagination-sm m-0 float-right">
+             {{$users->links()}}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
+@endsection
+
+@section('script')
+    <script>
+      $.ajaxSetup({
+          headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+
+       $('.delete_user').click(function(e){
+         e.preventDefault();
+         var delete_id = $(this).closest('tr').find('.dele_user_value').val();
+        swal({
+            title: "esta seguro?",
+            text: "una vez eliminado, este usuario no se puede recuperar",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+       })
+       .then((willDelete) => {
+       if (willDelete) {
+        
+           $.ajax({
+              type:"DELETE",
+              url: "/usuarios/"+delete_id,
+              data: {
+                "_token": $('input[name=_token]').val(),
+                "id": delete_id,
+              },
+              success: function (response){
+                swal(response.status, {
+                          icon: "success",
+                })
+
+                 .then((result) => {
+                   location.reload();
+                });
+              }
+           });
+           
+          } 
+        });
+      });
+     
+    </script>
 @endsection

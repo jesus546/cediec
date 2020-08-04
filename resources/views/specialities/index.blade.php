@@ -32,9 +32,17 @@
                 <td scope="row">{{$specialities->name}}</td>
                   <td>{{$specialities->users->count()}}</td>
                   <td>
-                  @can('eliminar especialidad')
-                  <a class="btn btn-info btn-sm" href="{{url('/specialities/' . $specialities->id . '/edit/')}}" ><i class="fas fa-pencil-alt"></i> </a>
-                  @endcan
+                    @can('editar especialidad')
+                     <a class="btn btn-info btn-sm" href="{{route('specialities.edit', $specialities )}}" ><i class="fas fa-pencil-alt"></i> </a>
+                    @endcan
+
+                    @can('eliminar especialidad')
+                     <form action="{{route('specialities.destroy', $specialities->id)}}" method="POST" style="display:inline-block;">
+                      @method('DELETE')
+                      @csrf
+                      <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i></button>
+                      </form>
+                      @endcan
                   </td>
                 </tr>  
             @endforeach
@@ -42,6 +50,7 @@
             </tbody>
           </table>
         </div>
+        
         <!-- /.card-body -->
       </div>
       <!-- /.card -->

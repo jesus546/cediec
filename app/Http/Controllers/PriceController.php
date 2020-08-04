@@ -30,8 +30,7 @@ class PriceController extends Controller
 
     public function store(Request $request, price $price)
     {
-        $price = $price->store($request);
-        $price->regime()->attach($request->regime_id);
+        $price->store_price($request);
         Alert::success('EXITO', 'Se ha creado el precio')->showConfirmButton('OK', '#3085d6');
         return redirect()->route('price.index');
     }
@@ -52,8 +51,9 @@ class PriceController extends Controller
 
     public function update(Request $request, price $price)
     {
-        $price = $price->my_update($request);
-        $price->regime()->attach($request->regime_id);
+        
+        $price->my_update($request);
+        $price->regime()->sync($request->regime_id);
         Alert::success('EXITO', 'Se ha actualizado el precio')->showConfirmButton('OK', '#3085d6');
         return redirect()->route('price.index');
         
@@ -62,7 +62,12 @@ class PriceController extends Controller
 
     public function destroy(price $price)
     {
-        //
+        
+        if ($price->delete()) {
+            $price->regime()->detach();
+            $price->aseguradora()->detach();
+            return response()->json(['status'=>'se ha eliminado el precio']);
+        } 
     }
 
     public function asignar_asegu_price($id)

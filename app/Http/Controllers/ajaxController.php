@@ -55,7 +55,7 @@ class ajaxController extends Controller
            $empleado = \App\User::findOrFail($request->doctor);
            
            // Determinar el día
-           $date = Carbon::parse($request->date);
+           $date = Carbon::parse($request->dates);
            $day = $date->dayOfWeek + 1;
    
            //Arreglo de horarios
