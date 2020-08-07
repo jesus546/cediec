@@ -16,7 +16,7 @@
                         @csrf
 
                         <div class="input-group mb-3">
-                               <input type="email" placeholder="Email" class="form-control  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                               <input type="email" placeholder="Email" class="form-control  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required  autocomplete="email" autofocus>
                                <div class="input-group-append">
                                 <div class="input-group-text">
                                   <span class="fas fa-envelope"></span>
@@ -30,22 +30,24 @@
                        </div>
                     
                         <div class="input-group mb-3">
-                                <input id="password"  maxlength="10" type="password"placeholder="Password"  class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password"  maxlength="10" type="password" placeholder="Password"  class="form-control @error('password') is-invalid @enderror" required name="password"  autocomplete="current-password">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                       <span class="fas fa-lock"></span>
                                     </div>
+                                   
                                   </div>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                  @error('password')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
                                 @enderror
+                               
                        </div>
                        <div class="row">
                        <div class="col-8">
                          <div class="icheck-primary">
-                           <input type="checkbox" class="form-check-input" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                           <input type="checkbox" class="form-check-input" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
                            <label  for="remember">
                             {{ __('Recuerdame') }}
                            </label>

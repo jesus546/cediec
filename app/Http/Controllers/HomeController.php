@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\usuario\ChangePassword;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -20,5 +22,11 @@ class HomeController extends Controller
     {
         return view('perfil');
     }
-
+   public function password_update(ChangePassword $request)
+   {
+     $request->user()->password = $request->password;
+     $request->user()->save();
+     Alert::success('EXITO', 'Se ha actualizado su contraseña')->showConfirmButton('OK', '#3085d6');
+     return redirect()->back();
+   }
 }

@@ -142,7 +142,7 @@
 
                         <div class="form-group col-md-3">
                             <label for="password-confirm" >{{ __('Confirmar Contraseña:') }}</label>
-                            <input id="password-confirm" maxlength="8" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" maxlength="10" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             
                         </div>
  

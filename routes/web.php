@@ -25,6 +25,8 @@ Auth::routes(['verify'=> true]);
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/perfil', 'HomeController@profile')->name('perfil');
+    Route::put('/password_update', 'HomeController@password_update')->name('password_update');
+    
 
     Route::get('/home', 'HomeController@index')->name('home');
   

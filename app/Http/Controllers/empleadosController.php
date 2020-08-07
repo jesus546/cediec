@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\departamento;
-use App\Http\Requests\usuario_empleado\user_EmplStore;
-use App\Http\Requests\usuario_empleado\user_EmplUpdate;
+use App\Http\Requests\usuario\user_EmplStore;
+use App\Http\Requests\usuario\user_EmplUpdate;
+use App\Http\Requests\usuario_empleado\user_EmplStore as Usuario_empleadoUser_EmplStore;
 use App\rh;
 use App\specialities;
 use App\tipoIdentificacion;
@@ -55,7 +56,7 @@ class empleadosController extends Controller
 
 
    
-    public function store(user_EmplStore $request, User $empleados)
+    public function store(user_emplStore $request, User $empleados)
     {
         $this->authorize('registrar_empleado', $empleados);
         $empleados = $empleados->store_empl($request);

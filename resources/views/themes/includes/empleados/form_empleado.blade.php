@@ -114,8 +114,8 @@
      <div class="col-md-3">
       <div class="form-group">
         <label for="fechaDeNacimiento">Fecha de nacimiento:</label>
-        <input type="date" name="fechaDeNacimiento" class="form-control @error('fechaDeNacimiento') is-invalid @enderror" @if (isset($empleado))
-        value="{{$empleado->fechaDenacimiento}}" @else value="{{ old('fechaDeNacimiento') }}" @endif    >
+        <input type="date" name="fechaDeNacimiento" class="form-control @error('fechaDeNacimiento') is-invalid @enderror" @if (isset($empleado->fechaDeNacimiento))
+        value="{{$empleado->fechaDeNacimiento->format('Y-m-d')}}" @else value="{{ old('fechaDeNacimiento') }}" @endif >
         @error('fechaDeNacimiento')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
