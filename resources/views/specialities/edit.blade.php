@@ -15,7 +15,7 @@
               <div class="col-sm-10">
                 <div class="form-group">
                   <label for="name" >Nombre de especialidad:</label>
-                  <input id="name" type="text" class="form-control  @error('name') is-invalid @enderror" name="name" value="{{$specialities->name}}"  >
+                  <input id="name" type="text" class="form-control  @error('name') is-invalid @enderror" name="name" value="{{ucwords($specialities->name)}}"  >
                   @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

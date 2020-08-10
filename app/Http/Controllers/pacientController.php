@@ -116,7 +116,7 @@ class pacientController extends Controller
        foreach ($appointments_collection as $key => $appointment) {
            
            $appointments[] = [
-               'title' => $appointment->user->nombres . ' cita con doctor(a) ' . $appointment->doctor()->nombres,
+               'title' => ucwords($appointment->user->nombres) . ' cita con doctor(a) ' . ucwords($appointment->doctor()->nombres),
                'start' => $appointment->dates->format('Y-m-d\TH:i:s')
            ];
        }
@@ -133,7 +133,7 @@ class pacientController extends Controller
        foreach ($appointments_collection as $key => $appointment) {
            
            $appointments[] = [
-               'title' => $appointment->user->nombres . ' cita con doctor(a) ' . $appointment->doctor()->nombres,
+               'title' => ucwords($appointment->user->nombres) . ' cita con doctor(a) ' . ucwords($appointment->doctor()->nombres),
                'start' => $appointment->dates->format('Y-m-d\TH:i:s')
            ];
        }

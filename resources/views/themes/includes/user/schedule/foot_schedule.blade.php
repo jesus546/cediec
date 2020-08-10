@@ -140,7 +140,7 @@ $.ajax({
       //Creamos un arreglo vacio para para el formato de [Hora,minuto]
       $time_arr = [];	
       // Creamos un objeto de tipo Date
-      d = new Date(x['date']);
+      d = new Date(x['dates']);
       
       // Añadimos la hora y minuto para el arreglo
       $time_arr.push(d.getHours());

@@ -35,7 +35,7 @@
               @foreach ($empleados as $empleado)
               <tr>
                 <td scope="row">{{$empleado->identificacion}}</td>
-                <td>{{$empleado->nombres}}</td>
+                <td>{{ucwords($empleado->nombres)}}</td>
                 <td>{{$empleado->age()}}</td>
                 <td>{{$empleado->email}}</td>
                 <td>

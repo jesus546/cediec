@@ -42,21 +42,21 @@
                     <div class="col-sm-6 invoice-col">
                       <address>
                         @if (isset(Auth::user()->identificacion )) {{ Auth::user()->identificacion }}<br>
-                        @else indefinido<br> @endif
-                        @if (isset(Auth::user()->nombres )) {{ Auth::user()->nombres }}<br>
-                        @else indefinido<br> @endif
-                        @if (isset(Auth::user()->apellidos )) {{ Auth::user()->apellidos }}<br>
-                        @else indefinido<br> @endif
+                        @else Indefinido<br> @endif
+                        @if (isset(Auth::user()->nombres )) {{ ucwords(Auth::user()->nombres) }}<br>
+                        @else Indefinido<br> @endif
+                        @if (isset(Auth::user()->apellidos )) {{ ucwords(Auth::user()->apellidos) }}<br>
+                        @else Indefinido<br> @endif
                         @if (isset(Auth::user()->celular )) {{ Auth::user()->celular }}<br>
-                        @else indefinido<br> @endif
+                        @else Indefinido<br> @endif
                         @if (isset( Auth::user()->email)) {{ Auth::user()->email }}<br>
-                        @else indefinido<br> @endif
+                        @else Indefinido<br> @endif
                         
-                        @if (isset(Auth::user()->direccion )) {{ Auth::user()->direccion }} <br>
-                        @else  indefinido<br> @endif
+                        @if (isset(Auth::user()->direccion )) {{ ucwords(Auth::user()->direccion) }} <br>
+                        @else  Indefinido<br> @endif
 
                         @if (isset(Auth::user()->fechaDeNacimiento)) {{ Auth::user()->fechaDeNacimiento->format('Y/m/d')}}
-                        @else indefinido @endif
+                        @else Indefinido @endif
                         
                       </address>
                     </div>

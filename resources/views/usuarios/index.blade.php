@@ -43,12 +43,12 @@
               <tr>
                 <input type="hidden" class="dele_user_value" value="{{$usuario->id}}">
                 <td scope="row">{{$usuario->identificacion}}</td>
-                <td>{{$usuario->nombres}}</td>
+                <td>{{ucwords($usuario->nombres)}}</td>
                 <td>{{$usuario->age()}}</td>
                 <td>{{$usuario->email}}</td>
                 <td>
                   
-                  <a class="btn btn-primary btn-sm" href="{{route('clinic_data.create', $usuario)}}"><i class="fas fa-folder"></i></a>
+                  <a class="btn btn-primary btn-sm" href="{{route('clinic_data.index', $usuario)}}"><i class="fas fa-folder"></i></a>
                   @can('listar cita paciente')
                   <a class="btn btn-info btn-sm" href="{{route('pacient.appointments', $usuario)}}"   ><i class="fas fa-book" ></i> </a>
                   @endcan

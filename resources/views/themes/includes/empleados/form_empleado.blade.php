@@ -35,7 +35,7 @@
         <div class="form-group">
         <label for="nombres" >Nombres:</label>
         <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" @if (isset($empleado))
-         value="{{$empleado->nombres}}"@else value="{{ old('nombres') }}" @endif    autofocus >
+         value="{{ucwords($empleado->nombres)}}"@else value="{{ old('nombres') }}" @endif    autofocus >
                 @error('nombres')
                  <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
       <div class="form-group">
         <label for="apellidos">Apellidos:</label>
         <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" @if (isset($empleado))
-        value="{{$empleado->apellidos}}"@else value="{{ old('apellidos') }}" @endif    autofocus >
+        value="{{ucwords($empleado->apellidos)}}"@else value="{{ old('apellidos') }}" @endif    autofocus >
         @error('apellidos')
         <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -183,7 +183,7 @@
       <div class="form-group">
         <label>Direccion:</label>
         <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($empleado))
-        value="{{$empleado->direccion}}"@else value="{{ old('direccion') }}" @endif   autofocus >
+        value="{{ucwords($empleado->direccion)}}"@else value="{{ old('direccion') }}" @endif   autofocus >
         @error('direccion')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

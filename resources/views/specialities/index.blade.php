@@ -29,7 +29,7 @@
             <tbody>  
             @foreach ($specialities as $specialities)
             <tr>
-                <td scope="row">{{$specialities->name}}</td>
+                <td scope="row">{{ucwords($specialities->name)}}</td>
                   <td>{{$specialities->users->count()}}</td>
                   <td>
                     @can('editar especialidad')

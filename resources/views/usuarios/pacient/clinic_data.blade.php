@@ -5,7 +5,7 @@
   <div class="col-md-8" style="margin: auto">
     <div class="card card-info " >
         <div class="card-header">
-          <h3 class="card-title">Crear historia clinica</h3>
+          <h3 class="card-title">Crear o actualizar historia clinica</h3>
         </div>
         
         <div class="card-body">
@@ -15,7 +15,7 @@
                 <div class="input-field col s12">
                     <input 
                         id="check_in" 
-                        type="date" 
+                        type="date"
                         name="check_in" 
                         value="{{ $usuario->clinic_data('check_in', $datas) }}"
                     >

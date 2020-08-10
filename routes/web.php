@@ -125,8 +125,9 @@ Route::group(['middleware' => ['auth']], function () {
                   ->middleware('permission:editar usuario');
   #crear historia clinica
     Route::resource('patient/{usuario}/clinic_data', 'ClinicDataController', ['only' => [
-                'index', 'create', 'store'
+                'index', 'create', 'store', 'PDF_HistoriaClinica'
             ]]);
+    Route::get('patient/{usuario}/donwload', 'ClinicDataController@PDF_HistoriaClinica')->name('pdf_historia');
   #gestionar horario del doctor
   Route::get('doctor/gestionar_horario', 'DoctorScheduleController@gestionar_horario')
   ->name('doctor.gestionar_horario')->middleware('permission:asignar horario doctor');

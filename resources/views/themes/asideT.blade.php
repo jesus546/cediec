@@ -13,7 +13,7 @@
             <img src="{{asset('img/user.png')}}" class="img-circle elevation-2" alt="">
           </div>
           <div class="info">
-          <a href="{{url('perfil')}}" class="d-block">{{ Auth::user()->nombres }} </a>
+          <a href="{{url('perfil')}}" class="d-block">{{ ucwords(Auth::user()->nombres) }} </a>
           </div>
         </div>
   

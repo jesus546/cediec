@@ -56,7 +56,7 @@
               <tr>
                 <input type="hidden" class="dele_user_value" value="{{$empleado->id}}">
                 <td scope="row">{{$empleado->identificacion}}</td>
-                <td>{{$empleado->nombres}}</td>
+                <td>{{ucwords($empleado->nombres)}}</td>
                 <td>{{$empleado->email}}</td>
                 <td>{{$empleado->getRoleNames()->implode(', ')}}</td>
                 <td>

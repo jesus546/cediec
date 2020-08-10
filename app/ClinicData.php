@@ -46,7 +46,7 @@ protected function recursive_storage($values, $usuario, $created_by, $updated_by
 		if(in_array($key, $authorized_values)){
 			//Determinar si el valor existe
 			$data = $usuario->clinic_datas()->where('key', $key)->first();
-			if(!is_null($data)){
+			if(is_null($data)){
 				//Creación
 				self::create([
 					'key' => $key, 
@@ -54,6 +54,14 @@ protected function recursive_storage($values, $usuario, $created_by, $updated_by
 					'user_id' => $usuario->id, 
 					'created_by' => $created_by, 
 					'updated_by' => $updated_by
+				]);
+			}else{
+				//Actualización
+				$data->update([
+				'key' => $key,
+				'value' => $value,
+				'user_id' => $usuario->id,
+				'updated_by' => $updated_by
 				]);
 			}
 		}

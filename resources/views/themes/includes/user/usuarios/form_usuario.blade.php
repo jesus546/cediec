@@ -34,7 +34,7 @@
         <div class="form-group">
           <label for="nombres" >Nombres:</label>
           <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" @if (isset($usuario))
-           value="{{$usuario->nombres}}"@else value="{{ old('nombres') }}" @endif   autocomplete="nombres" autofocus >
+           value="{{ucwords($usuario->nombres)}}"@else value="{{ old('nombres') }}" @endif   autocomplete="nombres" autofocus >
                   @error('nombres')
                    <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
       <div class="form-group">
         <label for="apellidos">Apellidos:</label>
         <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" @if (isset($usuario))
-        value="{{$usuario->apellidos}}"@else value="{{ old('apellidos') }}" @endif   autocomplete="apellidos" autofocus >
+        value="{{ucwords($usuario->apellidos)}}"@else value="{{ old('apellidos') }}" @endif   autocomplete="apellidos" autofocus >
         @error('apellidos')
         <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -181,7 +181,7 @@
       <div class="form-group">
         <label>Direccion:</label>
         <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($usuario))
-        value="{{$usuario->direccion}}"@else value="{{ old('direccion') }}" @endif  autocomplete="direccion" autofocus >
+        value="{{ucwords($usuario->direccion)}}"@else value="{{ old('direccion') }}" @endif  autocomplete="direccion" autofocus >
         @error('direccion')
               <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -246,7 +246,7 @@
       <div class="form-group">
         <label>Ocupacion:</label>
         <input id="ocupacion" type="text" class="form-control @error('ocupacion') is-invalid @enderror"
-        @if (isset($usuario)) value="{{$usuario->ocupacion}}" @else value="{{ old('ocupacion') }}" @endif 
+        @if (isset($usuario)) value="{{ucwords($usuario->ocupacion)}}" @else value="{{ old('ocupacion') }}" @endif 
         name="ocupacion"  autocomplete="ocupacion" autofocus >
         @error('ocupacion')
         <span class="invalid-feedback" role="alert">
@@ -259,7 +259,7 @@
     <div class="form-group">
       <label>Nombres del responsable:</label>
       <input id="nombre_del_responsable" type="text" class="form-control @error('nombre_del_responsable') is-invalid @enderror"
-      @if (isset($usuario)) value="{{$usuario->nombre_del_responsable}}" @else value="{{ old('nombre_del_responsable') }}" @endif 
+      @if (isset($usuario)) value="{{ucwords($usuario->nombre_del_responsable)}}" @else value="{{ old('nombre_del_responsable') }}" @endif 
       name="nombre_del_responsable"  autocomplete="nombre_del_responsable" autofocus >
       @error('nombre_del_responsable')
       <span class="invalid-feedback" role="alert">
