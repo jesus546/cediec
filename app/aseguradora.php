@@ -15,5 +15,9 @@ class aseguradora extends Model
    {
         return $this->belongsToMany(Price::class )->withTimestamps();
    }
+   public function users()
+    {
+        return $this->belongsTo('App\User');
+    }
 
 }

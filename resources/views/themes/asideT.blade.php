@@ -19,11 +19,8 @@
   
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-          
-          @role('User')
           <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
+          @role('User')
                  <li class="nav-item">
                   <a href="{{route('schedule')}}" class="nav-link  ">
                     <i class="nav-icon fas fa-book"></i>
@@ -32,12 +29,7 @@
                     </p>
                   </a>
                 </li>
-                
-          </ul>
-
-          <ul class="nav nav-pills nav-sidebar flex-column  " data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
+ 
                  <li class="nav-item">
                  <a href="{{route('appointments')}}" class="nav-link ">
                     <i class="nav-icon fas fa-calendar"></i>
@@ -46,12 +38,7 @@
                     </p>
                   </a>
                 </li>
-                
-          </ul>
 
-          <ul class="nav nav-pills nav-sidebar flex-column  " data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
                  <li class="nav-item">
                  <a href="{{route('invoice')}}" class="nav-link ">
                   <i class=" nav-icon fas fa-file-invoice"></i>
@@ -60,11 +47,9 @@
                     </p>
                   </a>
                 </li>
-                
-          </ul>
          @endrole
+
          @role('Doctor')
-         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
           <a href="{{route('pacient.appointments.doctor.show', Auth::user()->id)}}" class="nav-link ">
             <i class=" nav-icon fas fa-calendar-week"></i>
@@ -73,12 +58,9 @@
              </p>
            </a>
          </li>
-        </ul>
          @endrole
 
-
          @role('super-admin')
-         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
           <a href="{{route('price.index')}}" class="nav-link ">
             <i class="nav-icon  fas fa-file-invoice-dollar"></i>
@@ -87,11 +69,9 @@
              </p>
            </a>
          </li>
-        </ul>
-
          @endrole
+
       @can('ver citas programadas')
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
         <a href="{{route('pacient.appointments.show')}}" class="nav-link ">
           <i class=" nav-icon fas fa-calendar-week"></i>
@@ -100,11 +80,9 @@
            </p>
          </a>
        </li>
-      </ul>
       @endcan
  
          @can('listar especialidades')
-         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                <li class="nav-item">
                <a href="{{route('specialities.index')}}" class="nav-link ">
                 <i class="nav-icon fas fa-briefcase"></i>
@@ -113,11 +91,9 @@
                   </p>
                 </a>
               </li>
-        </ul>
          @endcan  
          
           @can('listar empleados')
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                  <li class="nav-item">
                  <a href="{{route('empleados.index')}}" class="nav-link ">
                   <i class="nav-icon fas fa-user-tie"></i>
@@ -126,11 +102,9 @@
                     </p>
                   </a>
                 </li>  
-          </ul>
           @endcan
 
           @can('listar usuario')
-           <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
              <a href="{{url('usuarios')}}" class="nav-link ">
                <i class="nav-icon fas fa-users"></i>
@@ -139,11 +113,9 @@
                </p>
              </a>
            </li>
-           
-            </ul>
           @endcan
+
           @can('asignar horario doctor')
-          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
             <a href="{{route('doctor.gestionar_horario')}}" class="nav-link ">
               <i class="nav-icon fas fa-clock"></i>
@@ -152,12 +124,8 @@
                </p>
              </a>
            </li>
-            </ul>
           @endcan
           
-    
-    
-         <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
                <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();

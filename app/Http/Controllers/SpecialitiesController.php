@@ -51,7 +51,7 @@ class SpecialitiesController extends Controller
         $specialities->name = $request->name;
         $specialities->save();
         Alert::success('EXITO', 'Se ha actualizado la especialidad')->showConfirmButton('OK', '#3085d6'); 
-        return redirect()->route('specialities.index');
+        return redirect()->back();
     }
 
     public function destroy(specialities $specialities)

@@ -6,8 +6,22 @@
         
         <label for="fk_tipoDeidentificacion">{{ __('Tipo De Identificación:')}}</label>
         <select class="form-control @error('fk_tipoDeidentificacion') is-invalid @enderror" id="fk_tipoDeidentificacion" name="fk_tipoDeidentificacion" value="{{ old('fk_tipoDeidentificacion') }}" autocomplete="fk_tipoDeidentificacion" autofocus>
+        
+          <option disabled selected>
+            @if(isset($usuario))
+            @if (isset($usuario->type_identificacion_id()->tipo))
+
+            {{$usuario->type_identificacion_id()->tipo}}
+            @else
+                 seleccione
+            @endif
+            @else
+            seleccione departamento 
+            @endif
+            
+        </option>
           @foreach ($tipoIdentificacion as $tipoidenti)
-          <option value="{{$tipoidenti['tipoDeIden_ID']}}">{{$tipoidenti['tipo']}}</option>
+          <option value="{{$tipoidenti['id']}}">{{$tipoidenti['tipo']}}</option>
           @endforeach
           </select>
           @error('fk_tipoDeidentificacion')
@@ -214,10 +228,21 @@
       <div class="form-group">
         <label for="fk_departamento">{{ __('Departamento:')}}</label>
         <select class="form-control @error('fk_departamento') is-invalid @enderror" id="fk_departamento" name="fk_departamento" value="{{ old('fk_departamento') }}" autocomplete="fk_departamento" autofocus data-dependent="municipio">
-        <option disabled selected>Selecciona el departamento</option>   
-        @foreach ($departamento as $dep)
-        <option value="{{$dep['id']}}">{{$dep['nombre']}}</option>
-        @endforeach
+        <option disabled selected>
+          @if(isset($usuario))
+          @if (isset($usuario->departamento_id()->nombre))
+          {{$usuario->departamento_id()->nombre}}
+          @else
+           seleccione departamento
+          @endif 
+          @else  
+          seleccione departamento 
+          @endif
+          
+        </option>
+         @foreach ($departamento as $dep)
+         <option value="{{$dep['id']}}">{{$dep['nombre']}}
+         @endforeach
         </select>
         @error('fk_departamento')
       <span class="invalid-feedback" role="alert">
@@ -231,7 +256,18 @@
       <label for="fk_municipio">{{ __('Municipio:')}}</label>
       <select class="form-control  @error('fk_municipio') is-invalid @enderror" 
       id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autocomplete="fk_municipio" autofocus>
-          <option >Selecciona primero el departamento</option>
+      <option disabled selected>
+        @if(isset($usuario))
+        @if (isset($usuario->municipio_id()->nombre))
+        {{$usuario->municipio_id()->nombre}}
+        @else
+        seleccione primero el departamento
+        @endif
+        @else
+        seleccione primero el departamento
+        @endif
+        
+        </option> 
       </select>
       @error('fk_municipio')
     <span class="invalid-feedback" role="alert">

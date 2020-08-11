@@ -15,8 +15,8 @@
           <table class="table table-hover  text-nowrap">
             <thead >
               <tr>
-                <th>id</th>
-                <th>precio</th>
+                <th>ID</th>
+                <th>Precio</th>
                 <th>
                   @role('super-admin')
                   <a href="{{route('price.create')}}" class="btn btn-success btn-sm float-right">Crear Precio</a>
@@ -27,20 +27,22 @@
               </tr>
             </thead>
             <tbody>  
-            @foreach ($price as $price)
-            <tr>
-              <input type="hidden" class="dele_price_value" value="{{$price->id}}">
-                  <td scope="row">{{$price->id}}</td>
-                  <td>{{$price->precio}}</td>
-                  <td>
-                    @role('super-admin')
-                  <a class="btn btn-info btn-sm" href="{{route('price.edit', $price)}}" ><i class="fas fa-pencil-alt"></i> </a>
-                  <a class="btn btn-warning btn-sm" href="{{route('asignar_asegu_price', $price)}}" ><i class="fab fa-accusoft"></i> </a>
-                  <button class="btn btn-danger btn-sm delete_price" type="button" ><i class="fas fa-trash"></i></button>
-                  @endrole
-                  </td>
-                </tr>  
-            @endforeach
+          @foreach ($price as $price)
+          <tr>
+            <input type="hidden" class="dele_price_value" value="{{$price->id}}">
+                <td scope="row">{{$price->id}}</td>
+                <td>{{$price->precio}}</td>
+                <td>
+                  @role('super-admin')
+                <a class="btn btn-info btn-sm" href="{{route('price.edit', $price)}}" ><i class="fas fa-pencil-alt"></i> </a>
+                <a class="btn btn-warning btn-sm" href="{{route('asignar_asegu_price', $price)}}" ><i class="fab fa-accusoft"></i> </a>
+                <button class="btn btn-danger btn-sm delete_price" type="button" ><i class="fas fa-trash"></i></button>
+                @endrole
+                </td>
+              </tr>  
+          @endforeach
+       
+           
               
             </tbody>
           </table>

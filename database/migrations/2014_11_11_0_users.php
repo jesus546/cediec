@@ -63,7 +63,7 @@ class users extends Migration
             $table->foreign('fk_grupoEtnico')->references('grupo_id')->on('grupoEtnico');
             $table->foreign('fk_nivelEducativo')->references('nivel_id')->on('nivelEducativo');
             $table->foreign('fk_discapacidad')->references('dis_id')->on('discapacidad');
-            $table->foreign('fk_tipoDeidentificacion')->references('tipoDeIden_ID')->on('tipoDeIdentificacion');
+            $table->foreign('fk_tipoDeidentificacion')->references('id')->on('tipoDeIdentificacion');
             $table->foreign('fk_religion')->references('re_id')->on('religion');
             $table->foreign('fk_rH')->references('r_id')->on('RH');
             $table->foreign('fk_regime')->references('id')->on('regimes');

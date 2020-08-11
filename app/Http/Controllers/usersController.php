@@ -130,7 +130,7 @@ class usersController extends Controller
          if ($usuario->save()) {
             $usuario->syncRoles('User');
             Alert::success('EXITO', 'Se ha actualizado el usuario')->showConfirmButton('OK', '#3085d6');
-            return redirect()->route('usuarios.index');
+            return redirect()->back();
            }
     }
 

@@ -14,7 +14,7 @@ class tipoDeIdentificacion extends Migration
     public function up()
     {
         Schema::create('tipoDeIdentificacion', function (Blueprint $table) {
-            $table->bigIncrements('tipoDeIden_ID');
+            $table->id();
             $table->string('tipo');
             $table->timestamps();
             $table->charset = 'utf8mb4';

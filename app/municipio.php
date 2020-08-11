@@ -11,5 +11,8 @@ class municipio extends Model
     ];
     protected $table = 'municipio';
     
-   
+    public function users()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

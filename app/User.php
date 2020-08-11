@@ -69,7 +69,7 @@ class User extends Authenticatable
             $years = ($age == 1) ?  'año' : 'años';
             $msj = $age . ' ' . $years;
         }else{
-            $msj = 'indefinido';
+            $msj = 'Indefinido';
         }
         return $msj;
 
@@ -239,5 +239,23 @@ class User extends Authenticatable
            if ($aseguradora->id == $id ) return true;
        }
        return false;
+    }
+
+    public function departamento_id()
+    {
+        $departamento = departamento::find($this->fk_departamento);
+        return $departamento;
+    }
+
+    public function municipio_id()
+    {
+        $municipio = municipio::find($this->fk_municipio);
+        return $municipio;
+    }
+
+    public function type_identificacion_id()
+    {
+        $tipoIdentificacion = tipoIdentificacion::find($this->fk_tipoDeidentificacion);
+        return $tipoIdentificacion;
     }
 }

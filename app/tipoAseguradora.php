@@ -8,7 +8,10 @@ class tipoAseguradora extends Model
 {
     protected $table = 'tipoDeAseguradora';
 
-
+    public function users()
+    {
+        return $this->belongsTo('App\User');
+    }
     
 }
 

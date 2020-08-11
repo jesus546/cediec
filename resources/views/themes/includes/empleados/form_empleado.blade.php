@@ -8,7 +8,7 @@
         <select class="form-control @error('fk_tipoDeidentificacion') is-invalid @enderror" id="fk_tipoDeidentificacion" name="fk_tipoDeidentificacion" value="{{ old('fk_tipoDeidentificacion') }}"  autofocus>
         
           @foreach ($tipoIdentificacion as $tipoidenti)
-          <option value="{{$tipoidenti['tipoDeIden_ID']}}">{{$tipoidenti['tipo']}}</option>
+          <option value="{{$tipoidenti['id']}}">{{$tipoidenti['tipo']}}</option>
           @endforeach
           </select>
           @error('fk_tipoDeidentificacion')
@@ -215,7 +215,7 @@
       <div class="form-group">
         <label for="fk_departamento">{{ __('Departamento:')}}</label>
         <select class="form-control @error('fk_departamento') is-invalid @enderror" id="fk_departamento" name="fk_departamento" value="{{ old('fk_departamento') }}"  autofocus >
-        <option disabled selected>Selecciona el departamento</option>   
+        <option disabled selected>{{$empleado->municipio_id()->nombre}}</option>   
         @foreach ($departamento as $dep)
         <option value="{{$dep['id']}}">{{$dep['nombre']}}</option>
         @endforeach
@@ -231,7 +231,7 @@
       <div class="form-group">
         <label for="fk_municipio">{{ __('Municipio:')}}</label>
         <select class="form-control @error('fk_municipio') is-invalid @enderror" id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autofocus>
-            <option >Selecciona primero el departamento</option>
+          <option disabled selected>{{$empleado->departamento_id()->nombre}}</option>  
         </select>
         @error('fk_municipio')
       <span class="invalid-feedback" role="alert">

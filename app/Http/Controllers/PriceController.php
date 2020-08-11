@@ -55,7 +55,7 @@ class PriceController extends Controller
         $price->my_update($request);
         $price->regime()->sync($request->regime_id);
         Alert::success('EXITO', 'Se ha actualizado el precio')->showConfirmButton('OK', '#3085d6');
-        return redirect()->route('price.index');
+        return redirect()->back();
         
     }
 
@@ -84,7 +84,7 @@ class PriceController extends Controller
        
         if ($price->aseguradora()->sync($request->aseguradora_id)){
             Alert::success('EXITO', 'Se ha actualizado')->showConfirmButton('OK', '#3085d6');
-            return redirect()->route('price.index');
+            return redirect()->back();
         }
     }
 

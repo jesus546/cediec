@@ -6,6 +6,7 @@ use App\ClinicData;
 use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ClinicDataController extends Controller
@@ -16,11 +17,11 @@ class ClinicDataController extends Controller
     }
     public function index(User $usuario)
        {
-         
+     
         return view('usuarios.pacient.clinic_data_index',[
         'usuario' => $usuario,
         'datas' => $usuario->clinic_data_array()
-         ]);
+        ]);
        }
 
 
@@ -51,6 +52,13 @@ class ClinicDataController extends Controller
        ]);
 
     return $pdf->download('HistoriaClinica'. $usuario->identificacion.'.pdf');
+
+  }
+  public function hola(User $usuario){
+    return view('usuarios.pacient.history',[
+      'usuario' => $usuario,
+      'datas' => $usuario->clinic_data_array()
+       ]);
   }
     
     

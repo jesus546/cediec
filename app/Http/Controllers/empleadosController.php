@@ -93,7 +93,7 @@ class empleadosController extends Controller
         if ($empleado->save()) {
             $empleado->syncRoles($request->roles);
             Alert::success('EXITO', 'Se ha actualizado el usuario')->showConfirmButton('OK', '#3085d6'); 
-            return redirect()->route('empleados.index');
+            return redirect()->back();
         }
         
     }
@@ -123,7 +123,7 @@ class empleadosController extends Controller
         $empleado = User::findOrFail($id);
         if ($empleado->specialities()->sync($request->specialities)) {
             Alert::success('EXITO', 'Se ha actualizado las especialdades')->showConfirmButton('OK', '#3085d6');
-            return redirect()->route('empleados.index');
+            return redirect()->back();
         }
     }
 
@@ -139,12 +139,9 @@ class empleadosController extends Controller
         $empleado = User::findOrFail($id);
         if ($empleado->syncPermissions($request->permissions)) {
         Alert::success('EXITO', 'Se han actualizado los permisos')->showConfirmButton('OK', '#3085d6');
-        return redirect()->route('empleados.index');
+        return redirect()->back();
         }
     }
 
-    public function mensaje()
-    {
-        return view('mensajes.modal_chat');
-    }
+ 
 }

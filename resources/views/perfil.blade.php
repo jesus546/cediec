@@ -26,8 +26,8 @@
               <div class="tab-pane active" id="informacion">
                 <!-- Post -->
                 <div class="post">
-                  <div class="row invoice-info" style="font-size:120%">
-                    <div class="col-sm-6 invoice-col" >
+                  <div class="row " style="font-size:120%">
+                    <div class="col-sm-6 " >
                       <address>
                         <strong>Identificación:</strong><br>
                         <strong>Nombres:</strong><br>
@@ -39,7 +39,7 @@
                       </address>
                     </div>
                     <!-- /.col -->
-                    <div class="col-sm-6 invoice-col">
+                    <div class="col-sm-6 ">
                       <address>
                         @if (isset(Auth::user()->identificacion )) {{ Auth::user()->identificacion }}<br>
                         @else Indefinido<br> @endif
