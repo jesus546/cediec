@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Traits\HasRoles;
-
+use App\rh;
 
 class User extends Authenticatable
 {
@@ -119,6 +119,10 @@ class User extends Authenticatable
     public function regime()
    {
        return $this->belongsToMany(regime::class);
+   }
+   public function rh()
+   {
+       return $this->hasOne(rh::class);
    }
 
    public function aseguradora()
@@ -257,5 +261,59 @@ class User extends Authenticatable
     {
         $tipoIdentificacion = tipoIdentificacion::find($this->fk_tipoDeidentificacion);
         return $tipoIdentificacion;
+    }
+
+    public function aseguradora_id()
+    {
+        $aseguradora = aseguradora::find($this->fk_aseguradora);
+        return $aseguradora;
+    }
+
+    public function type_aseguradora_id()
+    {
+        $tipoAseguradora = tipoAseguradora::find($this->fk_tipoAseguradora);
+        return $tipoAseguradora;
+    }
+
+    public function RHs_id()
+    {
+        $rh = rh::find($this->fk_rH);
+        return $rh;
+    }
+
+    public function discapacidad_id()
+    {
+        $discapacidad = discapacidad::find($this->fk_discapacidad);
+        return $discapacidad;
+    }
+
+    public function grupoEtnico_id()
+    {
+        $grupoEtnico = grupoEtnico::find($this->fk_grupoEtnico);
+        return $grupoEtnico;
+    }
+
+    public function nivelEducativo_id()
+    {
+        $nivelEducativo = nivelEducativo::find($this->fk_nivelEducativo);
+        return $nivelEducativo;
+    }
+
+    public function religion_id()
+    {
+        $religion = religion::find($this->fk_religion);
+        return $religion;
+    }
+
+    public function poblacionRiesgo_id()
+    {
+        $poblacionRiesgo = poblacionRiesgo::find($this->fk_poblacionRiesgo);
+        return $poblacionRiesgo;
+    }
+
+    public function regime_id()
+    {
+        $regime = regime::find($this->fk_regime);
+        return $regime;
     }
 }

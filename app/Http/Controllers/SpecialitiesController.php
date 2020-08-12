@@ -54,12 +54,12 @@ class SpecialitiesController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(specialities $specialities)
+    public function destroy($id)
     {
+        $specialities = specialities::findOrFail($id);
         if ($specialities->delete()) {
-            $specialities->specialities()->detach();
-            return redirect()->route('specialities.index');
-        }  
+            return response()->json(['status'=>'se ha eliminado la especialidad']);
+        } 
         
 
     }

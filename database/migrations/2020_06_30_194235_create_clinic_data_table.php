@@ -24,6 +24,9 @@ class CreateClinicDataTable extends Migration
             $table->unsignedBigInteger('updated_by');
             $table->foreign('updated_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

@@ -44,7 +44,15 @@ class price extends Model
        }
        return false;
     }
-
+    
+    public function regime_id($id)
+    {
+        foreach ($this->regime as $regime_id) {
+            if ($regime_id->id == $id ) return true;
+        }
+        return false;
+       
+    }
    
 
 

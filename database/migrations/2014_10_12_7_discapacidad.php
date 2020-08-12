@@ -14,7 +14,7 @@ class Discapacidad extends Migration
     public function up()
     {
         Schema::create('discapacidad', function (Blueprint $table) {
-            $table->bigIncrements('dis_id');
+            $table->id();
             $table->string('discapacidad');
             $table->timestamps();
             $table->charset = 'utf8mb4';

@@ -14,7 +14,7 @@ class GrupoEtnico extends Migration
     public function up()
     {
         Schema::create('grupoEtnico', function (Blueprint $table) {
-            $table->bigIncrements('grupo_id');
+            $table->id();
             $table->string('grupo');
             $table->timestamps();
             $table->charset = 'utf8mb4';

@@ -18,4 +18,6 @@ class regime extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+  
 }

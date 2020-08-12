@@ -6,7 +6,19 @@
         
         <label for="fk_tipoDeidentificacion">{{ __('Tipo De Identificación:')}}</label>
         <select class="form-control @error('fk_tipoDeidentificacion') is-invalid @enderror" id="fk_tipoDeidentificacion" name="fk_tipoDeidentificacion" value="{{ old('fk_tipoDeidentificacion') }}"  autofocus>
-        
+          <option disabled selected>
+            @if(isset($empleado))
+            @if (isset($empleado->type_identificacion_id()->tipo))
+
+            {{$empleado->type_identificacion_id()->tipo}}
+            @else
+            Seleccione
+            @endif
+            @else
+            Seleccione 
+            @endif
+            
+        </option>
           @foreach ($tipoIdentificacion as $tipoidenti)
           <option value="{{$tipoidenti['id']}}">{{$tipoidenti['tipo']}}</option>
           @endforeach
@@ -34,7 +46,7 @@
       <div class="col-md-4">
         <div class="form-group">
         <label for="nombres" >Nombres:</label>
-        <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" @if (isset($empleado))
+        <input id="nombres" type="text" maxlength="60" class="form-control @error('nombres') is-invalid @enderror" name="nombres" @if (isset($empleado))
          value="{{ucwords($empleado->nombres)}}"@else value="{{ old('nombres') }}" @endif    autofocus >
                 @error('nombres')
                  <span class="invalid-feedback" role="alert">
@@ -50,7 +62,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <label for="apellidos">Apellidos:</label>
-        <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" @if (isset($empleado))
+        <input id="apellidos" type="text" maxlength="60" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" @if (isset($empleado))
         value="{{ucwords($empleado->apellidos)}}"@else value="{{ old('apellidos') }}" @endif    autofocus >
         @error('apellidos')
         <span class="invalid-feedback" role="alert">
@@ -64,8 +76,21 @@
       <div class="form-group">
         <label>RH:</label>
         <select class="form-control @error('fk_rH') is-invalid @enderror" id="fk_rH" name="fk_rH" value="{{ old('fk_rH') }}"  autofocus>
+          <option disabled selected>
+            @if(isset($empleado))
+            @if (isset($empleado->RH_id()->r))
+
+            {{$empleado->RH_id()->r}}
+            @else
+            Seleccione
+            @endif
+            @else
+            Seleccione 
+            @endif
+            
+        </option>
           @foreach ($rh as $r)
-                      <option value="{{$r['r_id']}}">{{$r['r']}}</option>
+                      <option value="{{$r['id']}}">{{$r['r']}}</option>
           @endforeach
         </select>
         @error('fk_rH')
@@ -80,6 +105,7 @@
       <div class="form-group">
         <label for="genero">Genero:</label>
         <select class="form-control @error('genero') is-invalid @enderror" id="genero" name="genero" value="{{ old('genero') }}">
+          <option  disabled selected>Seleccione</option>
           <option  value="Masculino"@if (isset($empleado)) @if ($empleado->genero=='Masculino' ) selected @endif @endif>Masculino</option>
           <option  value="Femenino" @if (isset($empleado))@if ($empleado->genero=='Femenino' ) selected @endif @endif>Femenino</option>
       </select>
@@ -95,6 +121,7 @@
       <div class="form-group">
         <label for="fk_estadoCivil">Estado civil:</label>
         <select class="form-control @error('fk_estadoCivil') is-invalid @enderror" id="fk_estadoCivil" name="fk_estadoCivil" value="{{ old('fk_estadoCivil') }}">
+          <option  disabled selected>Seleccione</option>
           <option  value="Soltero(a)"@if (isset($empleado)) @if ($empleado->fk_estadoCivil=='Soltero(a)' ) selected @endif @endif >Soltero(a)</option>
           <option  value="Casado(a)"@if (isset($empleado)) @if ($empleado->fk_estadoCivil=='Casado(a)' ) selected @endif @endif>Casado(a)</option>
           <option  value="Viudo(a)" @if (isset($empleado))@if ($empleado->fk_estadoCivil=='Viudo(a)' ) selected @endif @endif>Viudo(a)</option>
@@ -182,7 +209,7 @@
     <div class="col-md-4">
       <div class="form-group">
         <label>Direccion:</label>
-        <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($empleado))
+        <input id="direccion" type="text" maxlength="30" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($empleado))
         value="{{ucwords($empleado->direccion)}}"@else value="{{ old('direccion') }}" @endif   autofocus >
         @error('direccion')
               <span class="invalid-feedback" role="alert">
@@ -195,6 +222,7 @@
       <div class="form-group">
         <label for="zona">Zona:</label>
         <select class="form-control @error('zona') is-invalid @enderror" id="zona" name="zona" value="{{ old('zona') }}">
+          <option  disabled selected>Seleccione</option>
           <option  value="Rural"  @if (isset($empleado))
           @if ($empleado->zona=='Rural' ) selected @endif
           @endif>Rural</option>
@@ -215,7 +243,18 @@
       <div class="form-group">
         <label for="fk_departamento">{{ __('Departamento:')}}</label>
         <select class="form-control @error('fk_departamento') is-invalid @enderror" id="fk_departamento" name="fk_departamento" value="{{ old('fk_departamento') }}"  autofocus >
-        <option disabled selected>{{$empleado->municipio_id()->nombre}}</option>   
+          <option disabled selected>
+            @if(isset($empleado))
+            @if (isset($empleado->departamento_id()->nombre))
+            {{$empleado->departamento_id()->nombre}}
+            @else
+             seleccione departamento
+            @endif 
+            @else  
+            seleccione departamento 
+            @endif
+            
+          </option>>   
         @foreach ($departamento as $dep)
         <option value="{{$dep['id']}}">{{$dep['nombre']}}</option>
         @endforeach
@@ -231,7 +270,18 @@
       <div class="form-group">
         <label for="fk_municipio">{{ __('Municipio:')}}</label>
         <select class="form-control @error('fk_municipio') is-invalid @enderror" id="fk_municipio" name="fk_municipio" value="{{ old('fk_municipio') }}"  autofocus>
-          <option disabled selected>{{$empleado->departamento_id()->nombre}}</option>  
+          <option disabled selected>
+            @if(isset($empleado))
+            @if (isset($empleado->municipio_id()->nombre))
+            {{$empleado->municipio_id()->nombre}}
+            @else
+            seleccione primero el departamento
+            @endif
+            @else
+            seleccione primero el departamento
+            @endif
+            
+            </option>   
         </select>
         @error('fk_municipio')
       <span class="invalid-feedback" role="alert">

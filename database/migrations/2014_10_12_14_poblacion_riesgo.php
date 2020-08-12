@@ -14,7 +14,7 @@ class PoblacionRiesgo extends Migration
     public function up()
     {
         Schema::create('poblacionRiesgo', function (Blueprint $table) {
-            $table->bigIncrements('pobla_id');
+            $table->id();
             $table->string('poblaRies');
             $table->timestamps();
             $table->charset = 'utf8mb4';

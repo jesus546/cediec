@@ -16,7 +16,7 @@
             <thead >
               <tr>
                 <th>Nombre</th>
-                <th># de medicos</th>
+                <th># De Medicos</th>
                 <th>
                   @can('crear especialidad')
                   <a href="{{route('specialities.create')}}" class="btn btn-success btn-xs ">Crear especialidades</a>
@@ -29,6 +29,7 @@
             <tbody>  
             @foreach ($specialities as $specialities)
             <tr>
+              <input type="hidden" class="dele_specialities_value" value="{{$specialities->id}}">
                 <td scope="row">{{ucwords($specialities->name)}}</td>
                   <td>{{$specialities->users->count()}}</td>
                   <td>
@@ -37,11 +38,7 @@
                     @endcan
 
                     @can('eliminar especialidad')
-                     <form action="{{route('specialities.destroy', $specialities->id)}}" method="POST" style="display:inline-block;">
-                      @method('DELETE')
-                      @csrf
-                      <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i></button>
-                      </form>
+                    <button class="btn btn-danger btn-sm delete_specialities" type="button" ><i class="fas fa-trash"></i></button>
                       @endcan
                   </td>
                 </tr>  
@@ -56,4 +53,50 @@
       <!-- /.card -->
     </div>
   </div>
+@endsection
+
+@section('script')
+    <script>
+      $.ajaxSetup({
+          headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+
+       $('.delete_specialities').click(function(e){
+         e.preventDefault();
+         var delete_id = $(this).closest('tr').find('.dele_specialities_value').val();
+        swal({
+            title: "esta seguro?",
+            text: "una vez eliminado, este usuario no se puede recuperar",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+       })
+       .then((willDelete) => {
+       if (willDelete) {
+        
+           $.ajax({
+              type:"DELETE",
+              url: "/specialities/"+delete_id,
+              data: {
+                "_token": $('input[name=_token]').val(),
+                "id": delete_id,
+              },
+              success: function (response){
+                swal(response.status, {
+                          icon: "success",
+                })
+
+                 .then((result) => {
+                   location.reload();
+                });
+              }
+           });
+           
+          } 
+        });
+      });
+     
+    </script>
 @endsection

@@ -14,7 +14,7 @@ class RH extends Migration
     public function up()
     {
         Schema::create('RH', function (Blueprint $table) {
-            $table->bigIncrements('r_id');
+            $table->id();
             $table->string('r');
             $table->timestamps();
             $table->charset = 'utf8mb4';

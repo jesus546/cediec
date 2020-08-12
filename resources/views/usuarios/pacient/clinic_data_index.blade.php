@@ -13,7 +13,7 @@
       </div>
       <div class="card-body">
       <p><strong>Departamento: </strong> @if (isset($usuario->departamento_id()->nombre)) {{$usuario->departamento_id()->nombre}}
-      @else N/a @endif </p>
+      @else n/a @endif </p>
     <p><strong>Fecha de alta: </strong> {{ carbon_format($usuario->clinic_data('check_in', $datas), 'd/m/Y') }}</p>
     <p><strong>Escolaridad: </strong>{{ $usuario->clinic_data('scholarship', $datas) }}</p>
     <div class="row no-print">

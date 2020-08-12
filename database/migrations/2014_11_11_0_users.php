@@ -60,14 +60,14 @@ class users extends Migration
             $table->foreign('fk_departamento')->references('id')->on('departamento');
             $table->foreign('fk_tipoAseguradora')->references('id')->on('tipoDeAseguradora');
             $table->foreign('fk_aseguradora')->references('id')->on('aseguradora');
-            $table->foreign('fk_grupoEtnico')->references('grupo_id')->on('grupoEtnico');
-            $table->foreign('fk_nivelEducativo')->references('nivel_id')->on('nivelEducativo');
-            $table->foreign('fk_discapacidad')->references('dis_id')->on('discapacidad');
+            $table->foreign('fk_grupoEtnico')->references('id')->on('grupoEtnico');
+            $table->foreign('fk_nivelEducativo')->references('id')->on('nivelEducativo');
+            $table->foreign('fk_discapacidad')->references('id')->on('discapacidad');
             $table->foreign('fk_tipoDeidentificacion')->references('id')->on('tipoDeIdentificacion');
-            $table->foreign('fk_religion')->references('re_id')->on('religion');
-            $table->foreign('fk_rH')->references('r_id')->on('RH');
+            $table->foreign('fk_religion')->references('id')->on('religion');
+            $table->foreign('fk_rH')->references('id')->on('RH');
             $table->foreign('fk_regime')->references('id')->on('regimes');
-            $table->foreign('fk_poblacionRiesgo')->references('pobla_id')->on('poblacionRiesgo');
+            $table->foreign('fk_poblacionRiesgo')->references('id')->on('poblacionRiesgo');
             ######
 
             $table->charset = 'utf8mb4';

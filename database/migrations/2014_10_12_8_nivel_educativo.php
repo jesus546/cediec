@@ -14,7 +14,7 @@ class NivelEducativo extends Migration
     public function up()
     {
         Schema::create('nivelEducativo', function (Blueprint $table) {
-            $table->bigIncrements('nivel_id');
+            $table->id();
             $table->string('nivel');
             $table->timestamps();
             $table->charset = 'utf8mb4';

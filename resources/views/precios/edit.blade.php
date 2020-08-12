@@ -28,9 +28,13 @@
                 <div class="form-group">
                   <label for="regime_id">{{ __('regimen:')}}</label>
                   <select class="form-control " id="regime_id" name="regime_id" >
-                  <option disabled selected>Selecciona el regimen</option>   
+                   
                   @foreach ($regimes as $regime)
-                  <option value="{{$regime['id']}}">{{$regime['name']}}</option>
+                  <option 
+                    @if ($price->regime_id($regime->id))
+                      selected 
+                    @endif
+                    value="{{$regime['id']}}">{{$regime['name']}}</option>
                   @endforeach
                   </select>
 

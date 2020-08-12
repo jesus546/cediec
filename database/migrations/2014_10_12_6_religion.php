@@ -14,7 +14,7 @@ class religion extends Migration
     public function up()
     {
         Schema::create('religion', function (Blueprint $table) {
-            $table->bigIncrements('re_id');
+            $table->id();
             $table->string('religion');
             $table->timestamps();
             $table->charset = 'utf8mb4';

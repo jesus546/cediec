@@ -22,18 +22,19 @@ class user_EmplUpdate extends FormRequest
         'fk_tipoDeidentificacion' => 'integer|nullable',
         'identificacion' => 'unique:users,identificacion, '.$this->route('empleado').'|min:10|integer',
         'nombres' => 'max:60|string|nullable',
-        'apellidos' => 'max:60|string|nullable' , 
-        'telefono' => 'integer|nullable',
-        'email'=> 'unique:users,email,'.$this->route('empleado').'|max:255|string|email',
-        'direccion' => 'max:30|string|nullable',
-        'celular' => 'integer|nullable', 
-        'fechaDeNacimiento'=> 'date|nullable',
-        'fk_rH' => 'integer|nullable',
+        'apellidos' => 'max:60|string|nullable' ,
+        'fk_rH' => 'integer|nullable', 
+        'genero' => 'string|nullable',
         'fk_estadoCivil'=> 'string|nullable',
+        'fechaDeNacimiento'=> 'date|nullable',
+        'telefono' => 'integer|min:10|nullable',
+        'celular' => 'integer|min:10|nullable', 
+        'email'=> 'unique:users,email,'.$this->route('empleado').'|max:255|string|email',
+        'password' => 'min:8|max:10|nullable',
+        'direccion' => 'max:30|string|nullable',
+        'zona'=> 'string|nullable',
         'fk_departamento'=> 'integer|nullable',
         'fk_municipio'=> 'integer|nullable',
-        'password' => 'min:8|max:10|nullable'
-
         ];
     }
 

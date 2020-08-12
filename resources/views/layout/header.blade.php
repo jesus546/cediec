@@ -40,7 +40,15 @@
           </div>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="{{ route('login') }}">Ingresar</a>
+          @if (Route::has('login'))
+                    @auth
+                        <a  lass="nav-link" href="{{ route('home') }}">Home</a>
+                    @else
+                    <a class="nav-link" href="{{ route('login') }}">Ingresar</a>
+                    @endauth
+                </div>
+            @endif
+        
         </li>
         
       </ul>
