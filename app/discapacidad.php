@@ -8,7 +8,7 @@ class discapacidad extends Model
 {
     protected $table = 'discapacidad';
     
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }

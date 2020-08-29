@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\appointments;
 use App\Invoice;
 use App\User;
+use App\price;
 use Illuminate\Http\Request;
 use App\specialities;
 
@@ -27,10 +28,9 @@ class pacientController extends Controller
         ]);
     }
 
-    public function store_schedule(Request $request, appointments $appointments, Invoice $invoice)
+    public function store_schedule(Request $request, appointments $appointments)
     {
-         $invoice = $invoice->store($request);
-         $appointments = $appointments->store($request, $invoice);
+         $appointments = $appointments->store($request);
          Alert::success('EXITO', 'Su Cita ha sido creada')->showConfirmButton('OK', '#3085d6');
          return redirect()->route('appointments');
     }
@@ -49,11 +49,11 @@ class pacientController extends Controller
         ]);
     }
 
-    public function store_back_schedule(Request $request, appointments $appointments, $id, Invoice $invoice)
+    public function store_back_schedule(Request $request, appointments $appointments, $id )
     {
         $usuario = User::findOrFail($id);
-        $invoice = $invoice->store($request);
-        $appointments = $appointments->store($request, $invoice);
+    
+        $appointments = $appointments->store($request);
          Alert::success('EXITO', 'se ha creado la cita')->showConfirmButton('OK', '#3085d6');
          return redirect()->route('pacient.appointments', $usuario);
     }
@@ -80,35 +80,7 @@ class pacientController extends Controller
         return redirect()->route('pacient.appointments', $usuario);
     }
     
-    public function invoice()
-    {
-        return view('paciente.invoice', [
-            'invoices' => Auth::user()->invoice,
-        ]);
-    }
-    
-    public function back_invoice(User $usuario)
-    {
-        return view('usuarios.pacient.invoice', [
-            'usuario' => $usuario,
-            'invoices' => $usuario->invoice,
-        ]);
-    }
-
-    public function back_invoice_edit(User $usuario, invoice $invoice)
-    {
-        return view('usuarios.pacient.invoice_edit', [
-            'usuario' => $usuario,
-            'invoice' => $invoice,
-        ]);
-    }
-
-    public function back_invoice_update(Request $request,User $usuario, invoice $invoice)
-    {
-        $invoice->my_update($request);
-        Alert::success('EXITO', 'Factura actualizada')->showConfirmButton('OK', '#3085d6');
-        return redirect()->route('back.invoice', $usuario);
-    }
+   
    public function show_appointments()
    {
        $appointments_collection = appointments::all();
@@ -116,7 +88,7 @@ class pacientController extends Controller
        foreach ($appointments_collection as $key => $appointment) {
            
            $appointments[] = [
-               'title' => ucwords($appointment->user->nombres) . ' cita con doctor(a) ' . ucwords($appointment->doctor()->nombres),
+               'title' => ucwords($appointment->user_id()->nombres) . ' cita con doctor(a) ' . $appointment->doctor()->nombres,
                'start' => $appointment->dates->format('Y-m-d\TH:i:s')
            ];
        }
@@ -133,7 +105,7 @@ class pacientController extends Controller
        foreach ($appointments_collection as $key => $appointment) {
            
            $appointments[] = [
-               'title' => ucwords($appointment->user->nombres) . ' cita con doctor(a) ' . ucwords($appointment->doctor()->nombres),
+               'title' => ucwords($appointment->user_id()->nombres) . ' cita con doctor(a) ' . $appointment->doctor()->nombres,
                'start' => $appointment->dates->format('Y-m-d\TH:i:s')
            ];
        }

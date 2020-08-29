@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-header bg-blue">
          
-          <h3 class="card-title">Citas de {{$usuario->nombres}}</h3>
+          <h3 class="card-title">Citas de {{ucwords($usuario->nombres)}}</h3>
    
         </div>
      

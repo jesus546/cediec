@@ -42,9 +42,9 @@
         <li class="nav-item">
           @if (Route::has('login'))
                     @auth
-                        <a  lass="nav-link" href="{{ route('home') }}">Home</a>
+                        <a  class="nav-link" href="{{ route('home') }}">Home</a>
                     @else
-                    <a class="nav-link" href="{{ route('login') }}">Ingresar</a>
+                        <a class="nav-link" href="{{ route('login') }}">Ingresar</a>
                     @endauth
                 </div>
             @endif

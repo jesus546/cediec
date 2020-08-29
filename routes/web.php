@@ -25,10 +25,11 @@ Auth::routes(['verify'=> true]);
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/perfil', 'HomeController@profile')->name('perfil');
+    Route::get('/cambiarContraseña', 'HomeController@password_update_view')->name('password_update_view')->middleware(['auth', 'password.confirm']);
     Route::put('/password_update', 'HomeController@password_update')->name('password_update');
     
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
   
 
     #asignacion de cita paciente
@@ -52,24 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('pacient/{usuario}/appointments/{appointments}/actualizar', 'pacientController@back_appointments_update')->name('pacient.appointments.update')
     ->middleware('permission:editar cita paciente');
     
-    #ver facturas paciente
-    Route::get('pacient/{usuario}/invoice', 'pacientController@back_invoice')->name('back.invoice')
-    ->middleware('permission:ver factura paciente');
-
-    #editar factura paciente
-    Route::get('pacient/{usuario}/invoice/{invoice}/edit', 'pacientController@back_invoice_edit')->name('back.invoice.edit')
-    ->middleware('permission:editar factura paciente');
-    Route::post('pacient/{usuario}/invoice/{invoice}/update', 'pacientController@back_invoice_update')->name('back.invoice.update')
-    ->middleware('permission:editar factura paciente');
-
-    //precios y asignar precio segun eps y aseguradora
-    
-    Route::resource('price', 'priceController');
-
-    Route::get('asignar/{price}/asegu', 'priceController@asignar_asegu_price')->name('asignar_asegu_price')
-    ->middleware('role:super-admin');
-    Route::post('asignar/{price}/price', 'priceController@price_assignment')->name('price_assignment.price')
-    ->middleware('role:super-admin');
+  
     /////////
     Route::resource('specialities', 'SpecialitiesController');
     ///////////
@@ -125,10 +109,16 @@ Route::group(['middleware' => ['auth']], function () {
                   ->middleware('permission:editar usuario');
   #crear historia clinica
     Route::resource('patient/{usuario}/clinic_data', 'ClinicDataController', ['only' => [
-                'index', 'create', 'store', 'PDF_HistoriaClinica'
+                'index', 'create', 'store'
             ]]);
     Route::get('patient/{usuario}/donwload', 'ClinicDataController@PDF_HistoriaClinica')->name('pdf_historia');
     Route::get('patient/{usuario}/hola', 'ClinicDataController@hola')->name('hola');
+
+  #crear notas de evolucion
+  Route::resource('patient/{usuario}/clinic_note', 'ClinicNoteController', ['only' => [
+    'index','create','store', 'edit', 'update', 'destroy'
+    ]]);
+    
   #gestionar horario del doctor
   Route::get('doctor/gestionar_horario', 'DoctorScheduleController@gestionar_horario')
   ->name('doctor.gestionar_horario')->middleware('permission:asignar horario doctor');
@@ -144,6 +134,8 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group([ 'as' => 'ajax.'],  function () {
+
+     
         Route::get('user_speciality', 'ajaxController@user_speciality')->name('user_speciality');
         Route::get('municipios', 'ajaxController@municipio_ajax')->name('municipio');
         Route::get('doctor/disable_dates', 'ajaxController@disable_dates')->name('doctor.disable_dates');

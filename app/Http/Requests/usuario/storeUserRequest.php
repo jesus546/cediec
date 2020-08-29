@@ -26,7 +26,7 @@ class storeUserRequest extends FormRequest
         'direccion' => 'required|max:30|string',
         'genero' => 'string|required',
         'zona'=> 'string|required',
-        'password' => 'required|min:10|string', 
+        'password' => 'required|min:8|max:10|string', 
         'celular' => 'required|integer', 
         'fechaDeNacimiento'=> 'required|date',
         'fk_rH' => 'required|integer',

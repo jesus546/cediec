@@ -10,7 +10,7 @@
 <div class="col-md-10" style="margin:auto" >
   <div class="card card-primary " >
     <div class="card-header">
-      <h3 class="card-title">Editar empleado</h3>
+      <h3 class="card-title">Editar Empleado {{ucwords($empleado->nombres)}}</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->

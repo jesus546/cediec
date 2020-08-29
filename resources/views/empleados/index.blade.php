@@ -61,7 +61,6 @@
                 <td>{{$empleado->getRoleNames()->implode(', ')}}</td>
                 <td>
                   
-                  <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i></a>
                   @can('asignar permisos')
                   <a class="btn permission btn-sm" href="{{route('empleados.asignar_permission', $empleado)}}" ><i class="fas fa-scroll"></i></a>
                   @endcan

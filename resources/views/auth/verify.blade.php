@@ -1,7 +1,7 @@
 @extends('layout.layaout')
 
 @section('cont')
-<div class="container">
+<div class="register-page ">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

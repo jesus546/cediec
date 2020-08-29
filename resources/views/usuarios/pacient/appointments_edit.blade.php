@@ -9,7 +9,7 @@
   <div class="card card-info " >
       <div class="card-header">
           
-      <h3 class="card-title">Editar cita a {{$usuario->nombres}}</h3>
+      <h3 class="card-title">Editar cita a {{ucwords($usuario->nombres)}}</h3>
       
       </div>
     @include('themes.includes.user.schedule.form_schedule', [

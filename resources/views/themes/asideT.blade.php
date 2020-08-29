@@ -39,14 +39,6 @@
                   </a>
                 </li>
 
-                 <li class="nav-item">
-                 <a href="{{route('invoice')}}" class="nav-link ">
-                  <i class=" nav-icon fas fa-file-invoice"></i>
-                    <p>
-                      Facturas
-                    </p>
-                  </a>
-                </li>
          @endrole
 
          @role('Doctor')
@@ -60,23 +52,13 @@
          </li>
          @endrole
 
-         @role('super-admin')
-          <li class="nav-item">
-          <a href="{{route('price.index')}}" class="nav-link ">
-            <i class="nav-icon  fas fa-file-invoice-dollar"></i>
-             <p>
-               Precios
-             </p>
-           </a>
-         </li>
-         @endrole
 
       @can('ver citas programadas')
         <li class="nav-item">
         <a href="{{route('pacient.appointments.show')}}" class="nav-link ">
           <i class=" nav-icon fas fa-calendar-week"></i>
            <p>
-             Citas programadas
+             Citas Programadas
            </p>
          </a>
        </li>
@@ -120,12 +102,20 @@
             <a href="{{route('doctor.gestionar_horario')}}" class="nav-link ">
               <i class="nav-icon fas fa-clock"></i>
                <p>
-                 Gestionar horario
+                 Gestionar Horario
                </p>
              </a>
            </li>
           @endcan
-          
+          <li class="nav-item">
+            <a href="{{route('password_update_view')}}" class="nav-link ">
+              <i class=" nav-icon fas fa-key"></i>
+               <p>
+                 Cambiar Contraseña
+               </p>
+             </a>
+           </li>
+
                <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();

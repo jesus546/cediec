@@ -7,7 +7,7 @@ use App\specialities;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Symfony\Component\Console\Input\Input;
+
 
 class ajaxController extends Controller
 {
@@ -52,26 +52,32 @@ class ajaxController extends Controller
    {
        if($request->ajax()){
            // Detemrinar el usuario
-           $empleado = \App\User::findOrFail($request->doctor);
+           $empleado = User::findOrFail($request->doctor);
            
            // Determinar el día
-           $date = Carbon::parse($request->dates);
-           $day = $date->dayOfWeek + 1;
+           $dates = Carbon::parse($request->dates);
+           $day = $dates->dayOfWeek + 1;
    
            //Arreglo de horarios
            $hours = json_decode($empleado->hours(), true);
-           $date = $date;
-           $appointments = $empleado->doctor_appointments()
+           $date = $dates;
+           $appointments = $empleado->doctor_appointments('doctor')
                                 ->whereDate('dates', $date)
                                 ->get()
                                 ->pluck('dates')
                                 ->toJson();
-           return response()->json([
-               'hours' => $hours,
-               'day' => $day,
-               'dates' => $date,
-                'appointments' => $appointments
-           ]);
+
+          
        }
+
+       return response()->json([
+        'hours' => $hours,
+        'day' => $day,
+        'dates' => $date,
+       'appointments' => $appointments,
+    ]);
    }
+
+   
+
 }

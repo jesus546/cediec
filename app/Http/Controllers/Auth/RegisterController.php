@@ -51,22 +51,27 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
+       
         return Validator::make($data, [
-            'fk_tipoDeidentificacion' => ['required' ],
+            'fk_tipoDeidentificacion' => ['required','integer' ],
             'genero' => ['required', 'string'],
-            'identificacion' => ['required', 'integer', 'min:10', 'unique:users'],
+            'identificacion' => ['required', 'integer', 'unique:users'],
             'nombres' => ['required', 'string', 'max:255'],
             'apellidos' => ['required', 'string', 'max:255'],
             'direccion' => ['required', 'string', 'max:20'],
-            'celular' => ['required', 'integer', 'max:10'],
-            'fk_departamento' => ['required'],
-            'fk_municipio' => ['required'],
+            'celular' => ['required', 'integer', 'min:10'],
+            'fk_departamento' => ['required','integer'],
+            'fk_municipio' => ['required','integer'],
             'fechaDeNacimiento' => ['required', 'date'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'zona' =>['required'],
+            'password' => ['required', 'string', 'min:8','max:10', 'confirmed'],
+            'zona' =>['required', 'string'],
         ]);
+       
     }
+
+   
 
     /**
      * Create a new user instance after a valid registration.
@@ -90,7 +95,7 @@ class RegisterController extends Controller
             'celular' => $data['celular'],
             'zona' => $data['zona'],
             'fechaDeNacimiento' => $data['fechaDeNacimiento'],
-            'password' => Hash::make($data['password']),
+            'password' => $data['password'],
           
         ]);
      

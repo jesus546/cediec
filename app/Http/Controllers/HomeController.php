@@ -22,6 +22,12 @@ class HomeController extends Controller
     {
         return view('perfil');
     }
+
+    public function password_update_view()
+    {
+        return view('cambiarContraseña');
+    }
+
    public function password_update(ChangePassword $request)
    {
      $request->user()->password = $request->password;

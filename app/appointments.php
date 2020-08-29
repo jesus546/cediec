@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 class appointments extends Model
 {
     protected $fillable = [
-        'dates', 'doctor_id', 'status', 'user_id', 'invoice_id'
+        'dates', 'doctor_id', 'status', 'user_id'
     ];
     
     protected $dates = ['dates'];
    
-    public function user()
+    public function users()
     {
         return $this->belongsTo('App\User');
     }
@@ -26,27 +26,19 @@ class appointments extends Model
    
    
     
-    public function store($request, $invoice)
+    public function store($request)
     {
        
         $date = Carbon::createFromFormat('Y/m/d H:i', $request->date_submit .' '. $request->time_submit);
+        
+        $user = User::findOrFail(decrypt($request->user_id));
 
-        InvoiceMeta::create([
-               'key' => 'doctor',
-               'value' => $request->doctor,
-               'invoice_id' => $invoice->id,
-        ]);
-        InvoiceMeta::create([
-            'key' => 'concepto',
-            'value' => 'cita medica',
-            'invoice_id' => $invoice->id,
-     ]);
+        
         return self::create([
             'dates' => $date->toDateTimeString(),
             'doctor_id' => $request->doctor,
             'status' => 'pendiente',
-            'user_id' => $invoice->user->id,
-            'invoice_id' => $invoice->id,
+            'user_id' => $user->id,
            
         ]);
     }
@@ -58,19 +50,23 @@ class appointments extends Model
         return $doctor;
     }
 
+    public function user_id()
+    {
+        $user = User::find($this->user_id);
+        return $user;
+    }
+
     public function my_update($request)
     {
         $date = Carbon::createFromFormat('Y/m/d H:i', $request->date_submit .' '. $request->time_submit);
 
-        $invoice_status = ($request->status == 'terminada') ? 'aprobado' : $request->status;
+     
         self::update([
             'dates' => $date->toDateTimeString(),
             'status' => $request->status,
             
         ]);
 
-        $this->invoice->update([
-           'status'=> $invoice_status
-        ]);
+     
     }
 }

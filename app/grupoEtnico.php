@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class grupoEtnico extends Model
 {
     protected $table = 'grupoEtnico';
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }

@@ -34,7 +34,7 @@
     <div class="col-md-4">
       <!-- text input -->
       <div class="form-group">
-        <label for="identificacion" >Identificacion:</label>
+        <label for="identificacion" >Identificación:</label>
       <input id="identificacion" type="text" maxlength="10"  class="form-control @error('identificacion') is-invalid @enderror" name="identificacion" @if (isset($usuario))
       value="{{$usuario->identificacion}}" @else value="{{ old('identificacion') }}"  @endif  autocomplete="identificacion" autofocus>
         @error('identificacion')
@@ -79,8 +79,8 @@
         <select class="form-control @error('fk_rH') is-invalid @enderror" id="fk_rH" name="fk_rH" value="{{ old('fk_rH') }}" autocomplete="fk_rH" autofocus>
           <option disabled selected>
             @if(isset($usuario))
-            @if (isset($usuario->RHs_id()->r))
-            {{$usuario->RHs_id()->r}}
+            @if (isset($usuario->RH_id()->r))
+            {{$usuario->RH_id()->r}}
             @else
             Seleccione
             @endif
@@ -119,7 +119,7 @@
   
     <div class="col-md-2">
       <div class="form-group">
-        <label for="fk_estadoCivil">Estado civil:</label>
+        <label for="fk_estadoCivil">Estado Civil:</label>
         <select class="form-control @error('fk_estadoCivil') is-invalid @enderror" id="fk_estadoCivil" name="fk_estadoCivil" value="{{ old('fk_estadoCivil') }}">
           <option  disabled selected>Seleccione</option>
           <option  value="Soltero(a)"@if (isset($usuario)) @if ($usuario->fk_estadoCivil=='Soltero(a)' ) selected @endif @endif >Soltero(a)</option>
@@ -140,7 +140,7 @@
 
      <div class="col-md-3">
       <div class="form-group">
-        <label for="fechaDeNacimiento">Fecha de nacimiento:</label>
+        <label for="fechaDeNacimiento">Fecha De Nacimiento:</label>
         <input type="date" name="fechaDeNacimiento" class="form-control @error('fechaDeNacimiento') is-invalid @enderror" @if (isset($usuario->fechaDeNacimiento))
         value="{{$usuario->fechaDeNacimiento->format('Y-m-d')}}" @else value="{{ old('fechaDeNacimiento') }}" @endif    autocomplete="fecha de nacimiento"  >
         @error('fechaDeNacimiento')
@@ -207,7 +207,7 @@
    <div class="form-row">
     <div class="col-md-4">
       <div class="form-group">
-        <label>Direccion:</label>
+        <label>Dirección:</label>
         <input id="direccion" type="text" maxlength="30" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($usuario))
         value="{{ucwords($usuario->direccion)}}"@else value="{{ old('direccion') }}" @endif  autocomplete="direccion" autofocus >
         @error('direccion')
@@ -295,7 +295,7 @@
   <div class="form-row">
     <div class="col-md-3">
       <div class="form-group">
-        <label>Ocupacion:</label>
+        <label>Ocupación:</label>
         <input id="ocupacion" type="text" maxlength="60" class="form-control @error('ocupacion') is-invalid @enderror"
         @if (isset($usuario)) value="{{ucwords($usuario->ocupacion)}}" @else value="{{ old('ocupacion') }}" @endif 
         name="ocupacion"  autocomplete="ocupacion" autofocus >
@@ -308,7 +308,7 @@
     </div>
   <div class="col-md-4">
     <div class="form-group">
-      <label>Nombres del responsable:</label>
+      <label>Nombres Del Responsable:</label>
       <input id="nombre_del_responsable" type="text" class="form-control @error('nombre_del_responsable') is-invalid @enderror"
       @if (isset($usuario)) value="{{ucwords($usuario->nombre_del_responsable)}}" @else value="{{ old('nombre_del_responsable') }}" @endif 
       name="nombre_del_responsable"  autocomplete="nombre_del_responsable" autofocus >
@@ -366,7 +366,7 @@
 <div class="form-row">
   <div class="col-md-3">
     <div class="form-group">
-      <label>Religion:</label>
+      <label>Religión:</label>
       <select class="form-control @error('fk_religion') is-invalid @enderror" id="fk_religion" name="fk_religion" value="{{ old('fk_religion') }}" autocomplete="fk_religion" autofocus>
         <option disabled selected>
           @if(isset($usuario))
@@ -452,7 +452,7 @@
       
       <div class="col-md-3">
         <div class="form-group">
-          <label>Grupo etnico:</label>
+          <label>Grupo Étnico:</label>
           <select class="form-control @error('fk_grupoEtnico') is-invalid @enderror" id="fk_grupoEtnico" name="fk_grupoEtnico" value="{{ old('fk_grupoEtnico') }}" autocomplete="fk_grupoEtnico" autofocus>
             <option disabled selected>
               @if(isset($usuario))
@@ -484,7 +484,7 @@
 <div class="form-row">
   <div class="col-md-3">
     <div class="form-group">
-      <label>Poblacion Riesgo:</label>
+      <label>Población Riesgo:</label>
       <select class="form-control @error('fk_poblacionRiesgo') is-invalid @enderror" id="fk_poblacionRiesgo" name="fk_poblacionRiesgo" value="{{ old('fk_poblacionRiesgo') }}" autocomplete="fk_poblacionRiesgo" autofocus>
         <option disabled selected>
           @if(isset($usuario))

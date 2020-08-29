@@ -14,13 +14,8 @@ class Sede extends Migration
     public function up()
     {
         Schema::create('sede', function (Blueprint $table) {
-            $table->id('codigo');
+            $table->id();
             $table->string('nombre', 60);
-            $table->unsignedBigInteger('fk_departamento');
-            $table->foreign('fk_departamento')->references('id')->on('departamento');
-            $table->unsignedBigInteger('fk_municipio');
-            $table->foreign('fk_municipio')->references('id')->on('municipio');
-            $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
         });

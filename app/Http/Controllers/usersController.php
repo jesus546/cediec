@@ -141,7 +141,7 @@ class usersController extends Controller
         
         if ($usuario->delete()) {
             $usuario->removeRole('User');
-            return response()->json(['status'=>'se ha eliminado el precio']);
+            return response()->json(['status'=>'se ha eliminado el usuario']);
         } 
         
     }

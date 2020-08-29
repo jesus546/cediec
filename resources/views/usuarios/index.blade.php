@@ -48,13 +48,11 @@
                 <td>{{$usuario->email}}</td>
                 <td>
                   
-                  <a class="btn btn-primary btn-sm" href="{{route('clinic_data.index', $usuario)}}"><i class="fas fa-folder"></i></a>
+                  <a class="btn btn-primary btn-sm" href="{{route('clinic_note.index', $usuario)}}"><i class="fas fa-folder"></i></a>
                   @can('listar cita paciente')
                   <a class="btn btn-info btn-sm" href="{{route('pacient.appointments', $usuario)}}"   ><i class="fas fa-book" ></i> </a>
                   @endcan
-                  @can('ver factura paciente')
-                  <a class="btn btn-info btn-sm" href="{{route('back.invoice', $usuario)}}"   ><i class=" nav-icon fas fa-file-invoice"></i></a>
-                  @endcan
+              
                   
                   @can('editar usuario')
                   <a class="btn btn-info btn-sm" href="{{route('usuarios.edit', $usuario)}}" ><i class="fas fa-pencil-alt"></i> </a>

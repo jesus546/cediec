@@ -34,7 +34,7 @@ class DoctorScheduleController extends Controller
     $msj[0] = $doctor_schedule->disable_dates($request, $empleado);
     $msj[1] = $doctor_schedule->disable_work_days($request, $empleado);
     $msj[2] = $doctor_schedule->disable_hours($request, $empleado);
-    Alert::success('EXITO', 'se ha creado el horario al doctor ', $empleado->nombres)->showConfirmButton('OK', '#3085d6');
+    Alert::success('EXITO', 'se ha creado el horario al doctor ')->showConfirmButton('OK', '#3085d6');
     return redirect()->route('doctor.gestionar_horario');
     }
     

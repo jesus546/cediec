@@ -16,7 +16,7 @@
 <div class="col-md-9" style="margin:auto" >
   <div class="card shadow  " >
     <div class="card-header edt">
-    <h3 class="card-title">Editar Usuario {{$usuario->nombres}}</h3>
+    <h3 class="card-title">Editar Usuario {{ucwords($usuario->nombres)}}</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->

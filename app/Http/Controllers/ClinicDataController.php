@@ -41,7 +41,7 @@ class ClinicDataController extends Controller
   {
     $clinic_data->store($request, $usuario);
     Alert::success('EXITO', 'Se ha actualizado la historia clinica')->showConfirmButton('OK', '#3085d6');
-    return redirect()->route('clinic_data.index');
+    return redirect()->back();
 
   }
   

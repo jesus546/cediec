@@ -20,6 +20,8 @@ class SpecialitiesUser extends Migration
             $table->unsignedBigInteger('specialities_id');
             $table->foreign('specialities_id')->references('id')->on('specialities')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
             
         });
     }

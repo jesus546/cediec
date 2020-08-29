@@ -49,7 +49,7 @@ class DoctorSchedule extends Model
 	$value = [];
 
 	// Establecer los días no laborales. Esto es para validar si se deben o no procesar los horarios
-	$days_off = explode('-', $empleado->days_off());
+	$days_off = explode('/', $empleado->days_off());
 
 	// Jornada laboral por defecto.
 	// Este apartado lo debemos modificar mas adelante para que sea dinámico. Por ahora lo vamos a hacer en código duro
@@ -87,7 +87,7 @@ class DoctorSchedule extends Model
 
 			// En caso de ser verdadera la validación general, debemos almacenar los valores, en caso contrario , si hay un error se almacena el mensaje y se almacenan los valores 
 			if ($general_validaion) {
-				$value += [
+				$value+= [
 					$i => [
 						'a_in_H' => date('H', $time_a_in), 
 						'a_in_i' => date('i', $time_a_in),
@@ -100,7 +100,7 @@ class DoctorSchedule extends Model
 					],
 				];
 			} else {
-				$value += [
+				$value+= [
 					$i => [
 						'a_in_H' => date('H', $default_a_in), 
 						'a_in_i' => date('i', $default_a_in),

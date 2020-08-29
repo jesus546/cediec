@@ -33,7 +33,7 @@
     <div class="col-md-4">
       <!-- text input -->
       <div class="form-group">
-        <label for="identificacion" >Identificacion:</label>
+        <label for="identificacion" >Identificación:</label>
       <input id="identificacion" type="text" maxlength="10"  class="form-control @error('identificacion') is-invalid @enderror" name="identificacion" @if (isset($empleado))
       value="{{$empleado->identificacion}}" @else value="{{ old('identificacion') }}"  @endif   autofocus>
         @error('identificacion')
@@ -119,7 +119,7 @@
   
     <div class="col-md-2">
       <div class="form-group">
-        <label for="fk_estadoCivil">Estado civil:</label>
+        <label for="fk_estadoCivil">Estado Civil:</label>
         <select class="form-control @error('fk_estadoCivil') is-invalid @enderror" id="fk_estadoCivil" name="fk_estadoCivil" value="{{ old('fk_estadoCivil') }}">
           <option  disabled selected>Seleccione</option>
           <option  value="Soltero(a)"@if (isset($empleado)) @if ($empleado->fk_estadoCivil=='Soltero(a)' ) selected @endif @endif >Soltero(a)</option>
@@ -140,7 +140,7 @@
 
      <div class="col-md-3">
       <div class="form-group">
-        <label for="fechaDeNacimiento">Fecha de nacimiento:</label>
+        <label for="fechaDeNacimiento">Fecha De Nacimiento:</label>
         <input type="date" name="fechaDeNacimiento" class="form-control @error('fechaDeNacimiento') is-invalid @enderror" @if (isset($empleado->fechaDeNacimiento))
         value="{{$empleado->fechaDeNacimiento->format('Y-m-d')}}" @else value="{{ old('fechaDeNacimiento') }}" @endif >
         @error('fechaDeNacimiento')
@@ -208,7 +208,7 @@
    <div class="form-row">
     <div class="col-md-4">
       <div class="form-group">
-        <label>Direccion:</label>
+        <label>Dirección:</label>
         <input id="direccion" type="text" maxlength="30" class="form-control @error('direccion') is-invalid @enderror" name="direccion" @if (isset($empleado))
         value="{{ucwords($empleado->direccion)}}"@else value="{{ old('direccion') }}" @endif   autofocus >
         @error('direccion')

@@ -2,14 +2,15 @@
 
 namespace App;
 
-
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Traits\HasRoles;
 use App\rh;
+use App\appointments;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasRoles;
     use Notifiable;
@@ -197,6 +198,11 @@ class User extends Authenticatable
     return $this->hasMany('App\DisableTime');
     }
 
+    public function clinic_notes()
+      {
+         return $this->hasMany('App\ClinicNote');
+      }
+
     public function manual_disabled_dates()
     {
      $disable_date = $this->disable_dates()->where('key', 'manual')->first();
@@ -230,20 +236,7 @@ class User extends Authenticatable
     return $this->hasMany('App\appointments', 'doctor_id');
     }
     
-    public function has_regime_user($id)
-    {
-       foreach ($this->regime as $regime) {
-           if ($regime->id == $id ) return true;
-       }
-       return false;
-    }
-    public function has_aseguradora_user($id)
-    {
-       foreach ($this->aseguradora as $aseguradora) {
-           if ($aseguradora->id == $id ) return true;
-       }
-       return false;
-    }
+
 
     public function departamento_id()
     {
@@ -275,9 +268,9 @@ class User extends Authenticatable
         return $tipoAseguradora;
     }
 
-    public function RHs_id()
+    public function RH_id()
     {
-        $rh = rh::find($this->fk_rH);
+        $rh = rh::find($this->fk_rh);
         return $rh;
     }
 

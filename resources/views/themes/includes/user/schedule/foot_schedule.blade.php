@@ -13,7 +13,7 @@
 
 
 var input_time = $('#timepicker ').pickatime({
-interval: 15,
+
 formatSubmit: 'H:i',
 });
 
@@ -140,7 +140,7 @@ $.ajax({
       //Creamos un arreglo vacio para para el formato de [Hora,minuto]
       $time_arr = [];	
       // Creamos un objeto de tipo Date
-      d = new Date(x['dates']);
+      d = new Date(x['date']);
       
       // Añadimos la hora y minuto para el arreglo
       $time_arr.push(d.getHours());
@@ -155,7 +155,7 @@ $.ajax({
     disable_hours_arr.push({ from: [a_out_H, a_out_i], to: [b_in_H, b_in_i] });
 
     // En este aprtado especificamos las fechas que deseamos deshabilitar
-    time_picker.set({
+    input_time.pickatime('picker').set({
       //Definimos los límites máxismos y mínimos
       min: [a_in_H, a_in_i],
       max: [b_out_H, b_out_i],
