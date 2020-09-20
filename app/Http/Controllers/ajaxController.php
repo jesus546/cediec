@@ -50,32 +50,33 @@ class ajaxController extends Controller
 
    public function disable_times(Request $request)
    {
-       if($request->ajax()){
-           // Detemrinar el usuario
-           $empleado = User::findOrFail($request->doctor);
-           
-           // Determinar el día
-           $dates = Carbon::parse($request->dates);
-           $day = $dates->dayOfWeek + 1;
-   
-           //Arreglo de horarios
-           $hours = json_decode($empleado->hours(), true);
-           $date = $dates;
-           $appointments = $empleado->doctor_appointments('doctor')
-                                ->whereDate('dates', $date)
-                                ->get()
-                                ->pluck('dates')
-                                ->toJson();
+    if($request->ajax()){
+        // Detemrinar el usuario
+        $user = \App\User::findOrFail($request->doctor);
+        
+        // Determinar el día que el usuario proceso
+        $date = Carbon::parse($request->dates);
+        $day = $date->dayOfWeek + 1;
 
-          
-       }
+        //Arreglo de horarios base del doctor
+        $hours = json_decode($user->hours(), true);
 
-       return response()->json([
-        'hours' => $hours,
-        'day' => $day,
-        'dates' => $date,
-       'appointments' => $appointments,
-    ]);
+        //Ecncontrar citas de un día en específico
+        $date = $date;
+        $appointments = $user->doctor_appointments()
+                             ->whereDate('dates', $date)
+                             ->get()
+                             ->pluck('dates')
+                             ->toJson();
+
+        return response()->json([
+            'hours' => $hours,
+            'day' => $day,
+            'dates' => $date,
+            'appointments' => $appointments
+        ]);
+    }
+
    }
 
    

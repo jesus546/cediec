@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\ClinicData;
+use App\ClinicNote;
 use App\User;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ClinicDataController extends Controller
@@ -14,13 +13,17 @@ class ClinicDataController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role:Doctor|super-admin|Admisionista|Administrador')->only(['index']);
+        $this->middleware(['role:Doctor','permission:crear y/o actualizar historia clinica medicina interna'])->only(['create', 'store']);
+
     }
-    public function index(User $usuario)
+    public function index(User $usuario, ClinicNote $clinic_note)
        {
      
         return view('usuarios.pacient.clinic_data_index',[
         'usuario' => $usuario,
-        'datas' => $usuario->clinic_data_array()
+        'datas' => $usuario->clinic_data_array(),
+        'clinic_note' => $clinic_note,
         ]);
        }
 
@@ -41,25 +44,11 @@ class ClinicDataController extends Controller
   {
     $clinic_data->store($request, $usuario);
     Alert::success('EXITO', 'Se ha actualizado la historia clinica')->showConfirmButton('OK', '#3085d6');
-    return redirect()->back();
+    return redirect()->route('clinic_note.create', $usuario);
 
   }
   
-  public function PDF_HistoriaClinica(User $usuario){
-    $pdf = PDF::loadView('usuarios.pacient.history',[
-      'usuario' => $usuario,
-      'datas' => $usuario->clinic_data_array()
-       ]);
-
-    return $pdf->download('HistoriaClinica'. $usuario->identificacion.'.pdf');
-
-  }
-  public function hola(User $usuario){
-    return view('usuarios.pacient.history',[
-      'usuario' => $usuario,
-      'datas' => $usuario->clinic_data_array()
-       ]);
-  }
+  
     
     
 }

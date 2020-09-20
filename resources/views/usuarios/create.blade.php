@@ -1,5 +1,9 @@
 @extends('themes/layaoutT')
 
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{url('usuarios')}}">Usuarios</a></li>
+<li class="breadcrumb-item active">Crear Usuario</li>
+@endsection
 @section('style')
 <link rel="stylesheet" href="{{asset("plugins/select2/css/select2.min.css")}}">
 

@@ -1,5 +1,9 @@
 @extends('themes/layaoutT')
 
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('clinic_note.index', $usuario)}}">Notas</a></li>
+<li class="breadcrumb-item active">Editar Nota </li>
+@endsection
 
 @section('cont')
 <div class="row">
@@ -10,32 +14,26 @@
           </div>
           
           <div class="card-body">
-            <form action="{{ route('clinic_note.store', $usuario) }}" method="POST">
+            <form action="{{ route('clinic_note.update', [$usuario, $clinic_note]) }}" method="POST">
               @csrf
-            
-            
-                <div class="col-md-8">
-                  <div class="form-group">
-                  <label for="fk_parentezco">Parentezco:</label>
-                     <select class="form-control form-control-sm  " id="privacy" name="privacy">
-                         <option  disabled selected>Selecciona la opción de privacidad </option>
-                         <option value="public">Pública</option>
-                         <option value="private">Privada</option>
-                      </select>
-                    </div>
-                  </div>
-            
-              <div class="col-md-8">
+              @method('PUT')
+               
                 <div class="form-group">
-                  <label for="description"  ><h6><strong >Descripción:</strong></h6></label>
+                  <label for="description"  ><h6><strong >Evolución:</strong></h6></label>
                 <textarea class="form-control" id="description" name="description" rows="3">{{$clinic_note->description}}</textarea>
                 </div>
-  
+                <div class="form-group">
+                  <label for="laboratorio"  ><h6><strong >Laboratorio:</strong></h6></label>
+                  <textarea class="form-control" id="laboratorio" name="laboratorio" rows="3" value="{{ old('laboratorio') }}">{{$clinic_note->laboratorio}}</textarea>
                 </div>
-            
-              
-              
-           
+                <div class="form-group">
+                  <label for="plan_de_manejo"  ><h6><strong >Plan De Manejo:</strong></h6></label>
+                  <textarea class="form-control" id="plan_de_manejo" name="plan_de_manejo" rows="3" value="{{ old('plan_de_manejo') }}">{{$clinic_note->plan_de_manejo}}</textarea>
+                </div>
+                <div class="form-group">
+                  <label for="conducta"  ><h6><strong >Conducta:</strong></h6></label>
+                  <textarea class="form-control" id="conducta" name="conducta" rows="3" value="{{ old('conducta') }}">{{$clinic_note->conducta}}</textarea>
+                </div>
                </div>
              <div class="card-footer">
                  <button type="submit"  id="enviar" class="btn btn-info">Guardar</button>

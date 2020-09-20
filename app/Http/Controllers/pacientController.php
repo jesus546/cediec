@@ -81,9 +81,9 @@ class pacientController extends Controller
     }
     
    
-   public function show_appointments()
+   public function show_appointments(User $empleado)
    {
-       $appointments_collection = appointments::all();
+       $appointments_collection = appointments::where('doctor_id', $empleado->id)->get();
        $appointments = [];
        foreach ($appointments_collection as $key => $appointment) {
            
@@ -93,7 +93,8 @@ class pacientController extends Controller
            ];
        }
     return view('back_appointments.show_appointments', [
-        'appointments' =>  json_encode($appointments) 
+        'appointments' =>  json_encode($appointments),
+        'empleado' => $empleado,
     ]);
    }
 
@@ -114,7 +115,13 @@ class pacientController extends Controller
         'appointments' =>  json_encode($appointments) 
     ]);
    }
-
+  
+   public function files(User $usuario)
+   {
+       return view('usuarios.pacient.index_files', [
+           'usuario' => $usuario
+       ]);
+   }
    
    
 }

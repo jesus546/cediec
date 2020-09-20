@@ -1,5 +1,9 @@
 @extends('themes/layaoutT')
 
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('pacient.files', $usuario)}}">Archivo</a></li>
+<li class="breadcrumb-item active">Vista Historia Clinica</li>
+@endsection
 
 @section('cont')
 
@@ -9,8 +13,11 @@
         <h3 class="card-title">
             {{'Historia Clinica De '. ucwords($usuario->nombres)}}
         </h3>
-        
+        @role('Doctor')
+        @can('crear y/o actualizar historia clinica medicina interna')
         <a class="btn btn-success btn-sm float-right" href="{{route('clinic_data.create', $usuario)}}"> Crear y/o Actualizar Historia Clinica</a>
+        @endcan
+        @endrole
       </div>
       <div class="card-body">
 
@@ -72,15 +79,93 @@
                 {{ ucfirst($usuario->clinic_data('enfermedad_actual', $datas)) }}
               </p>
               <br>
-        <br>
-        <br>
+        <table  style="width: 100%;" cellpadding="4">
+        <body>
+        <tr>
+          <th colspan="4"> <h4 class="text-center">Examen Fisico</h4></th>
+        </tr>
+        <tr >
+          <td ><strong>Talla(cms):</strong> @if (!is_null($usuario->clinic_data('talla', $datas)))  {{ $usuario->clinic_data('talla', $datas) }} @else n/a @endif </td>
+          <td ><strong>Peso(Kg): </strong>@if(!is_null( $usuario->clinic_data('peso', $datas) )) {{ $usuario->clinic_data('peso', $datas) }}@else n/a @endif </td>
+          <td ><strong>IMC: </strong>@if (!is_null($usuario->clinic_data('IMC', $datas))) {{ $usuario->clinic_data('IMC', $datas) }}@else n/a @endif</td>
+          <td><strong>T°:</strong>@if (!is_null($usuario->clinic_data('IMC', $datas))) {{ $usuario->clinic_data('temperatura', $datas) }}@else n/a @endif </td>
+        </tr>
+        <tr >
+          <td><strong>PA(mmHg): </strong>@if (!is_null($usuario->clinic_data('presion-arterial', $datas))) {{ $usuario->clinic_data('presion-arterial', $datas) }}@else n/a @endif </td>
+          <td><strong>FR: </strong>@if (!is_null($usuario->clinic_data('frecuencia-respiratoria', $datas))) {{ $usuario->clinic_data('frecuencia-respiratoria', $datas) }}@else n/a @endif</td>
+          <td><strong>FC(L/mln): </strong>@if (!is_null($usuario->clinic_data('frecuencia-cardiaca', $datas))) {{ $usuario->clinic_data('frecuencia-cardiaca', $datas) }}@else n/a @endif </td>
+          <td><strong>P.ABD(cms): </strong>@if (!is_null($usuario->clinic_data('P.ABD', $datas))) {{ $usuario->clinic_data('P.ABD', $datas) }} @else n/a @endif</td>
+        </tr>
+        <tr>
+          <td colspan="4"><br></td>
+        </tr>
+        <tr >
+          <td colspan="4" ><strong>ORL:</strong> @if (!is_null($usuario->clinic_data('orl', $datas))) {{ ucfirst( $usuario->clinic_data('orl', $datas) )}} @else Sin Alteraciones @endif </td>
+        </tr>
+        <tr>
+          <td colspan="4"><strong>Ojos:</strong> @if (!is_null($usuario->clinic_data('ojos', $datas))) {{ucfirst( $usuario->clinic_data('ojos', $datas)) }}@else Sin Alteraciones @endif </td>
+        </tr>
+        <tr>
+          <td colspan="4"><strong>Cardio Vascular:</strong>@if (!is_null($usuario->clinic_data('cardio-vascular', $datas))) {{ ucfirst($usuario->clinic_data('cardio-vascular', $datas))  }}@else Sin Alteraciones @endif </td>
+        </tr>
+        <tr >
+          
+          <td colspan="4"><strong>Cuello:</strong>@if (!is_null($usuario->clinic_data('cuello', $datas))) {{ ucfirst( $usuario->clinic_data('cuello', $datas) )}}@else Sin Alteraciones @endif  </td>
+        </tr>
+        <tr>
+          <td colspan="4"><strong>Genito Urinario:</strong>@if (!is_null($usuario->clinic_data('genito-urinario', $datas))) {{ ucfirst($usuario->clinic_data('genito-urinario', $datas)) }}@else Sin Alteraciones @endif</td>
+          
+        </tr>
+        <tr>
+          <td colspan="4"><strong>Extremidades:</strong>@if (!is_null($usuario->clinic_data('extremidades', $datas))) {{ ucfirst($usuario->clinic_data('extremidades', $datas)) }}@else Sin Alteraciones @endif  </td>
+        </tr>
+        <tr>
+           <td colspan="4"><strong>Piel Y Anexos:</strong>@if (!is_null($usuario->clinic_data('piel_anexos', $datas))) {{ ucfirst($usuario->clinic_data('piel_anexos', $datas) )}}@else Sin Alteraciones @endif  </td>
+           
+          </tr>
+          <tr>
+            <td colspan="4"><strong>Pulmonar:</strong>@if (!is_null($usuario->clinic_data('pulmonar', $datas))) {{ ucfirst($usuario->clinic_data('pulmonar', $datas) )}}@else Sin Alteraciones @endif</td>
+          </tr>
+        <tr>
+          <td colspan="4"><strong>Musculo Esqueletico:</strong>@if (!is_null($usuario->clinic_data('musculo-esqueletico', $datas))) {{ ucfirst($usuario->clinic_data('musculo-esqueletico', $datas)) }}@else Sin Alteraciones @endif </td>
+          
+        </tr>
+        <tr>
+          <td colspan="4"><strong>Neurologico:</strong>@if (!is_null($usuario->clinic_data('neurologico', $datas))) {{ ucfirst($usuario->clinic_data('neurologico', $datas)) }}@else Sin Alteraciones @endif </td>
+        </tr>
+        <tr>
+          <td colspan="4"><strong>Otros:</strong>@if (!is_null($usuario->clinic_data('otros', $datas))) {{ ucfirst($usuario->clinic_data('otros', $datas)) }}@else Sin Alteraciones @endif</td>
+        </tr>
+        <tr>
+          <th colspan="4"><h4 class="text-center">Podología</h4></th>
+        </tr>
+        <tr>
+          <td colspan="2" ><strong>Amputacion:</strong> @if (!is_null($usuario->clinic_data('amputacion', $datas)))  {{ ucfirst($usuario->clinic_data('amputacion', $datas)) }} @else n/a @endif </td>
+          <td colspan="2"><strong>Sensibilidad Plantar: </strong>@if (!is_null($usuario->clinic_data('sensibilidad-Plantar', $datas))) {{ ucfirst($usuario->clinic_data('sensibilidad-Plantar', $datas)) }} @else n/a  @endif</td>
+        </tr>
+          <tr>
+          <td colspan="2" ><strong>Pulsos: </strong>@if(!is_null( $usuario->clinic_data('pulso', $datas) )) {{ ucfirst($usuario->clinic_data('pulso', $datas)) }}@else n/a @endif </td>
+          <td colspan="2"><strong>Piel:</strong>@if (!is_null($usuario->clinic_data('piel', $datas))) {{ucfirst( $usuario->clinic_data('piel', $datas)) }}@else n/a @endif </td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" ><strong>Alteracion Biomecanica: </strong>@if (!is_null($usuario->clinic_data('alteracion-biomecanica', $datas))) {{ ucfirst($usuario->clinic_data('alteracion-biomecanica', $datas)) }}@else n/a @endif  </td>
+          <td colspan="2"><strong>Uñas(micosis): </strong>@if (!is_null($usuario->clinic_data('uñas', $datas))) {{ ucfirst($usuario->clinic_data('uñas', $datas)) }}@else n/a @endif </td>
+        </tr>
+        <tr>
+          <td><br></td>
+        </tr>
+     
+
+      </tbody>
+    </table>
+    <br>
+    <br>
     <div class="row no-print">
       <div class="col-12">
         <a href="#" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
     
-        <a href="{{route('pdf_historia', $usuario)}}" class="btn btn-primary float-right" style="margin-right: 5px;">
-          <i class="fas fa-download"></i> Generar PDF
-        </a>
+    
       </div>
       </div> 
 </div>

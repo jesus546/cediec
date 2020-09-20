@@ -13,12 +13,12 @@
 <div class="row ">
     <div class="col-10 " style="margin:auto">
       <div class="card">
-        <div class="card-header ">
-          <h3 class="card-title">Empleados</h3>
+        <div class="card-header  bg-info">
+          <h3 class="card-title float-left">Empleados</h3>
 
-          <div class="card-tools">
+        
             <form>
-            <div class="input-group input-group-sm" style="width: 150px;">
+            <div class="input-group input-group-sm float-right m-1" style="width: 180px;">
               
               <input type="text" name="search" type="search" class="form-control float-right" placeholder="Search">
 
@@ -28,7 +28,7 @@
             
             </div>
           </form>         
-          </div>     
+    
         </div>
      
         <!-- /.card-header -->
@@ -77,7 +77,6 @@
                     <button class="btn btn-danger btn-sm delete_user" type="button" ><i class="fas fa-trash"></i></button>                 
                     @endcan
                   
-                 
                              
                 </td>
               </tr>

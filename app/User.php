@@ -165,6 +165,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
     return $this->hasMany('App\ClinicData');
     }
+
+    public function clinic_cirugia()
+    {
+    return $this->hasMany('App\Clinic_cirugia');
+    }
     
    public function clinic_data_array()
    {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Speciality\StoreRequest;
 use App\Http\Requests\Speciality\UpdateRequest;
 use App\specialities;
+use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SpecialitiesController extends Controller
@@ -12,16 +13,23 @@ class SpecialitiesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:listar especialidades')->only(['index']);
+        $this->middleware('permission:crear especialidad')->only(['create', 'store']);
+        $this->middleware('permission:editar especialidad')->only(['edit', 'update']);
+        $this->middleware('permission:eliminar especialidad')->only(['destroy']);
     }
     public function index()
     {
+     
         $specialities = specialities::all();
+        
         return view('specialities.index', ['specialities' => $specialities]);
     }
 
     
     public function create()
     {
+
         return view('specialities.create');
     }
 
@@ -56,6 +64,8 @@ class SpecialitiesController extends Controller
 
     public function destroy($id)
     {
+
+        
         $specialities = specialities::findOrFail($id);
         if ($specialities->delete()) {
             return response()->json(['status'=>'se ha eliminado la especialidad']);

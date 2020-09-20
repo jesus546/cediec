@@ -21,7 +21,6 @@ class rolesAndPermissions extends Seeder
          Permission::create(['name' => 'listar empleados']);
          Permission::create(['name' => 'listar cita paciente']);
          Permission::create(['name' => 'ver citas programadas']);
-         Permission::create(['name' => 'ver factura paciente']);
          Permission::create(['name' => 'ver citas doctor']);
          Permission::create(['name' => 'asignar cita']);
          Permission::create([ 'name' => 'asignar horario doctor']);
@@ -30,7 +29,8 @@ class rolesAndPermissions extends Seeder
          Permission::create(['name' => 'editar usuario']);
          Permission::create(['name' => 'editar empleado']);
          Permission::create(['name' => 'editar especialidad']);
-         Permission::create(['name' => 'editar factura paciente']);
+         Permission::create(['name' => 'editar historia clinica cirugia']);
+         Permission::create(['name' => 'editar nota de evolucion']);
          Permission::create(['name' => 'editar cita paciente']);
          Permission::create(['name' => 'eliminar usuario']);
          Permission::create(['name' => 'eliminar empleado']);
@@ -38,6 +38,9 @@ class rolesAndPermissions extends Seeder
          Permission::create(['name' => 'registrar usuario']);
          Permission::create(['name' => 'registrar empleado']);
          Permission::create(['name' => 'crear especialidad']);
+         Permission::create(['name' => 'crear historia clinica cirugia']);
+         Permission::create(['name' => 'crear y/o actualizar historia clinica medicina interna']);
+         Permission::create(['name' => 'crear nota de evolucion']);
 
         
         $role = Role::create(['name' => 'User']);

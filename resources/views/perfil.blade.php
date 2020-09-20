@@ -6,16 +6,7 @@
 <div class="row">
       <div class="col-md-8" style="margin: auto">
         <div class="card">
-            <div class="card-widget widget-user" >
-                <div class="widget-user-header " style="background-color: rgba(45, 42, 241, 0.746)">
-                    
-                  </div>
-                <div class="widget-user-image">
-                      <img class="profile-user-img img-circle elevation-2" src="{{asset('img/user.png')}}" alt="Foto de perfil">
-                </div>   
-            </div>
-         <br>
-         <br>
+            
           <div class="card-body">
             <div class="tab-content">
               <div class="tab-pane active" >

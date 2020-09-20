@@ -1,10 +1,13 @@
 @extends('themes.layaoutT')
-
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('empleados.index')}}">Empleados</a></li>
+<li class="breadcrumb-item active">Asignar o Editar Permisos</li>
+@endsection
 @section('cont')
-<div class="col-md-5" style="margin: auto">
+<div class="col-md-7" style="margin: auto">
     <div class="card card-info " >
         <div class="card-header">
-          <h3 class="card-title">Asignar o Editar Permisos {{ucwords($empleado->nombres)}}</h3>
+          <h3 class="card-title">Asignar o Editar Permisos  a {{ucwords($empleado->nombres)}}</h3>
         </div>
         
         <div class="card-body">
@@ -12,7 +15,7 @@
               @csrf
               <div class="col-sm-10">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-10">
                       <!-- checkbox -->
                       <div class="form-group">
                         @foreach ($permissions as $permission)
@@ -26,7 +29,7 @@
                         @endif
                         type="checkbox">
                             <label for="{{$permission->id}}" class="form-check-label">
-                              <span>{{$permission->name}}</span>
+                              <span>{{ucwords($permission->name)}}</span>
                             </label>
                           </div>
                         @endforeach

@@ -15,8 +15,8 @@ class CreateClinicDataTable extends Migration
     {
         Schema::create('clinic_data', function (Blueprint $table) {
             $table->id();
-            $table->string('key');
-            $table->longText('value');
+            $table->string('key')->nullable();
+            $table->longText('value')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('created_by');

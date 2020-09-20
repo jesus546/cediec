@@ -1,5 +1,8 @@
 @extends('themes.layaoutT')
-
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('empleados.index')}}">Empleados</a></li>
+<li class="breadcrumb-item active">Asignar Especialidades</li>
+@endsection
 @section('cont')
 <div class="col-md-5" style="margin: auto">
     <div class="card card-info " >

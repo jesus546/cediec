@@ -1,10 +1,13 @@
 @extends('themes.layaoutT')
-
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('specialities.index')}}">Especialidades</a></li>
+<li class="breadcrumb-item active">Editar Especialidad {{ucwords($specialities->name)}}</li>
+@endsection
 @section('cont')
 <div class="col-md-5" style="margin: auto">
     <div class="card card-info " >
         <div class="card-header">
-          <h3 class="card-title">Crear especialidades</h3>
+          <h3 class="card-title">Editar especialidad </h3>
         </div>
         
         <div class="card-body">

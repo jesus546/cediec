@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\usuario\ChangePassword;
-use Illuminate\Support\Facades\Hash;
+use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Role as ModelsRole;
 
 class HomeController extends Controller
 {
@@ -12,7 +13,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         return view('home');

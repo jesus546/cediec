@@ -1,4 +1,102 @@
-    <!-- Brand Logo -->
+<div class="sidebar-sticky pt-3">
+  <ul class="nav flex-column">
+    @hasanyrole('Doctor|super-admin|Administrador|Admisionista')
+          <select name="role" id="role" style="margin: 10px;">
+           @foreach (Auth::user()->getRoleNames() as $item)
+          <option  >{{$item}}</option>
+           @endforeach
+          </select>
+           @endhasanyrole
+          
+    <li class="nav-item">
+      <a class="nav-link active" href="{{route('home')}}">
+        <i class="fas fa-home"></i>
+        Home <span class="sr-only">(current)</span>
+      </a>
+    </li>
+    
+    @role('User')
+    <li class="nav-item">
+       <a href="{{route('schedule')}}" class="nav-link  ">
+       <i class=" fas fa-book"></i>
+         Agendar Cita
+       </a>
+     </li>
+
+     <li class="nav-item">
+          <a href="{{route('appointments')}}" class="nav-link ">
+            <i class="fas fa-calendar"></i>
+              Mis Citas
+         </a>
+      </li>
+    @endrole
+   
+    @role('Doctor')
+          <li class="nav-item">
+          <a href="{{route('pacient.appointments.doctor.show', Auth::user()->id)}}" class="nav-link ">
+            <i class=" fas fa-calendar-week"></i>
+               Mis Citas
+           </a>
+         </li>
+     @endrole
+    
+    @can('listar especialidades')
+     <li class="nav-item">
+     <a href="{{route('specialities.index')}}" class="nav-link ">
+      <i class=" fas fa-briefcase"></i>
+          Especialidades
+      </a>
+    </li>
+    @endcan  
+  
+    
+       
+    @can('listar empleados')
+    <li class="nav-item">
+    <a href="{{route('empleados.index')}}" class="nav-link ">
+     <i class=" fas fa-user-tie"></i>
+         Empleados
+     </a>
+     </li>  
+     @endcan
+    
+     
+
+     @can('listar usuario')
+     <li class="nav-item">
+      <a href="{{url('usuarios')}}" class="nav-link ">
+        <i class="fas fa-users"></i>
+          Usuarios
+      </a>
+    </li>
+   @endcan
+  
+   
+   @can('asignar horario doctor')
+   <li class="nav-item">
+   <a href="{{route('doctor.gestionar_horario')}}" class="nav-link ">
+     <i class=" fas fa-clock"></i>
+        Gestionar Horario
+    </a>
+  </li>
+ @endcan
+
+
+    <li class="nav-item">
+      <a href="{{route('password_update_view')}}" class="nav-link ">
+        <i class=" fas fa-key"></i>
+           Cambiar Contraseña
+       
+       </a>
+    </li>
+  </ul>
+
+  
+</div>
+
+
+
+@can('usuarios')
       <a href="{{route('home')}}" class="brand-link">
       <img src="{{asset('img/logo3.png')}}" alt="logo cediec" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">CEDIEC</span>
@@ -13,100 +111,21 @@
             <img src="{{asset('img/user.png')}}" class="img-circle elevation-2" alt="">
           </div>
           <div class="info">
-          <a href="{{url('perfil')}}" class="d-block">{{ ucwords(Auth::user()->nombres) }} </a>
+          <a href="" class="d-block"> </a>
           </div>
         </div>
   
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
-          @role('User')
-                 <li class="nav-item">
-                  <a href="{{route('schedule')}}" class="nav-link  ">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                      Agendar Cita
-                    </p>
-                  </a>
-                </li>
- 
-                 <li class="nav-item">
-                 <a href="{{route('appointments')}}" class="nav-link ">
-                    <i class="nav-icon fas fa-calendar"></i>
-                    <p>
-                      Mis Citas
-                    </p>
-                  </a>
-                </li>
-
-         @endrole
-
-         @role('Doctor')
-          <li class="nav-item">
-          <a href="{{route('pacient.appointments.doctor.show', Auth::user()->id)}}" class="nav-link ">
-            <i class=" nav-icon fas fa-calendar-week"></i>
-             <p>
-               Mis Citas
-             </p>
-           </a>
-         </li>
-         @endrole
+            
+  
+     
+    
+          
 
 
-      @can('ver citas programadas')
-        <li class="nav-item">
-        <a href="{{route('pacient.appointments.show')}}" class="nav-link ">
-          <i class=" nav-icon fas fa-calendar-week"></i>
-           <p>
-             Citas Programadas
-           </p>
-         </a>
-       </li>
-      @endcan
- 
-         @can('listar especialidades')
-               <li class="nav-item">
-               <a href="{{route('specialities.index')}}" class="nav-link ">
-                <i class="nav-icon fas fa-briefcase"></i>
-                  <p>
-                    Especialidades
-                  </p>
-                </a>
-              </li>
-         @endcan  
-         
-          @can('listar empleados')
-                 <li class="nav-item">
-                 <a href="{{route('empleados.index')}}" class="nav-link ">
-                  <i class="nav-icon fas fa-user-tie"></i>
-                    <p>
-                      Empleados
-                    </p>
-                  </a>
-                </li>  
-          @endcan
-
-          @can('listar usuario')
-            <li class="nav-item">
-             <a href="{{url('usuarios')}}" class="nav-link ">
-               <i class="nav-icon fas fa-users"></i>
-               <p>
-                 Usuarios
-               </p>
-             </a>
-           </li>
-          @endcan
-
-          @can('asignar horario doctor')
-            <li class="nav-item">
-            <a href="{{route('doctor.gestionar_horario')}}" class="nav-link ">
-              <i class="nav-icon fas fa-clock"></i>
-               <p>
-                 Gestionar Horario
-               </p>
-             </a>
-           </li>
-          @endcan
+          
           <li class="nav-item">
             <a href="{{route('password_update_view')}}" class="nav-link ">
               <i class=" nav-icon fas fa-key"></i>
@@ -116,21 +135,13 @@
              </a>
            </li>
 
-               <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                 <i class="nav-icon fas fa-power-off"></i>
-                 <p>
-                   Salir
-                 </p>
-                </a>
-              </li>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
+             
+          
+
+         
         </ul>
 
         </nav>
 
       </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-auto-hidden os-scrollbar-unusable"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="height: 46.3434%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>
+      @endcan

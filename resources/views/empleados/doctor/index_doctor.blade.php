@@ -39,6 +39,14 @@
                 <td>{{$empleado->age()}}</td>
                 <td>{{$empleado->email}}</td>
                 <td>
+                  @can('ver citas programadas')
+
+                  <a href="{{route('pacient.appointments.show', $empleado)}}" class="btn btn-danger btn-sm ">
+                    <i class=" nav-icon fas fa-calendar-week"></i>
+                  </a>
+      
+             @endcan
+          
                   @can('asignar horario doctor')
                   <a class="btn btn-danger btn-sm " href="{{route('doctor.schedule.assign', $empleado)}}">Asignar horario</i></a>
                   @endcan

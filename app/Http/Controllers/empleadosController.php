@@ -6,12 +6,10 @@ use Illuminate\Http\Request;
 use App\departamento;
 use App\Http\Requests\usuario\user_EmplStore;
 use App\Http\Requests\usuario\user_EmplUpdate;
-use App\Http\Requests\usuario_empleado\user_EmplStore as Usuario_empleadoUser_EmplStore;
 use App\rh;
 use App\specialities;
 use App\tipoIdentificacion;
 use App\User;
-use Illuminate\Foundation\Auth\User as AuthUser;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role as ModelsRole;
@@ -60,6 +58,7 @@ class empleadosController extends Controller
     {
         $this->authorize('registrar_empleado', $empleados);
         $empleados = $empleados->store_empl($request);
+        Alert::success('EXITO', 'El usuario empleado ha sido creado')->showConfirmButton('OK', '#3085d6');
          return redirect()->route('empleados.index');
     }
 
@@ -76,6 +75,7 @@ class empleadosController extends Controller
         $departamento = departamento::all();
         $rh = rh::all();
         $empleado = User::findOrFail($id);
+        $this->authorize('editar_empleado', $empleado);
         $roles = ModelsRole::all();
         return view('empleados.edit', compact('empleado', 'tipoIdentificacion', 'departamento', 'roles', 'rh'));
     }
@@ -84,6 +84,7 @@ class empleadosController extends Controller
     public function update(user_EmplUpdate $request, $id)
     {
         $empleado = User::findOrFail($id);
+        $this->authorize('editar_empleado', $empleado);
        $empleado->update_user($request);
         if ($request->password != null) {
             $empleado->password = $request->password;
@@ -92,7 +93,7 @@ class empleadosController extends Controller
       
         if ($empleado->save()) {
             $empleado->syncRoles($request->roles);
-            Alert::success('EXITO', 'Se ha actualizado el usuario')->showConfirmButton('OK', '#3085d6'); 
+            Alert::success('EXITO', 'Se ha actualizado el usuario empleado')->showConfirmButton('OK', '#3085d6'); 
             return redirect()->back();
         }
         
@@ -101,12 +102,12 @@ class empleadosController extends Controller
    
     public function destroy(User $empleado)
     {
-        
+        $this->authorize('eliminar_empleado', $empleado);
         if ($empleado->delete()) {
             $empleado->revokePermissionTo(Permission::all());
             $empleado->roles()->detach();
             $empleado->specialities()->detach();
-            return response()->json(['status'=>'se ha eliminado el precio']);
+            return response()->json(['status'=>'se ha eliminado el Usuario']);
         } 
     }
 

@@ -16,8 +16,10 @@ class CreateClinicNotesTable extends Migration
         Schema::create('clinic_notes', function (Blueprint $table) {
             $table->id();
             $table->timestamp('date');
-            $table->longText('description');
-            $table->enum('privacy',['public','private']);
+            $table->longText('description')->nullable();
+            $table->longText('laboratorio')->nullable();
+            $table->longText('plan_de_manejo')->nullable();
+            $table->longText('conducta')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('created_by');

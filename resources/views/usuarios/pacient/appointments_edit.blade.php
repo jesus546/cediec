@@ -1,5 +1,10 @@
 @extends('themes.layaoutT')
 
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('pacient.appointments', $usuario)}}">Citas de {{ucwords($usuario->nombres)}}</a></li>
+<li class="breadcrumb-item active">Editar Cita</li>
+@endsection
+
 @section('style')
 @include('themes.includes.user.schedule.header_schedule')
 @endsection

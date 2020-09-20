@@ -142,30 +142,41 @@
                     <td colspan="4"><br></td>
                   </tr>
                   <tr >
-                    <td colspan="2" ><strong>ORL:</strong> @if (!is_null($usuario->clinic_data('orl', $datas))) {{ ucfirst( $usuario->clinic_data('orl', $datas) )}} @else Sin Alteraciones @endif </td>
-                    <td colspan="2"><strong>Ojos:</strong> @if (!is_null($usuario->clinic_data('ojos', $datas))) {{ucfirst( $usuario->clinic_data('ojos', $datas)) }}@else Sin Alteraciones @endif </td>
+                    <td colspan="4" ><strong>ORL:</strong> @if (!is_null($usuario->clinic_data('orl', $datas))) {{ ucfirst( $usuario->clinic_data('orl', $datas) )}} @else Sin Alteraciones @endif </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4"><strong>Ojos:</strong> @if (!is_null($usuario->clinic_data('ojos', $datas))) {{ucfirst( $usuario->clinic_data('ojos', $datas)) }}@else Sin Alteraciones @endif </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4"><strong>Cardio Vascular:</strong>@if (!is_null($usuario->clinic_data('cardio-vascular', $datas))) {{ ucfirst($usuario->clinic_data('cardio-vascular', $datas))  }}@else Sin Alteraciones @endif </td>
                   </tr>
                   <tr >
-                    <td colspan="2"><strong>Cardio Vascular:</strong>@if (!is_null($usuario->clinic_data('cardio-vascular', $datas))) {{ ucfirst($usuario->clinic_data('cardio-vascular', $datas))  }}@else Sin Alteraciones @endif </td>
-                    <td colspan="2"><strong>Cuello:</strong>@if (!is_null($usuario->clinic_data('cuello', $datas))) {{ ucfirst( $usuario->clinic_data('cuello', $datas) )}}@else Sin Alteraciones @endif  </td>
+                    
+                    <td colspan="4"><strong>Cuello:</strong>@if (!is_null($usuario->clinic_data('cuello', $datas))) {{ ucfirst( $usuario->clinic_data('cuello', $datas) )}}@else Sin Alteraciones @endif  </td>
                   </tr>
                   <tr>
-                    <td colspan="2"><strong>Genito Urinario:</strong>@if (!is_null($usuario->clinic_data('genito-urinario', $datas))) {{ ucfirst($usuario->clinic_data('genito-urinario', $datas)) }}@else Sin Alteraciones @endif</td>
-                    <td colspan="2"><strong>Extremidades:</strong>@if (!is_null($usuario->clinic_data('extremidades', $datas))) {{ ucfirst($usuario->clinic_data('extremidades', $datas)) }}@else Sin Alteraciones @endif  </td>
+                    <td colspan="4"><strong>Genito Urinario:</strong>@if (!is_null($usuario->clinic_data('genito-urinario', $datas))) {{ ucfirst($usuario->clinic_data('genito-urinario', $datas)) }}@else Sin Alteraciones @endif</td>
+                    
                   </tr>
-
                   <tr>
-                     <td colspan="2"><strong>Piel Y Anexos:</strong>@if (!is_null($usuario->clinic_data('piel_anexos', $datas))) {{ ucfirst($usuario->clinic_data('piel_anexos', $datas) )}}@else Sin Alteraciones @endif  </td>
-                     <td colspan="2"><strong>Pulmonar:</strong>@if (!is_null($usuario->clinic_data('pulmonar', $datas))) {{ ucfirst($usuario->clinic_data('pulmonar', $datas) )}}@else Sin Alteraciones @endif</td>
+                    <td colspan="4"><strong>Extremidades:</strong>@if (!is_null($usuario->clinic_data('extremidades', $datas))) {{ ucfirst($usuario->clinic_data('extremidades', $datas)) }}@else Sin Alteraciones @endif  </td>
+                  </tr>
+                  <tr>
+                     <td colspan="4"><strong>Piel Y Anexos:</strong>@if (!is_null($usuario->clinic_data('piel_anexos', $datas))) {{ ucfirst($usuario->clinic_data('piel_anexos', $datas) )}}@else Sin Alteraciones @endif  </td>
+                     
+                    </tr>
+                    <tr>
+                      <td colspan="4"><strong>Pulmonar:</strong>@if (!is_null($usuario->clinic_data('pulmonar', $datas))) {{ ucfirst($usuario->clinic_data('pulmonar', $datas) )}}@else Sin Alteraciones @endif</td>
                     </tr>
                   <tr>
-                    <td colspan="2"><strong>Musculo Esqueletico:</strong>@if (!is_null($usuario->clinic_data('musculo-esqueletico', $datas))) {{ ucfirst($usuario->clinic_data('musculo-esqueletico', $datas)) }}@else Sin Alteraciones @endif </td>
-                    <td colspan="2"><strong>Neurologico:</strong>@if (!is_null($usuario->clinic_data('neurologico', $datas))) {{ ucfirst($usuario->clinic_data('neurologico', $datas)) }}@else Sin Alteraciones @endif </td>
+                    <td colspan="4"><strong>Musculo Esqueletico:</strong>@if (!is_null($usuario->clinic_data('musculo-esqueletico', $datas))) {{ ucfirst($usuario->clinic_data('musculo-esqueletico', $datas)) }}@else Sin Alteraciones @endif </td>
+                    
                   </tr>
-
                   <tr>
-                    <td colspan="2"><strong>Otros:</strong>@if (!is_null($usuario->clinic_data('otros', $datas))) {{ ucfirst($usuario->clinic_data('otros', $datas)) }}@else Sin Alteraciones @endif</td>
-                    <td  colspan="2"><br></td>
+                    <td colspan="4"><strong>Neurologico:</strong>@if (!is_null($usuario->clinic_data('neurologico', $datas))) {{ ucfirst($usuario->clinic_data('neurologico', $datas)) }}@else Sin Alteraciones @endif </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4"><strong>Otros:</strong>@if (!is_null($usuario->clinic_data('otros', $datas))) {{ ucfirst($usuario->clinic_data('otros', $datas)) }}@else Sin Alteraciones @endif</td>
                   </tr>
                   <tr>
                     <th colspan="4"><h5 class="text-center">Podología</h5></th>
@@ -174,8 +185,7 @@
                     <td colspan="2" ><strong>Amputacion:</strong> @if (!is_null($usuario->clinic_data('amputacion', $datas)))  {{ ucfirst($usuario->clinic_data('amputacion', $datas)) }} @else n/a @endif </td>
                     <td colspan="2"><strong>Sensibilidad Plantar: </strong>@if (!is_null($usuario->clinic_data('sensibilidad-Plantar', $datas))) {{ ucfirst($usuario->clinic_data('sensibilidad-Plantar', $datas)) }} @else n/a  @endif</td>
                   </tr>
-
-                  <tr>
+                    <tr>
                     <td colspan="2" ><strong>Pulsos: </strong>@if(!is_null( $usuario->clinic_data('pulso', $datas) )) {{ ucfirst($usuario->clinic_data('pulso', $datas)) }}@else n/a @endif </td>
                     <td colspan="2"><strong>Piel:</strong>@if (!is_null($usuario->clinic_data('piel', $datas))) {{ucfirst( $usuario->clinic_data('piel', $datas)) }}@else n/a @endif </td>
                   </tr>
@@ -184,7 +194,23 @@
                     <td colspan="2" ><strong>Alteracion Biomecanica: </strong>@if (!is_null($usuario->clinic_data('alteracion-biomecanica', $datas))) {{ ucfirst($usuario->clinic_data('alteracion-biomecanica', $datas)) }}@else n/a @endif  </td>
                     <td colspan="2"><strong>Uñas(micosis): </strong>@if (!is_null($usuario->clinic_data('uñas', $datas))) {{ ucfirst($usuario->clinic_data('uñas', $datas)) }}@else n/a @endif </td>
                   </tr>
-
+                  
+                  <tr>
+                    <td colspan="4"><h5 class="text-center">Resumen De Evolución</h5></td>
+                  </tr>
+                  <tr>
+                    <td colspan="4">@if (isset($clinic_note->description)) {{$clinic_note->description}}@else n/a @endif</td>
+                  </tr>
+                  <tr>
+                    <td colspan="4"><h5 class="text-center">Conducta Y Plan De Manejo</h5></td>
+                  </tr>
+                  <tr>
+                    <td colspan="4"> 
+                      <strong>Laboratorio: </strong>@if (isset($clinic_note->laboratorio)) {{$clinic_note->laboratorio}}@else n/a @endif <br>
+                      <strong>Conducta: </strong>@if (isset($clinic_note->conducta)) {{$clinic_note->conducta}} @else n/a @endif<br>
+                      <strong>Plan de Manejo: </strong>@if (isset($clinic_note->plan_de_manejo)) {{$clinic_note->plan_de_manejo}} @else n/a @endif<br>
+                    </td>
+                  </tr>
            
               
                   

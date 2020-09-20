@@ -7,7 +7,7 @@
 
 <script type="text/javascript">
   var input_date = $('#datepicker').pickadate({
-  formatSubmit: 'yyyy/mm/dd',
+  formatSubmit: 'yyyy-mm-dd',
    });
     var date_picker = input_date.pickadate('picker');
 

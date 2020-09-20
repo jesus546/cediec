@@ -1,4 +1,8 @@
 @extends('themes/layaoutT')
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('pacient.files', $usuario)}}">Archivo</a></li>
+<li class="breadcrumb-item active">Notas</li>
+@endsection
 
 @section('cont')
 <div class="row ">
@@ -19,12 +23,11 @@
                 <th>Nombres</th>
           
                 <th>
-                <a href="{{route('clinic_note.create', $usuario)}}" class="btn btn-success btn-sm float-right" >Crear Nota</a>
-                @can('registrar usuario')
-                <a href="{{route('clinic_data.index', $usuario)}}" class="btn btn-success btn-sm float-right" style="margin-right: 3px;">Historia</a>
-                
-                @endcan
-                
+                  @role('Doctor')
+                  @can('crear nota de evolucion')
+                  <a href="{{route('clinic_note.create', $usuario)}}" class="btn btn-success btn-sm float-right" >Crear Nota</a>
+                  @endcan
+                  @endrole
                 </th>
                 
               </tr>
@@ -34,13 +37,16 @@
             @foreach ($clinic_notes as $note)
             <tr>
               <input type="hidden" class="dele_user_value" value="{{$note->id}}">
-              <td scope="row">{{$note->created_at}}</td>
+              <td scope="row">{{$note->created_at->format('Y/m/d g:i A')}}</td>
               <td>Nota de Evolucion</td>
 
               <td>
-                
+                @role('Doctor')
+                @can('editar nota de evolucion')
                 <a class="btn btn-info btn-sm" href="{{route('clinic_note.edit', [$usuario, $note])}}" ><i class="fas fa-pencil-alt"></i> </a>
-                           
+                @endcan
+                @endrole        
+                <a class="btn btn-info btn-sm" href="{{route('pdf_historia', [$usuario, $note])}}" ><i class="fas fa-download"></i> </a>   
               </td>
             </tr>
             @endforeach
@@ -55,57 +61,7 @@
     </div>
   </div>
  
-  <div class="modal fade" id="modal-lg modal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Large Modal</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id="modal_note_edit_form" action="" method="POST">
-            @method('PUT')
-            @csrf
-          
-          
-              <div class="col-md-8">
-                <div class="form-group">
-                <label for="fk_parentezco">Parentezco:</label>
-                 
-                       <select id="modal_note_privacy" class="form-control form-control-sm  " name="privacy">
-                        <option value="public">Pública</option>
-                        <option value="private">Privada</option>
-                      </select>
-          
-                  </div>
-                </div>
-          
-            <div class="col-md-8">
-              <div class="form-group">
-                <label for="description"  ><h6><strong >Descripción:</strong></h6></label>
-                <textarea id="modal_note_description" name="description" class="form-control" rows="3"></textarea>
-              </div>
-
-              </div>
-          
-            
-            
-         
-        </div>
-          
-          
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="submit"  id="enviar" class="btn btn-info">Guardar</button>
-        </form>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
- 
+  
 
 @endsection
 

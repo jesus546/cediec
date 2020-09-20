@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\ClinicNote;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ClinicNoteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:Doctor|super-admin|Admisionista|Administrador')->only(['index']);
+        $this->middleware(['role:Doctor','permission:crear nota de evolucion'])->only(['create', 'store']);
+        $this->middleware(['role:Doctor','permission:crear nota de evolucion'])->only(['edit', 'update']);
+
+    }
     public function index( User $usuario)
     {
         return view('usuarios.pacient.clinicNoteIndex',[
@@ -44,7 +49,11 @@ class ClinicNoteController extends Controller
     public function store(Request $request, User $usuario, ClinicNote $clinic_note)
      {
            $clinic_note->store($request, $usuario);
-           return redirect()->route('clinic_note.index', $usuario);
+           Alert::success('EXITO', 'Se ha creado la nota de evolución')->showConfirmButton('OK', '#3085d6');   
+            return redirect()->route('clinic_note.index', $usuario);
+            
+     
+           
       }
 
     /**
@@ -79,9 +88,11 @@ class ClinicNoteController extends Controller
      * @param  \App\ClinicNote  $clinicNote
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClinicNote $clinicNote)
+    public function update(Request $request, User $usuario, ClinicNote $clinic_note)
     {
-        //
+        $clinic_note->my_update($request);
+        Alert::success('EXITO', 'Se ha actualizado la nota')->showConfirmButton('OK', '#3085d6');
+        return redirect()->back();
     }
 
     /**
@@ -94,4 +105,15 @@ class ClinicNoteController extends Controller
     {
         //
     }
+
+    public function PDF_HistoriaClinica(User $usuario, ClinicNote $clinic_note){
+        $pdf = PDF::loadView('usuarios.pacient.history',[
+          'usuario' => $usuario,
+          'datas' => $usuario->clinic_data_array(),
+          'clinic_note' => $clinic_note,
+           ]);
+    
+        return $pdf->download('HistoriaClinica'. $usuario->identificacion.'.pdf');
+    
+      }
 }

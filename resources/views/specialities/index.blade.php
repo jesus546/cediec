@@ -4,7 +4,7 @@
 <div class="row ">
     <div class="col-8 " style="margin:auto">
       <div class="card">
-        <div class="card-header bg-blue">
+        <div class="card-header bg-info">
          
           <h3 class="card-title">Especialidades</h3>
    

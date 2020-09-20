@@ -22,10 +22,11 @@ Route::get('/', 'inicioController@index')->name('inicio');
 Auth::routes(['verify'=> true]);
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth'], ['verify'=> true]], function () {
 
+    Route::get('/aside', 'HomeController@aside');
     Route::get('/perfil', 'HomeController@profile')->name('perfil');
-    Route::get('/cambiarContraseña', 'HomeController@password_update_view')->name('password_update_view')->middleware(['auth', 'password.confirm']);
+    Route::get('/cambiarContraseña', 'HomeController@password_update_view')->name('password_update_view');
     Route::put('/password_update', 'HomeController@password_update')->name('password_update');
     
 
@@ -38,7 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('pacient/{usuario}/store_back_schedule', 'pacientController@store_back_schedule')->name('pacient.store_back_schedule')
     ->middleware('permission:asignar cita');
     #ver citas agendadas
-    Route::get('back_appointments', 'pacientController@show_appointments')->name('pacient.appointments.show')
+    Route::get('back_appointments/{empleado}', 'pacientController@show_appointments')->name('pacient.appointments.show')
     ->middleware('permission:ver citas programadas');
     #ver citas agendadas del doctor
     Route::get('back_appointments/doctor/{empleado}/appointments', 'pacientController@show_doctor_appointments')
@@ -58,9 +59,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('specialities', 'SpecialitiesController');
     ///////////
     #solos lo pueden ver los usuarios con el rol User
-    //obtener factura
-    Route::get('/invoice', 'pacientController@invoice')->name('invoice')
-    ->middleware('role:User');
+   
+   
     //agendar cita
     Route::get('/schedule', 'pacientController@schedule')->name('schedule')
     ->middleware('role:User');
@@ -111,14 +111,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('patient/{usuario}/clinic_data', 'ClinicDataController', ['only' => [
                 'index', 'create', 'store'
             ]]);
-    Route::get('patient/{usuario}/donwload', 'ClinicDataController@PDF_HistoriaClinica')->name('pdf_historia');
-    Route::get('patient/{usuario}/hola', 'ClinicDataController@hola')->name('hola');
+    Route::get('patient/{usuario}/donwload/{clinic_note}', 'ClinicNoteController@PDF_HistoriaClinica')->name('pdf_historia');
+    Route::get('cirugia/{usuario}/donwload/{surgery}', 'ClinicCirugiaController@PDF_HistoriaClinicaSurgey')->name('pdf_historia.cirugia');
+  #crear historia clinica cirugia
+  Route::resource('patient/{usuario}/surgery', 'ClinicCirugiaController');
 
   #crear notas de evolucion
   Route::resource('patient/{usuario}/clinic_note', 'ClinicNoteController', ['only' => [
     'index','create','store', 'edit', 'update', 'destroy'
     ]]);
-    
+  
+  #files
+  Route::get('pacient/{usuario}/files', 'pacientController@files')->name('pacient.files')
+  ->middleware('role:Doctor|super-admin|Admisionista|Administrador');
+
   #gestionar horario del doctor
   Route::get('doctor/gestionar_horario', 'DoctorScheduleController@gestionar_horario')
   ->name('doctor.gestionar_horario')->middleware('permission:asignar horario doctor');

@@ -29,7 +29,7 @@ class appointments extends Model
     public function store($request)
     {
        
-        $date = Carbon::createFromFormat('Y/m/d H:i', $request->date_submit .' '. $request->time_submit);
+        $date = Carbon::createFromFormat('Y-m-d H:i', $request->date_submit .' '. $request->time_submit);
         
         $user = User::findOrFail(decrypt($request->user_id));
 

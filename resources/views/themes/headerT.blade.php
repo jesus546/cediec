@@ -1,13 +1,37 @@
 
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-    <a href="{{route('home')}}" class="nav-link">Home</a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Contact</a>
-    </li>
-  </ul>
+<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 " href="{{route('home')}}">
+    <span>CEDIEC</span> 
+  </a>
+
+<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<ul class="navbar-nav px-3 ">
+
+  <li class="nav-item ">
+    <a class="nav-link active" href="{{ route('perfil') }}" style="font-family: 'Open Sans', sans-serif;" >
+
+      {{ Auth::user()->nombres }}
+    </a>
+</ul>
+
+
+<ul class="navbar-nav px-3 ">
+
+ 
+ 
+    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+      document.getElementById('logout-form').submit();">
+       <i class="nav-icon fas fa-power-off"></i>
+       Salir
+    </a>
+  </li>
+</ul>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+  @csrf
+</form>
+
+
+
+
 

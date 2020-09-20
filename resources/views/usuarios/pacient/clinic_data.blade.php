@@ -1,11 +1,14 @@
 @extends('themes/layaoutT')
-
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('clinic_data.index', $usuario)}}">Historia Clinica</a></li>
+<li class="breadcrumb-item active">Crear o Actualizar Historia Clinica</li>
+@endsection
 @section('cont')
 <div class="row">
   <div class="col-md-10" style="margin: auto">
     <div class="card card-info " >
         <div class="card-header">
-          <h3 class="card-title">Crear o actualizar historia clinica</h3>
+          <h3 class="card-title">Crear o Actualizar Historia Clinica</h3>
         </div>
         
         <div class="card-body">
@@ -106,6 +109,7 @@
                     <div class="form-group">
                       <label for="peso">Peso(kg):</label>
                       <input 
+                      
                               id="peso" 
                               type="text"
                               class="form-control form-control-sm "
@@ -117,6 +121,7 @@
                     <div class="form-group">
                       <label for="IMC">IMC:</label>
                       <input 
+                              disabled
                               id="IMC" 
                               type="text"
                               class="form-control form-control-sm "
