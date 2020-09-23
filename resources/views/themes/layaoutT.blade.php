@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <link href="{{asset('css/dashboard.css' )}}" rel="stylesheet">
     @yield('style')
-    
+    <style>
+        .cool:hover{
+            background-color: rgba(0, 135, 238, 0.885);
+        }
+    </style>
 </head>
 <body style="font-size: 1.125rem; background-color: rgba(232, 230, 230, 0.645);" >
     <nav class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 shadow" style="background-color:  rgba(0, 135, 238, 0.885);">

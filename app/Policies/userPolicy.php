@@ -33,10 +33,14 @@ class userPolicy
          return $empleados;
     } 
     
-    public function editar_empleado(User $empleado)
+    public function editar_empleado(User $empleado, User $model)
     {   
-         $empleado = $empleado->hasPermissionTo('editar empleado');
-         return $empleado;
+         
+          $empleado = $empleado->hasPermissionTo('editar empleado');
+          
+          return $empleado;
+  
+         
     } 
     public function eliminar_empleado(User $empleado)
     {   
