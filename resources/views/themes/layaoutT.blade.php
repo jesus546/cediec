@@ -15,6 +15,9 @@
         .cool:hover{
             background-color: rgba(0, 135, 238, 0.885);
         }
+        .actived {
+             background: rgba(0, 135, 238, 0.885);
+        }
     </style>
 </head>
 <body style="font-size: 1.125rem; background-color: rgba(232, 230, 230, 0.645);" >
@@ -44,6 +47,16 @@
 <script src="{{asset("plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
 <script src="{{asset("js/sweetalert.min.js")}}"></script>
 <script>
+
+var header = document.getElementById("nav");
+var nav = header.getElementsByClassName("nav-link");
+for (var i = 0; i < nav.length; i++) {
+  nav[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName(" actived");
+  current[0].className = current[0].className.replace(" actived", "");
+  this.className += " actived";
+  });
+}
     showTime();
 function showTime(){
 myDate = new Date();

@@ -1,5 +1,5 @@
-<div class="sidebar-sticky pt-3">
-  <ul class="nav flex-column">
+<div class="sidebar-sticky pt-3" >
+  <ul class="nav flex-column" id="nav">
     @hasanyrole('Doctor|super-admin|Administrador|Admisionista')
           <select name="role" id="role" style="margin: 10px;">
            @foreach (Auth::user()->getRoleNames() as $item)
@@ -8,8 +8,8 @@
           </select>
            @endhasanyrole
           
-    <li class="nav-item  active">
-      <a class="nav-link cool" href="{{route('home')}}" style="background-color: rgba(0, 135, 238, 0.885">
+    <li class="nav-item  ">
+      <a class="nav-link cool " href="{{route('home')}}" >
         <i class="fas fa-home"></i>
         Home <span class="sr-only">(current)</span>
       </a>
