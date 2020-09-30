@@ -67,21 +67,39 @@
           </div>
         </div>
         <br>
-        <h4 class="text-center">Motivo De Consulta</h4>
-              
-            <h4 class="text-center">Enfermedad Actual</h4>
-              
-              <br>
+        <table style="width: 100%;">
+        <tbody>
+                   <tr>
+                       <td><strong> H.I.V:</strong> @if (isset($surgery->H_i_v)) {{ucfirst($surgery->H_i_v)}} @else n/a @endif</td>
+                       <td><strong> TABAQUISMO:</strong> @if (isset($surgery->tabaquismo)) {{ucfirst($surgery->tabaquismo)}} @else n/a @endif</td>
+                       <td><strong>DIABETES:</strong> @if (isset($surgery->diabetes)) {{ucfirst($surgery->diabetes)}} @else n/a @endif</td>
+                       <td><strong>HEPATITIS:</strong> @if (isset($surgery->hepatitis)) {{ucfirst($surgery->hepatitis)}} @else n/a @endif</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><strong > CARDIOPATIAS:</strong> @if (isset($surgery->cardiopatias)) {{ucfirst($surgery->cardiopatias)}} @else n/a @endif</td>
+                    <td><strong> ALERGIAS:</strong> @if (isset($surgery->alergias)) {{ucfirst($surgery->alergias)}} @else n/a @endif</td>
+                    <td><strong>H.T.A:</strong> @if (isset($surgery->H_T_A)) {{ucfirst($surgery->H_T_A)}} @else n/a @endif</td>
+               </tr>
+                  <tr>
+                     <td colspan="4"> <strong>M.C:</strong> @if (isset($surgery->MC)) {{ucfirst($surgery->MC)}} @else n/a @endif</td>
+                  </tr>
+                  <tr>
+                   <td colspan="4"> <strong>E.E.A:</strong> @if (isset($surgery->E_E_A)) {{ucfirst($surgery->E_E_A)}} @else n/a @endif</td>
+                </tr>
+                <tr>
+                   <td colspan="4"> <strong>EXAMEN FISICO:</strong> @if (isset($surgery->examen_fisico)) {{ucfirst($surgery->examen_fisico)}} @else n/a @endif</td>
+                </tr>
+                <tr>
+                   <td colspan="4"> <strong>DIAGNOSTICO:</strong> @if (isset($surgery->diagnostico)) {{ucfirst($surgery->diagnostico)}} @else n/a @endif</td>
+                </tr>
+                <tr>
+                    <td colspan="4"> <strong>CONDUCTA:</strong> @if (isset($surgery->conducta)) {{ucfirst($surgery->conducta)}} @else n/a @endif</td>
+                 </tr>
+                  
+                </tbody>
+              </table>
         <br>
         <br>
-    <div class="row no-print">
-      <div class="col-12">
-        <a href="#" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-    
-        <a href="#" class="btn btn-primary float-right" style="margin-right: 5px;">
-          <i class="fas fa-download"></i> Generar PDF
-        </a>
-      </div>
-      </div> 
+   
 </div>
 @endsection
